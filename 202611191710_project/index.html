@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人トレーナー専用 ドタキャン防止＆回数券管理スプレッドシート</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+    <header class="bg-slate-800 border-b border-slate-700 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-dumbbell text-emerald-400 text-2xl"></i>
+                <span class="font-bold text-lg">TrainerSheet Pro</span>
+            </div>
+            <a href="#order" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm transition">今すぐ導入 (¥4,980)</a>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        <section class="text-center py-12">
+            <div class="inline-block bg-emerald-500/10 text-emerald-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                独立1〜3年目のパーソナルトレーナー必見
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+                その無断キャンセル、<br class="hidden md:inline"><span class="text-emerald-400">泣き寝入り</span>していませんか？
+            </h1>
+            <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+                高額な予約システムは不要。LINEやDM管理の限界を突破する、スマホ対応・マクロ不要の「ドタキャン防止規約 ＆ 回数券自動消込スプレッドシート」。
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#simulator" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold text-lg px-8 py-4 rounded-xl shadow-lg transition">
+                    <i class="fa-solid fa-calculator mr-2"></i>機能デモを体験する
+                </a>
+            </div>
+        </section>
+
+        <section id="simulator" class="bg-slate-800 border border-slate-700 rounded-2xl p-6 md:p-8 my-12 shadow-xl">
+            <div class="text-center mb-8">
+                <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full">インタラクティブ・シミュレーター</span>
+                <h2 class="text-2xl font-bold mt-2">年間損失シミュレーション & 回数券デモ</h2>
+                <p class="text-slate-400 text-sm mt-1">あなたの現在の状況を入力すると、無断キャンセルによる年間損失額と解決後の利益改善額がわかります。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">単価（1回あたりのレッスン料）: <span id="price-val" class="text-emerald-400 font-bold">8,000</span>円</label>
+                        <input type="range" id="input-price" min="3000" max="20000" step="500" value="8000" class="w-full accent-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">月の無断キャンセル・ドタキャン回数: <span id="cancel-val" class="text-emerald-400 font-bold">3</span>回</label>
+                        <input type="range" id="input-cancel" min="0" max="15" step="1" value="3" class="w-full accent-emerald-500">
+                    </div>
+                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-700">
+                        <p class="text-sm text-slate-400">年間売上損失（推算）:</p>
+                        <p id="loss-result" class="text-3xl font-extrabold text-rose-400 mt-1">288,000円</p>
+                        <p class="text-xs text-slate-500 mt-1">※本ツール導入でポリシー規約に同意させ、半数を防げば約14万円が手元に残ります。</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-md font-bold mb-3 flex items-center">
+                        <i class="fa-solid fa-table text-emerald-400 mr-2"></i>回数券残数 自動計算デモ
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead>
+                                <tr class="border-b border-slate-700 text-slate-400">
+                                    <th class="pb-2">顧客名</th>
+                                    <th class="pb-2">購入</th>
+                                    <th class="pb-2">消化</th>
+                                    <th class="pb-2">残数</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800">
+                                <tr>
+                                    <td class="py-2">佐藤 健様</td>
+                                    <td>8回</td>
+                                    <td><span id="demo-used" class="text-emerald-400 font-bold">5</span>回</td>
+                                    <td><span id="demo-remain" class="font-bold text-amber-400">3回</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button id="btn-consume" class="w-full mt-4 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-bold py-2 rounded-lg transition">
+                        + 1回消化ボタンを押してみる
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="order" class="bg-gradient-to-br from-emerald-900/40 to-slate-800 border border-emerald-500/30 rounded-2xl p-8 text-center my-16">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">もうキャンセルに悩まされない、プロの管理体制を今日から。</h2>
+            <p class="text-slate-300 max-w-xl mx-auto mb-6">
+                買い切り4,980円（税込・追加費用なし）。Googleスプレッドシートですぐにコピーしてご利用いただけます。
+            </p>
+            <div class="bg-slate-900/80 inline-block px-6 py-4 rounded-xl border border-slate-700 mb-6 text-left max-w-md w-full">
+                <ul class="space-y-2 text-sm text-slate-300">
+                    <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i>コピペで使える「キャンセルポリシー規約文面」</li>
+                    <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i>スマホ対応・回数券自動消込シート</li>
+                    <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i>売上・リピート率集計ダッシュボード</li>
+                </ul>
+            </div>
+            <div>
+                <button onclick="alert('フェイクドア検証のため、実際の決済ページには遷移しません。ご協力ありがとうございます！')" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold text-lg px-8 py-4 rounded-xl shadow-xl transition block w-full md:w-auto md:inline-block">
+                    スプレッドシートを手に入れる (¥4,980)
+                </button>
+                <p class="text-xs text-slate-400 mt-3">※Googleアカウントがあれば今すぐご利用可能です</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 TrainerSheet Pro All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const inputPrice = document.getElementById('input-price');
+        const inputCancel = document.getElementById('input-cancel');
+        const priceVal = document.getElementById('price-val');
+        const cancelVal = document.getElementById('cancel-val');
+        const lossResult = document.getElementById('loss-result');
+
+        function updateSimulator() {
+            const price = parseInt(inputPrice.value);
+            const cancel = parseInt(inputCancel.value);
+            priceVal.textContent = price.toLocaleString();
+            cancelVal.textContent = cancel;
+            const annualLoss = price * cancel * 12;
+            lossResult.textContent = annualLoss.toLocaleString() + '円';
+        }
+
+        inputPrice.addEventListener('input', updateSimulator);
+        inputCancel.addEventListener('input', updateSimulator);
+
+        const btnConsume = document.getElementById('btn-consume');
+        const demoUsed = document.getElementById('demo-used');
+        const demoRemain = document.getElementById('demo-remain');
+        let usedCount = 5;
+        const totalCount = 8;
+
+        btnConsume.addEventListener('click', () => {
+            usedCount++;
+            if(usedCount > totalCount) usedCount = 0;
+            demoUsed.textContent = usedCount;
+            demoRemain.textContent = (totalCount - usedCount) + '回';
+        });
+    </script>
+</body>
+</html>
