@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const key = params.get('key');
+  const storageKey = 'vf_unlocked_20261120040023_project';
+  if (key === 'xlljtmjt236itji0') {
+    localStorage.setItem(storageKey, 'true');
+  } else if (localStorage.getItem(storageKey) !== 'true') {
+    document.documentElement.innerHTML = '<body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;"><div style="text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px;"><h2 style="margin-top:0;">🔒 購入者専用ページ</h2><p style="color:#94a3b8;font-size:0.9rem;line-height:1.6;">このツールは購入完了後の正規リダイレクトからのみアクセス可能です。未購入の方は販売ページよりお手続きください。</p><a href="https://deguchry112445-cell.github.io/ai-venture-factory/20261120040023_project/" style="display:inline-block;margin-top:1rem;padding:0.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:0.5rem;font-weight:bold;">販売ページへ戻る</a></div></body>';
+    window.stop();
+  }
+})();
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】キッチンカー HACCP＆営業許可更新管理システム</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased">
+    <!-- App Header -->
+    <header class="bg-slate-900 text-white shadow">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-truck-fast text-amber-400 text-2xl"></i>
+                <div>
+                    <h1 class="font-bold text-lg">Venture Factory 管理コンソール</h1>
+                    <p class="text-xs text-slate-400">キッチンカー専用 HACCP＆営業許可更新オートチェッカー</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="exportCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition flex items-center">
+                    <i class="fa-solid fa-download mr-2"></i> CSV出力
+                </button>
+                <button onclick="clearData()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm px-3 py-2 rounded-lg transition">
+                    <i class="fa-solid fa-trash mr-1"></i> データリセット
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8 grid lg:grid-cols-3 gap-8">
+        <!-- Left: Input Form -->
+        <div class="lg:col-span-1">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sticky top-6">
+                <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center">
+                    <i class="fa-solid fa-pen-to-square text-amber-500 mr-2"></i> 本日のHACCP記録追加
+                </h2>
+                <form id="haccpForm" onsubmit="addRecord(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">日付</label>
+                        <input type="date" id="recordDate" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">メニュー名 / 食材</label>
+                        <input type="text" id="menuName" placeholder="例：特製ローストビーフ" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">中心温度 (℃)</label>
+                        <input type="number" step="0.1" id="coreTemp" placeholder="例：78.5" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">衛生確認事項</label>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" id="checkHygiene" checked class="rounded text-indigo-600">
+                                <span>手指洗浄・器具殺菌完了</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" id="checkStorage" checked class="rounded text-indigo-600">
+                                <span>冷蔵・冷凍庫の温度正常</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">特記事項・異常時の対応</label>
+                        <textarea id="notes" rows="2" placeholder="特になし" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 rounded-xl shadow transition">
+                        記録を保存する
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right: Records Table & License Status -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- License Renewal Widget -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center">
+                    <i class="fa-solid fa-file-shield text-indigo-600 mr-2"></i> 仕込み場所・営業許可 更新期限チェッカー
+                </h2>
+                <div class="grid sm:grid-cols-3 gap-4 mb-4">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <span class="text-xs text-slate-500 block">許可有効期限</span>
+                        <input type="date" id="expiryDate" onchange="updateLicenseStatus()" class="mt-1 font-bold text-slate-800 bg-transparent w-full">
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <span class="text-xs text-slate-500 block">残り日数</span>
+                        <span id="remainingDays" class="text-xl font-black text-indigo-600">--- 日</span>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <span class="text-xs text-slate-500 block">ステータス</span>
+                        <span id="licenseStatusBadge" class="inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-slate-200 text-slate-700 mt-1">未設定</span>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-500">※更新申請は有効期限の約1ヶ月前からの準備をおすすめします。</p>
+            </div>
+
+            <!-- HACCP Records List -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold text-slate-900 flex items-center">
+                        <i class="fa-solid fa-table-list text-indigo-600 mr-2"></i> HACCP 記録一覧（自動保存）
+                    </h2>
+                    <span id="recordCount" class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-semibold">全 0 件</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-200 text-xs text-slate-500 bg-slate-50">
+                                <th class="p-3">日付</th>
+                                <th class="p-3">メニュー</th>
+                                <th class="p-3">中心温度</th>
+                                <th class="p-3">衛生確認</th>
+                                <th class="p-3">判定</th>
+                                <th class="p-3 text-right">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recordTableBody" class="text-sm divide-y divide-slate-100">
+                            <!-- JavaScriptで動的挿入 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-xs mt-12">
+        <p>&copy; 2026 Venture Factory. All Rights Reserved. (Purchase ID verified)</p>
+    </footer>
+
+    <!-- App Logic -->
+    <script>
+        let records = JSON.parse(localStorage.getItem('vf_haccp_records')) || [];
+        let expiry = localStorage.getItem('vf_expiry_date') || '';
+        
+        if (expiry) {
+            document.getElementById('expiryDate').value = expiry;
+            updateLicenseStatus();
+        }
+
+        document.getElementById('recordDate').valueAsDate = new Date();
+
+        function addRecord(e) {
+            e.preventDefault();
+            const newRec = {
+                id: Date.now(),
+                date: document.getElementById('recordDate').value,
+                menu: document.getElementById('menuName').value,
+                temp: parseFloat(document.getElementById('coreTemp').value),
+                hygiene: document.getElementById('checkHygiene').checked && document.getElementById('checkStorage').checked,
+                notes: document.getElementById('notes').value
+            };
+            records.unshift(newRec);
+            saveAndRender();
+            e.target.reset();
+            document.getElementById('recordDate').valueAsDate = new Date();
+        }
+
+        function deleteRecord(id) {
+            records = records.filter(r => r.id !== id);
+            saveAndRender();
+        }
+
+        function saveAndRender() {
+            localStorage.setItem('vf_haccp_records', JSON.stringify(records));
+            renderTable();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('recordTableBody');
+            document.getElementById('recordCount').innerText = `全 ${records.length} 件`;
+            if (records.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-400">記録がまだありません。左側のフォームから追加してください。</td></tr>`;
+                return;
+            }
+            tbody.innerHTML = records.map(r => {
+                const isPass = r.temp >= 75 && r.hygiene;
+                return `<tr class="hover:bg-slate-50">
+                    <td class="p-3 font-medium">${r.date}</td>
+                    <td class="p-3">${r.menu}</td>
+                    <td class="p-3">${r.temp}℃</td>
+                    <td class="p-3">${r.hygiene ? '<i class="fa-solid fa-check text-emerald-600"></i>' : '<i class="fa-solid fa-xmark text-red-500"></i>'}</td>
+                    <td class="p-3">${isPass ? '<span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-0.5 rounded font-bold">合格</span>' : '<span class="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded font-bold">要確認</span>'}</td>
+                    <td class="p-3 text-right"><button onclick="deleteRecord(${r.id})" class="text-slate-400 hover:text-red-600"><i class="fa-solid fa-trash"></i></button></td>
+                </tr>`;
+            }).join('');
+        }
+
+        function updateLicenseStatus() {
+            const val = document.getElementById('expiryDate').value;
+            localStorage.setItem('vf_expiry_date', val);
+            if (!val) return;
+            const target = new Date(val);
+            const today = new Date();
+            const diffDays = Math.ceil((target - today) / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('remainingDays').innerText = `${diffDays} 日`;
+            const badge = document.getElementById('licenseStatusBadge');
+            
+            if (diffDays < 0) {
+                badge.className = "inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800 mt-1";
+                badge.innerText = "有効期限切れ";
+            } else if (diffDays <= 30) {
+                badge.className = "inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 mt-1";
+                badge.innerText = "更新期日接近";
+            } else {
+                badge.className = "inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 mt-1";
+                badge.innerText = "有効";
+            }
+        }
+
+        function exportCSV() {
+            if (records.length === 0) {
+                alert('エクスポートするデータがありません。');
+                return;
+            }
+            let csv = '\uFEFF日付,メニュー,中心温度(℃),衛生確認,判定,特記事項\n';
+            records.forEach(r => {
+                const isPass = r.temp >= 75 && r.hygiene ? '合格' : '要確認';
+                csv += `"${r.date}","${r.menu}",${r.temp},"${r.hygiene ? 'OK' : 'NG'}","${isPass}","${r.notes || ''}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `haccp_records_${new Date().toISOString().slice(0,10)}.csv`;
+            a.click();
+        }
+
+        function clearData() {
+            if (confirm('すべての記録データを削除しますか？')) {
+                records = [];
+                localStorage.removeItem('vf_haccp_records');
+                renderTable();
+            }
+        }
+
+        renderTable();
+    </script>
+</body>
+</html>
