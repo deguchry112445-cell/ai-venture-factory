@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フリーランス婚礼業向け リスク防御契約書テンプレート</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-shield-halved text-amber-400 text-2xl"></i>
+                <span class="font-bold text-lg">SoloWedding Guard</span>
+            </div>
+            <a href="#purchase" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm transition">今すぐテンプレートを入手する</a>
+        </div>
+    </header>
+
+    <section class="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-6">開業1〜3年目のフリーランスウェディングプランナー専用</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">その契約書、トラブルが起きたとき本当にあなたを守れますか？</h1>
+            <p class="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed">「衣装の深刻な汚れ・破損」「直前の無慈悲なキャンセル」。弁護士に相談する予算のない個人事業主が、泣き寝入りをゼロにするための示談・免責条項つき契約書＆ヒアリングシートセット。</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#simulator" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-4 rounded-xl text-lg shadow-lg transition flex items-center justify-center space-x-2">
+                    <span>損失リスク簡易シミュレーターを試す</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="simulator" class="py-16 px-4 max-w-4xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 md:p-10">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2">【無料体験】婚礼トラブル損失リスク算出シミュレーター</h2>
+                <p class="text-slate-600 text-sm">現在のあなたの契約状態における「潜在的損失額」を瞬時に算出します。</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">年間担当組数（目安）</label>
+                    <input type="range" id="countRange" min="1" max="30" value="10" class="w-full accent-amber-500" oninput="calcRisk()">
+                    <div class="text-right text-sm text-slate-500 mt-1"><span id="countVal">10</span> 組 / 年</div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">平均ドレス・衣装調達費</label>
+                    <select id="costSelect" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm" onchange="calcRisk()">
+                        <option value="100000">10万円（一般的なミニマルプラン）</option>
+                        <option value="250000" selected>25万円（標準的なインポートドレス等）</option>
+                        <option value="500000">50万円以上（高級ブランド・こだわり衣装）</option>
+                    </select>
+                </div>
+            </div>
+            <div class="bg-rose-50 border border-rose-200 rounded-xl p-6 text-center">
+                <p class="text-sm text-rose-700 font-medium mb-1">不十分な契約書による年間最大推定リスク（自腹損失・弁護士費用換算）</p>
+                <div id="riskResult" class="text-3xl md:text-4xl font-extrabold text-rose-600 my-2">￥350,000</div>
+                <p class="text-xs text-rose-500">※直前キャンセル料未回収および衣装破損の全額自己負担リスクの合算推定値</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="purchase" class="bg-slate-900 text-white py-20 px-4">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6">明日からの安心を手に入れる、確実な投資</h2>
+            <p class="text-slate-300 mb-8">弁護士に依頼すれば数十万円かかる契約書の作成・リーガルチェック。このテンプレートなら、コピペして穴埋めするだけで、今日からあなたのビジネスを完璧に防衛できます。</p>
+            <div class="bg-white text-slate-900 rounded-2xl p-8 shadow-2xl max-w-xl mx-auto mb-8 text-left">
+                <div class="flex justify-between items-center border-b border-slate-200 pb-4 mb-6">
+                    <div>
+                        <h3 class="font-bold text-lg">フリーランス婚礼業向け 契約書＆ヒアリングシートセット</h3>
+                        <p class="text-xs text-slate-500">一括買い切り版（Wordファイル＋解説PDF）</p>
+                    </div>
+                    <span class="text-2xl font-extrabold text-amber-600">¥4,980</span>
+                </div>
+                <ul class="space-y-3 text-sm text-slate-700 mb-8">
+                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-500 mr-2"></i>衣装の汚損・破損における免責・損害賠償条項</li>
+                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-500 mr-2"></i>直前キャンセルにおける段階的違約金規定</li>
+                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-500 mr-2"></i>理不尽な値切り・追加要求を防ぐヒアリングシート</li>
+                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-500 mr-2"></i>そのまま使える示談合意書テンプレート同梱</li>
+                </ul>
+                <a href="#" onclick="alert('これはフェイクドアLPのサンプルです。実際の決済機能は実装されていません。'); return false;" class="block w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-4 rounded-xl text-center shadow-md transition text-lg">今すぐ4,980円で購入する（買い切り）</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-slate-500 py-8 px-4 text-center text-xs">
+        <p>&copy; 2026 SoloWedding Guard All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function calcRisk() {
+            const count = document.getElementById('countRange').value;
+            const cost = parseInt(document.getElementById('costSelect').value);
+            document.getElementById('countVal').innerText = count;
+            // リスク算出ロジックのシミュレーション
+            const estimatedRisk = (cost * 0.3) + (count * 15000);
+            document.getElementById('riskResult').innerText = '￥' + Math.round(estimatedRisk).toLocaleString();
+        }
+    </script>
+</body>
+</html>
