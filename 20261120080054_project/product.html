@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const key = params.get('key');
+  const storageKey = 'vf_unlocked_20261120080054_project';
+  if (key === 'djizar0rnqg15u7o') {
+    localStorage.setItem(storageKey, 'true');
+  } else if (localStorage.getItem(storageKey) !== 'true') {
+    document.documentElement.innerHTML = '<body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;"><div style="text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px;"><h2 style="margin-top:0;">🔒 購入者専用ページ</h2><p style="color:#94a3b8;font-size:0.9rem;line-height:1.6;">このツールは購入完了後の正規リダイレクトからのみアクセス可能です。未購入の方は販売ページよりお手続きください。</p><a href="https://deguchry112445-cell.github.io/ai-venture-factory/20261120080054_project/" style="display:inline-block;margin-top:1rem;padding:0.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:0.5rem;font-weight:bold;">販売ページへ戻る</a></div></body>';
+    window.stop();
+  }
+})();
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】免責同意書＆ヒアリングカルテ管理システム</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans">
+    <header class="bg-slate-900 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-shield-dog text-indigo-400 text-2xl"></i>
+                <h1 class="font-bold text-lg">免責同意書＆カルテ管理システム（完全版）</h1>
+            </div>
+            <div class="text-xs bg-indigo-600 text-white px-3 py-1.5 rounded font-semibold">
+                Venture Factory 認証済ユーザー
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid lg:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 lg:col-span-1">
+                <h2 class="font-bold text-lg mb-4 text-slate-900 flex items-center">
+                    <i class="fa-solid fa-user-plus text-indigo-600 mr-2"></i> 新規カルテ・同意書登録
+                </h2>
+                <form id="clientForm" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">飼い主様のお名前</label>
+                        <input type="text" id="clientName" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">ペットのお名前・犬種</label>
+                        <input type="text" id="petInfo" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm" placeholder="例: ポチ (トイプードル)">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">持病・アレルギー・特記事項</label>
+                        <textarea id="medicalNote" rows="2" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm" placeholder="心臓疾患あり、ノミ・ダニ予防済など"></textarea>
+                    </div>
+                    <div class="flex items-center space-x-2 pt-2">
+                        <input type="checkbox" id="agreeCheck" required class="w-4 h-4 text-indigo-600 rounded border-slate-300">
+                        <label for="agreeCheck" class="text-xs font-bold text-slate-700">免責事項への飼い主同意を確認済み</label>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg text-sm transition shadow">
+                        登録して一覧に保存
+                    </button>
+                </form>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 lg:col-span-2">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="font-bold text-lg text-slate-900 flex items-center">
+                        <i class="fa-solid fa-address-book text-indigo-600 mr-2"></i> 登録済み顧客カルテ一覧
+                    </h2>
+                    <button onclick="exportCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-2 rounded-lg transition">
+                        <i class="fa-solid fa-file-csv mr-1"></i> CSVエクスポート
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-200 text-xs text-slate-500 bg-slate-50">
+                                <th class="p-3">登録日時</th>
+                                <th class="p-3">飼い主名</th>
+                                <th class="p-3">ペット情報</th>
+                                <th class="p-3">特記事項</th>
+                                <th class="p-3">免責同意</th>
+                                <th class="p-3">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clientTableBody" class="text-sm">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+        &copy; 2026 Venture Factory. All rights reserved.
+    </footer>
+
+    <script>
+        let clients = JSON.parse(localStorage.getItem('vf_grooming_clients')) || [];
+
+        function renderTable() {
+            const tbody = document.getElementById('clientTableBody');
+            tbody.innerHTML = '';
+            if (clients.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-400">登録されたカルテはありません</td></tr>`;
+                return;
+            }
+            clients.forEach((c, index) => {
+                tbody.innerHTML += `
+                    <tr class="border-b border-slate-100 hover:bg-slate-50">
+                        <td class="p-3 text-xs text-slate-500">${c.date}</td>
+                        <td class="p-3 font-bold">${c.name}</td>
+                        <td class="p-3">${c.pet}</td>
+                        <td class="p-3 text-xs text-slate-600">${c.note || '-'}</td>
+                        <td class="p-3"><span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-0.5 rounded font-bold">同意済</span></td>
+                        <td class="p-3"><button onclick="deleteClient(${index})" class="text-rose-500 hover:text-rose-700 text-xs font-bold"><i class="fa-solid fa-trash"></i></button></td>
+                    </tr>
+                `;
+            });
+        }
+
+        document.getElementById('clientForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newClient = {
+                date: new Date().toLocaleDateString(),
+                name: document.getElementById('clientName').value,
+                pet: document.getElementById('petInfo').value,
+                note: document.getElementById('medicalNote').value,
+                agree: true
+            };
+            clients.unshift(newClient);
+            localStorage.setItem('vf_grooming_clients', JSON.stringify(clients));
+            document.getElementById('clientForm').reset();
+            renderTable();
+        });
+
+        function deleteClient(index) {
+            if (confirm('このカルテデータを削除してもよろしいですか？')) {
+                clients.splice(index, 1);
+                localStorage.setItem('vf_grooming_clients', JSON.stringify(clients));
+                renderTable();
+            }
+        }
+
+        function exportCSV() {
+            if (clients.length === 0) { alert('エクスポートするデータがありません。'); return; }
+            let csv = '\uFEFF登録日時,飼い主名,ペット情報,特記事項,免責同意\n';
+            clients.forEach(c => {
+                csv += `"${c.date}","${c.name}","${c.pet}","${c.note}","同意済"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `grooming_clients_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+        }
+
+        renderTable();
+    </script>
+</body>
+</html>
