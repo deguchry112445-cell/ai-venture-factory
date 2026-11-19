@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人トレーナー専用 ドタキャン防止＆回数券管理スプレッドシート</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans JP', 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 antialiased">
+    <!-- ヘッダー -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="font-bold text-lg tracking-tight text-emerald-400 flex items-center gap-2">
+                <i class="fa-solid fa-file-excel"></i> TrainerSheet Pro
+            </div>
+            <a href="https://buy.stripe.com/4gM7sL43Z1va7uu4xneQM00" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm transition shadow-lg shadow-emerald-500/20">
+                今すぐ導入する (4,980円)
+            </a>
+        </div>
+    </header>
+
+    <!-- ファーストビュー -->
+    <section class="py-16 md:py-24 px-4 max-w-5xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs md:text-sm font-semibold px-3 py-1.5 rounded-full mb-6">
+            <i class="fa-solid fa-triangle-exclamation"></i> 独立1〜3年目のパーソナルトレーナー必見
+        </div>
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight mb-6">
+            その無断キャンセル、<br class="hidden md:inline"><span class="text-emerald-400">泣き寝入り</span>していませんか？
+        </h1>
+        <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto mb-10">
+            月額高い予約システムは不要。LINE・DM管理の限界を突破する、マクロ不要のスマホ対応・回数券自動消込＆ドタキャン防止管理スプレッドシート。
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="https://buy.stripe.com/4gM7sL43Z1va7uu4xneQM00" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-lg px-8 py-4 rounded-xl transition shadow-xl shadow-emerald-500/20 flex items-center justify-center gap-2">
+                <span>完全版を手に入れる</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+        <p class="text-xs text-slate-500 mt-3">買い切り4,980円（税込）/ 追加費用なし・Googleスプレッドシート形式</p>
+    </section>
+
+    <!-- インタラクティブ・シミュレーター -->
+    <section id="simulator" class="py-12 px-4 max-w-4xl mx-auto">
+        <div class="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 md:p-8 shadow-2xl">
+            <div class="text-center mb-8">
+                <span class="text-xs font-bold tracking-wider text-emerald-400 uppercase">Interactive Demo</span>
+                <h2 class="text-xl md:text-2xl font-bold mt-1">回数券・自動消込シミュレーター</h2>
+                <p class="text-sm text-slate-400 mt-2">顧客の消化やキャンセル操作が、スプレッドシート上でどう連動するかお試しください。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700">
+                    <h3 class="text-sm font-semibold text-slate-300 mb-3"><i class="fa-solid fa-user text-emerald-400 mr-2"></i>顧客情報シミュレーション</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">顧客名:</span>
+                            <span class="font-medium">山田 太郎 様</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">購入プラン:</span>
+                            <span class="font-medium">8回券（通常購入）</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">有効期限:</span>
+                            <span class="font-medium">2026/08/31</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700 flex flex-col justify-between">
+                    <h3 class="text-sm font-semibold text-slate-300 mb-3"><i class="fa-solid fa-calculator text-emerald-400 mr-2"></i>リアルタイム残数ステータス</h3>
+                    <div class="grid grid-cols-2 gap-4 text-center my-auto">
+                        <div class="bg-slate-800 p-3 rounded-lg">
+                            <div class="text-xs text-slate-400">消化回数</div>
+                            <div id="used-count" class="text-2xl font-bold text-slate-200 mt-1">3回</div>
+                        </div>
+                        <div class="bg-emerald-500/10 border border-emerald-500/30 p-3 rounded-lg">
+                            <div class="text-xs text-emerald-400">残り残数</div>
+                            <div id="rem-count" class="text-2xl font-bold text-emerald-400 mt-1">5回</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-3 justify-center">
+                <button onclick="updateSheet(1)" class="bg-slate-700 hover:bg-slate-600 text-xs font-bold px-4 py-2.5 rounded-lg transition">
+                    <i class="fa-solid fa-check mr-1 text-emerald-400"></i> 通常レッスン消化（-1）
+                </button>
+                <button onclick="updateSheet(2)" class="bg-slate-700 hover:bg-slate-600 text-xs font-bold px-4 py-2.5 rounded-lg transition">
+                    <i class="fa-solid fa-triangle-exclamation mr-1 text-amber-400"></i> 当日ドタキャン（全額消化）
+                </button>
+                <button onclick="resetSheet()" class="bg-slate-800 hover:bg-slate-700 text-xs text-slate-400 hover:text-white px-3 py-2.5 rounded-lg transition">
+                    リセット
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 課題と解決策 -->
+    <section class="py-16 px-4 max-w-4xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">こんなお悩み、ありませんか？</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-slate-800/40 border border-slate-800 p-6 rounded-xl">
+                <div class="text-rose-400 text-xl mb-3"><i class="fa-solid fa-circle-xmark"></i></div>
+                <h3 class="font-bold mb-2">無断キャンセル・ドタキャン</h3>
+                <p class="text-sm text-slate-400">「急用で…」と直前キャンセルされ、レンタルジム代だけが赤字として残る。</p>
+            </div>
+            <div class="bg-slate-800/40 border border-slate-800 p-6 rounded-xl">
+                <div class="text-rose-400 text-xl mb-3"><i class="fa-solid fa-circle-xmark"></i></div>
+                <h3 class="font-bold mb-2">回数券の管理ミス・トラブル</h3>
+                <p class="text-sm text-slate-400">メモやLINEの遡りで「あと何回残ってるっけ？」とお客様と認識違いが起きる。</p>
+            </div>
+            <div class="bg-slate-800/40 border border-slate-800 p-6 rounded-xl">
+                <div class="text-rose-400 text-xl mb-3"><i class="fa-solid fa-circle-xmark"></i></div>
+                <h3 class="font-bold mb-2">既存ツールのオーバースペック</h3>
+                <p class="text-sm text-slate-400">大手システムは月額が高すぎて、個人トレーナーの利益を圧迫する。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 含まれるコンテンツ -->
+    <section class="py-16 px-4 max-w-4xl mx-auto border-t border-slate-800">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">パッケージ内容</h2>
+        <div class="space-y-4">
+            <div class="bg-slate-800/60 border border-slate-700 p-5 rounded-xl flex items-start gap-4">
+                <div class="bg-emerald-500/10 text-emerald-400 p-3 rounded-lg text-lg"><i class="fa-solid fa-file-shield"></i></div>
+                <div>
+                    <h3 class="font-bold text-lg">1. コピペで使えるキャンセルポリシー規約文面</h3>
+                    <p class="text-sm text-slate-400 mt-1">トラブルを防ぐための法的効力を考慮した規約テンプレート。初回契約時に提示するだけで無断キャンセルを牽制。</p>
+                </div>
+            </div>
+            <div class="bg-slate-800/60 border border-slate-700 p-5 rounded-xl flex items-start gap-4">
+                <div class="bg-emerald-500/10 text-emerald-400 p-3 rounded-lg text-lg"><i class="fa-solid fa-table"></i></div>
+                <div>
+                    <h3 class="font-bold text-lg">2. スマホ対応 回数券・売上自動消込管理スプレッドシート</h3>
+                    <p class="text-sm text-slate-400 mt-1">マクロ不要。Googleアカウントがあればスマホから誰でも即時閲覧・更新可能。売上と残回数が一目で連動。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 料金プラン・CTA -->
+    <section class="py-16 px-4 max-w-xl mx-auto text-center">
+        <div class="bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-700 rounded-3xl p-8 shadow-2xl">
+            <span class="text-xs font-bold tracking-wider text-emerald-400 uppercase">Complete Package</span>
+            <h2 class="text-2xl font-bold mt-2 mb-4">買い切りプロフェッショナル版</h2>
+            <div class="text-4xl md:text-5xl font-extrabold text-white mb-6">
+                4,980円 <span class="text-sm font-normal text-slate-400">（税込・買い切り）</span>
+            </div>
+            <ul class="text-sm text-slate-300 space-y-3 text-left max-w-xs mx-auto mb-8">
+                <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i> キャンセルポリシー規約テンプレート</li>
+                <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i> 回数券自動消込管理スプレッドシート</li>
+                <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i> 永久アップデート権</li>
+            </ul>
+            <a href="https://buy.stripe.com/4gM7sL43Z1va7uu4xneQM00" class="w-full block bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-lg py-4 rounded-xl transition shadow-xl shadow-emerald-500/20">
+                今すぐ購入する
+            </a>
+            <p class="text-xs text-slate-500 mt-4">※決済完了後、即座にスプレッドシートのリンクとテンプレートが納品されます。</p>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="py-8 border-t border-slate-800 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let used = 3;
+        let total = 8;
+
+        function updateSheet(type) {
+            if (type === 1) {
+                if (used < total) used++;
+            } else if (type === 2) {
+                used = total;
+            }
+            document.getElementById('used-count').innerText = used + '回';
+            document.getElementById('rem-count').innerText = (total - used) + '回';
+        }
+
+        function resetSheet() {
+            used = 3;
+            document.getElementById('used-count').innerText = used + '回';
+            document.getElementById('rem-count').innerText = (total - used) + '回';
+        }
+    </script>
+</body>
+</html>
