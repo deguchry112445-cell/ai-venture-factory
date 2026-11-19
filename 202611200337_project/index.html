@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パーソナルトレーナー専用 回数券・ドタキャン管理スプレッドシート</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+    <!-- Header -->
+    <header class="bg-slate-950 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="font-black text-xl text-indigo-400 tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-dumbbell"></i> Venture Factory
+            </div>
+            <a href="https://buy.stripe.com/aFaaEX43ZddS7uufc1eQM02" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-5 py-2.5 rounded-lg shadow-lg transition text-sm">
+                今すぐ導入する (4,980円)
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 px-4 text-center max-w-4xl mx-auto">
+        <span class="inline-block bg-rose-500/10 text-rose-400 border border-rose-500/30 px-4 py-1.5 rounded-full text-sm font-bold mb-6">
+            <i class="fa-solid fa-triangle-exclamation mr-1"></i> 開業1〜3年目の個人トレーナー必見
+        </span>
+        <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight mb-6">
+            その無断キャンセル、<br class="hidden md:inline"><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-rose-400">泣き寝入りしていませんか？</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed">
+            高額な月額予約システムは不要。LINEやDM管理のミス・未収金を完全撲滅する。<br>コピペで使える規約テンプレート ＆ スマホ対応の回数券・売上自動管理シート。
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="https://buy.stripe.com/aFaaEX43ZddS7uufc1eQM02" class="bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white font-extrabold text-lg px-8 py-4 rounded-xl shadow-2xl transition transform hover:-translate-y-0.5">
+                <i class="fa-solid fa-cart-shopping mr-2"></i> 完全版を手に入れる（4,980円）
+            </a>
+        </div>
+        <p class="text-xs text-slate-500 mt-4">買い切り型 / 月額費用なし / Googleスプレッドシート対応</p>
+    </section>
+
+    <!-- Pain Points -->
+    <section class="py-16 bg-slate-950 px-4 border-y border-slate-800">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">こんなお悩み、ありませんか？</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <div class="text-rose-400 text-2xl mb-4"><i class="fa-solid fa-user-xmark"></i></div>
+                    <h3 class="font-bold text-lg mb-2">当日のドタキャン・無断欠席</h3>
+                    <p class="text-slate-400 text-sm">「体調不良で…」と直前キャンセルされ、レンタルジム代だけが赤字として残る。</p>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <div class="text-rose-400 text-2xl mb-4"><i class="fa-solid fa-calculator"></i></div>
+                    <h3 class="font-bold text-lg mb-2">回数券の残り回数トラブル</h3>
+                    <p class="text-slate-400 text-sm">「あと何回残ってますっけ？」とお客様と認識のズレが生じ、クレームに発展する。</p>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <div class="text-rose-400 text-2xl mb-4"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <h3 class="font-bold text-lg mb-2">高額なシステム代の負担</h3>
+                    <p class="text-slate-400 text-sm">大手予約システムは月額1万〜2万円と高額で、今の売上規模では機能もオーバースペック。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section class="py-16 px-4 max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+            <span class="text-indigo-400 font-bold text-sm tracking-widest uppercase">Interactive Demo</span>
+            <h2 class="text-3xl font-bold mt-2">回数券自動計算の動作デモ</h2>
+            <p class="text-slate-400 text-sm mt-2">実際のツールに搭載されている自動計算ロジックを今すぐブラウザで体験できます。</p>
+        </div>
+        <div class="bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-700 shadow-xl">
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label class="block text-sm font-medium mb-2">顧客名</label>
+                    <input type="text" id="demoName" value="山田 太郎" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-slate-100">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">購入回数券の総回数</label>
+                    <input type="number" id="demoTotal" value="10" oninput="calcDemo()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-slate-100">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">消化済み回数</label>
+                    <input type="number" id="demoUsed" value="3" oninput="calcDemo()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-slate-100">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">単価（円）</label>
+                    <input type="number" id="demoPrice" value="8000" oninput="calcDemo()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-slate-100">
+                </div>
+            </div>
+            <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div>
+                    <span class="text-sm text-slate-400">残り消化回数: <strong id="demoResultRemaining" class="text-xl text-indigo-400">7</strong> 回</span>
+                </div>
+                <div>
+                    <span class="text-sm text-slate-400">売上総額: <strong id="demoResultTotal" class="text-xl text-emerald-400">80,000</strong> 円</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-slate-950 px-4 text-center border-t border-slate-800">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-black mb-6">売上を守り、指導に集中できる環境を手に入れよう</h2>
+            <p class="text-slate-300 mb-8">煩雑な事務作業から解放され、トレーナーとしての価値を高めるための必須ツール。</p>
+            <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800 shadow-2xl mb-8 inline-block w-full">
+                <div class="text-5xl font-black text-indigo-400 mb-2">4,980円 <span class="text-lg font-normal text-slate-400">（税込・買い切り）</span></div>
+                <p class="text-xs text-slate-500 mb-6">追加料金なし / 永久アップデート権付き</p>
+                <a href="https://buy.stripe.com/aFaaEX43ZddS7uufc1eQM02" class="block bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-lg py-4 rounded-xl shadow-lg transition">
+                    <i class="fa-solid fa-lock mr-2"></i> 安全な決済画面へ進む
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function calcDemo() {
+            const total = parseInt(document.getElementById('demoTotal').value) || 0;
+            const used = parseInt(document.getElementById('demoUsed').value) || 0;
+            const price = parseInt(document.getElementById('demoPrice').value) || 0;
+            const remaining = Math.max(0, total - used);
+            const totalPrice = total * price;
+            document.getElementById('demoResultRemaining').innerText = remaining;
+            document.getElementById('demoResultTotal').innerText = totalPrice.toLocaleString();
+        }
+    </script>
+</body>
+</html>
