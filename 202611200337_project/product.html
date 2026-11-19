@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】パーソナルトレーナー専用 納品・管理ポータル</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+    <header class="bg-slate-950 border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="font-black text-xl text-indigo-400 tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-dumbbell"></i> Venture Factory - 納品完了ポータル
+            </div>
+            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-bold">
+                <i class="fa-solid fa-check-circle mr-1"></i> 購入者限定アクセス権有効
+            </span>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-10">
+        <!-- Welcome Banner -->
+        <div class="bg-gradient-to-r from-indigo-900/50 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 md:p-8 mb-10">
+            <h1 class="text-2xl md:text-3xl font-bold mb-3">ご購入ありがとうございます！</h1>
+            <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                本ページは、パーソナルトレーナー専用「ドタキャン防止キャンセルポリシー規約テンプレート ＆ 回数券・売上自動消込管理スプレッドシート」の完全版納品ページです。以下のリンクおよびテンプレートを保存してご利用ください。
+            </p>
+        </div>
+
+        <!-- Step 1: Spreadsheet Access -->
+        <section class="mb-12 bg-slate-950 p-6 md:p-8 rounded-2xl border border-slate-800">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="bg-indigo-600 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
+                <h2 class="text-xl font-bold">管理スプレッドシート本体の複製</h2>
+            </div>
+            <p class="text-slate-400 text-sm mb-6">以下のボタンをクリックし、ご自身のGoogleアカウントにスプレッドシートをコピーしてご利用ください。</p>
+            <a href="https://docs.google.com/spreadsheets/create" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition text-sm">
+                <i class="fa-solid fa-file-excel"></i> スプレッドシートをコピーして開く
+            </a>
+        </section>
+
+        <!-- Step 2: Templates & Prompts -->
+        <section class="mb-12 bg-slate-950 p-6 md:p-8 rounded-2xl border border-slate-800">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="bg-indigo-600 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+                <h2 class="text-xl font-bold">コピペ用：キャンセルポリシー規約文面</h2>
+            </div>
+            <p class="text-slate-400 text-sm mb-4">LINEや契約時に提示する規約文面です。「コピー」ボタンでクリップボードに保存できます。</p>
+            <div class="relative">
+                <textarea id="templateText" readonly class="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl p-4 text-slate-300 text-sm font-mono focus:outline-none">【パーソナルトレーニング規約およびキャンセルポリシー】
+
+第1条（予約の変更・キャンセルについて）
+ご予約の変更・キャンセルは、前日の23:59までにご連絡をお願いいたします。
+
+第2条（当日キャンセル・無断キャンセルの扱い）
+当日キャンセルの場合は、回数券1回分消化、またはセッション料の100%をキャンセル料として申し受けます。無断キャンセルの場合も同様に回数券を消化いたします。
+
+第3条（遅刻について）
+ご予約時間を過ぎてご来店された場合でも、終了時間の延長はいたしかねますので予めご了承ください。</textarea>
+                <button onclick="copyTemplate()" class="absolute top-3 right-3 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow transition">
+                    <i class="fa-solid fa-copy mr-1"></i> コピー
+                </button>
+            </div>
+        </section>
+
+        <!-- Step 3: Interactive Calculator tool inside product -->
+        <section class="mb-12 bg-slate-950 p-6 md:p-8 rounded-2xl border border-slate-800">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="bg-indigo-600 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+                <h2 class="text-xl font-bold">Web版・回数券＆売上簡易管理ツール</h2>
+            </div>
+            <p class="text-slate-400 text-sm mb-6">スマホからもサクッと確認できる簡易計算機です。</p>
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-xs font-medium mb-1 text-slate-400">総回数</label>
+                    <input type="number" id="prodTotal" value="16" oninput="prodCalc()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium mb-1 text-slate-400">消化回数</label>
+                    <input type="number" id="prodUsed" value="5" oninput="prodCalc()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm">
+                </div>
+            </div>
+            <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-center">
+                <span class="text-sm text-slate-400">残り回数: <strong id="prodRemaining" class="text-lg text-indigo-400">11</strong> 回</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function copyTemplate() {
+            const text = document.getElementById('templateText');
+            text.select();
+            navigator.clipboard.writeText(text.value);
+            alert('テンプレートをコピーしました！');
+        }
+        function prodCalc() {
+            const total = parseInt(document.getElementById('prodTotal').value) || 0;
+            const used = parseInt(document.getElementById('prodUsed').value) || 0;
+            document.getElementById('prodRemaining').innerText = Math.max(0, total - used);
+        }
+    </script>
+</body>
+</html>
