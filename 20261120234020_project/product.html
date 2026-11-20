@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const key = params.get('key');
+  const storageKey = 'vf_unlocked_20261120234020_project';
+  if (key === '43y78n95a25rj7o3') {
+    localStorage.setItem(storageKey, 'true');
+    if (typeof gtag === 'function') gtag('event', 'purchase_unlocked', { item_name: '20261120234020_project' });
+  } else if (localStorage.getItem(storageKey) !== 'true') {
+    document.documentElement.innerHTML = '<body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;"><div style="text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px;"><h2 style="margin-top:0;">🔒 購入者専用ページ</h2><p style="color:#94a3b8;font-size:0.9rem;line-height:1.6;">このツールは購入完了後の正規リダイレクトからのみアクセス可能です。未購入の方は販売ページよりお手続きください。</p><a href="https://deguchry112445-cell.github.io/ai-venture-factory/20261120234020_project/" style="display:inline-block;margin-top:1rem;padding:0.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:0.5rem;font-weight:bold;">販売ページへ戻る</a></div></body>';
+    window.stop();
+  }
+})();
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】農薬散布・収穫期ダイナミック自動スケジュール最適化ビルダー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- ブックマーク警告バー -->
+    <div class="bg-amber-500 text-slate-900 px-4 py-3 text-center text-xs sm:text-sm font-bold shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2">
+            <span>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください。</span>
+            <button id="copy-url-btn" class="bg-slate-900 text-white px-3 py-1 rounded text-xs hover:bg-slate-800 transition">
+                現在の専用URLをコピー
+            </button>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="font-bold text-emerald-700 flex items-center gap-2">
+                <i class="fa-solid fa-seedling"></i> AgriOptimizer <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">完全版</span>
+            </div>
+            <div class="text-xs text-slate-500">
+                価格: 1,480円（税込・買い切り）
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- 入力フォームセクション -->
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 mb-8">
+            <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-circle-plus text-emerald-600"></i> 新規作物の登録・自動最適化
+            </h2>
+            <form id="schedule-form" class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">品目名 / 品種</label>
+                    <input type="text" id="crop-name" required placeholder="例: トマト（桃太郎）" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">基準日（定植日など）</label>
+                    <input type="date" id="base-date" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">想定生育日数（日）</label>
+                    <input type="number" id="growth-days" required value="60" min="1" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">最終農薬散布からの経過日数</label>
+                    <input type="number" id="pesticide-days" required value="10" min="0" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                </div>
+                <div class="flex items-end">
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-lg transition text-sm shadow">
+                        <i class="fa-solid fa-calculator"></i> 計算して追加
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- データ一覧・出力セクション -->
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900">登録済みスケジュール一覧</h2>
+                    <p class="text-xs text-slate-500">データはブラウザ（localStorage）に自動保存されます。</p>
+                </div>
+                <div class="flex gap-2">
+                    <button id="export-csv" class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold py-2 px-4 rounded-lg transition flex items-center gap-1">
+                        <i class="fa-solid fa-download"></i> CSV出力（BOM付きUTF-8）
+                    </button>
+                    <button id="clear-data" class="bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold py-2 px-4 rounded-lg transition">
+                        全データ削除
+                    </button>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 text-xs border-b border-slate-200">
+                            <th class="p-3">品目名 / 品種</th>
+                            <th class="p-3">基準日</th>
+                            <th class="p-3">予想収穫適期</th>
+                            <th class="p-3">農薬安全確認（PHI）</th>
+                            <th class="p-3">推奨作業</th>
+                            <th class="p-3 text-right">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schedule-table-body" class="text-sm">
+                        <!-- 動的に挿入 -->
+                    </tbody>
+                </table>
+                <div id="empty-msg" class="text-center py-12 text-slate-400 text-sm">
+                    登録されたデータはありません。上のフォームから追加してください。
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="mt-20 bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Venture Factory. All rights reserved. | 1,480円（税込・買い切り）</p>
+    </footer>
+
+    <script>
+        // 起動時に日付初期値設定
+        document.getElementById('base-date').valueAsDate = new Date();
+
+        // URLコピー機能
+        document.getElementById('copy-url-btn').addEventListener('click', function() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('現在の専用URLをコピーしました。お気に入りに保存してください。');
+            });
+        });
+
+        // データ管理ロジック
+        let schedules = JSON.parse(localStorage.getItem('agri_schedules') || '[]');
+
+        const form = document.getElementById('schedule-form');
+        const tableBody = document.getElementById('schedule-table-body');
+        const emptyMsg = document.getElementById('empty-msg');
+
+        function renderTable() {
+            tableBody.innerHTML = '';
+            if(schedules.length === 0) {
+                emptyMsg.classList.remove('hidden');
+                return;
+            }
+            emptyMsg.classList.add('hidden');
+
+            schedules.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-slate-100 hover:bg-slate-50 transition';
+                
+                const baseDateObj = new Date(item.baseDate);
+                const harvestDateObj = new Date(baseDateObj);
+                harvestDateObj.setDate(baseDateObj.getDate() + parseInt(item.growthDays));
+                const harvestStr = harvestDateObj.toLocaleDateString('ja-JP');
+
+                let pesticideHtml = '';
+                if(parseInt(item.pesticideDays) >= 14) {
+                    pesticideHtml = '<span class="text-emerald-700 font-bold bg-emerald-50 px-2 py-1 rounded text-xs">安全（散布可能）</span>';
+                } else {
+                    pesticideHtml = '<span class="text-rose-600 font-bold bg-rose-50 px-2 py-1 rounded text-xs">要警戒（散布制限中）</span>';
+                }
+
+                tr.innerHTML = `
+                    <td class="p-3 font-bold text-slate-900">${escapeHtml(item.cropName)}</td>
+                    <td class="p-3 text-slate-600">${item.baseDate}</td>
+                    <td class="p-3 text-emerald-700 font-bold">${harvestStr}</td>
+                    <td class="p-3">${pesticideHtml}</td>
+                    <td class="p-3 text-slate-600 text-xs">追肥・誘引・生育確認</td>
+                    <td class="p-3 text-right">
+                        <button onclick="deleteItem(${index})" class="text-slate-400 hover:text-rose-600 transition p-1">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newItem = {
+                cropName: document.getElementById('crop-name').value,
+                baseDate: document.getElementById('base-date').value,
+                growthDays: document.getElementById('growth-days').value,
+                pesticideDays: document.getElementById('pesticide-days').value
+            };
+            schedules.push(newItem);
+            localStorage.setItem('agri_schedules', JSON.stringify(schedules));
+            renderTable();
+            form.reset();
+            document.getElementById('base-date').valueAsDate = new Date();
+        });
+
+        window.deleteItem = function(index) {
+            if(confirm('このデータを削除してもよろしいですか？')) {
+                schedules.splice(index, 1);
+                localStorage.setItem('agri_schedules', JSON.stringify(schedules));
+                renderTable();
+            }
+        };
+
+        document.getElementById('clear-data').addEventListener('click', function() {
+            if(confirm('すべてのデータを削除しますか？')) {
+                schedules = [];
+                localStorage.removeItem('agri_schedules');
+                renderTable();
+            }
+        });
+
+        // BOM付きUTF-8 CSVダウンロード
+        document.getElementById('export-csv').addEventListener('click', function() {
+            if(schedules.length === 0) {
+                alert('出力するデータがありません。');
+                return;
+            }
+            let csv = '\uFEFF品目名,基準日,想定生育日数,最終農薬散布経過日数,予想収穫適期\r\n';
+            schedules.forEach(item => {
+                const baseDateObj = new Date(item.baseDate);
+                const harvestDateObj = new Date(baseDateObj);
+                harvestDateObj.setDate(baseDateObj.getDate() + parseInt(item.growthDays));
+                const harvestStr = harvestDateObj.toLocaleDateString('ja-JP');
+
+                csv += `"${item.cropName}",${item.baseDate},${item.growthDays},${item.pesticideDays},${harvestStr}\r\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'agri_schedule_optimizer.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        renderTable();
+    </script>
+</body>
+</html>
