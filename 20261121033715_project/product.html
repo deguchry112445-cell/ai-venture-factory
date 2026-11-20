@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"20261121033715_project",value:1480,currency:"JPY"});}});</script><script>(function(){var p=new URLSearchParams(window.location.search),k=p.get("key"),s="vf_unlocked_20261121033715_project";if(k==="4sll5lrhb2flhebn"){var f=localStorage.getItem(s)!=="true";localStorage.setItem(s,"true");if(f&&typeof gtag==="function"){gtag("event","first_product_access",{item_name:"20261121033715_project"});}}else if(localStorage.getItem(s)!=="true"){document.documentElement.innerHTML="<body style=\"background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\"><div style=\"text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px\"><h2>購入者専用ページ</h2><p style=\"color:#94a3b8;font-size:.9rem\">購入完了後の正規リダイレクトからのみアクセス可能です。</p><a href=\"https://deguchry112445-cell.github.io/ai-venture-factory/20261121033715_project/\" style=\"display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:.5rem\">販売ページへ戻る</a></div></body>";window.stop();}})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>貸出備品・破損時ペナルティ請求書自動ビルダー - 完全版</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+    <div class="bg-indigo-950 border-b border-indigo-800 text-indigo-200 px-4 py-3 text-center text-xs md:text-sm flex flex-col md:flex-row justify-center items-center gap-3 sticky top-0 z-50">
+        <span><i class="fas fa-info-circle mr-1"></i>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください</span>
+        <button id="copy-url" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1 rounded shadow text-xs transition">
+            <i class="fas fa-copy mr-1"></i>現在の専用URLをコピー
+        </button>
+    </div>
+
+    <header class="bg-slate-800 border-b border-slate-700 py-4 px-6 flex justify-between items-center">
+        <div class="font-bold text-lg flex items-center gap-2"><i class="fas fa-dice text-indigo-400"></i> ボードゲームカフェ専用請求書ビルダー <span class="text-xs bg-emerald-900 text-emerald-300 px-2 py-0.5 rounded">完全版</span></div>
+        <div class="text-xs text-slate-400">Venture Factory 2026</div>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-8 py-8">
+        <div class="lg:col-span-1 bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-xl">
+            <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-plus-circle text-indigo-400"></i> 破損データ入力</h2>
+            <form id="penalty-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">ゲームタイトル・備品名</label>
+                    <input type="text" id="item-name" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">お客様名</label>
+                    <input type="text" id="customer-name" required placeholder="山田 太郎" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">新品時購入価格（円）</label>
+                    <input type="number" id="item-price" min="100" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">稼働・プレイ年数</label>
+                    <input type="number" id="item-years" min="0" max="10" step="0.5" value="1" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">破損・紛失の程度</label>
+                    <select id="item-ratio" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500">
+                        <option value="0.1">一部パーツ紛失・軽度破損（10%）</option>
+                        <option value="0.3">主要駒・カード紛失（30%）</option>
+                        <option value="0.6">ボード・説明書破損（60%）</option>
+                        <option value="1.0">全損・完全紛失（100%）</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition">
+                    <i class="fas fa-calculator mr-2"></i> 請求データを計算・追加
+                </button>
+            </form>
+        </div>
+
+        <div class="lg:col-span-2 space-y-6">
+            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-xl">
+                <div class="flex justify-between items-center mb-4 flex-wrap gap-4">
+                    <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-list text-indigo-400"></i> 発行済み請求書履歴</h2>
+                    <div class="flex gap-2">
+                        <button id="export-csv" class="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold py-2 px-4 rounded-lg transition">
+                            <i class="fas fa-file-csv mr-1"></i> CSV出力
+                        </button>
+                        <button id="clear-all" class="bg-rose-600 hover:bg-rose-500 text-white text-sm font-semibold py-2 px-4 rounded-lg transition">
+                            <i class="fas fa-trash mr-1"></i> 履歴クリア
+                        </button>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-xs text-slate-400 uppercase">
+                                <th class="py-3 px-4">日付</th>
+                                <th class="py-3 px-4">お客様</th>
+                                <th class="py-3 px-4">品名</th>
+                                <th class="py-3 px-4 text-right">弁償額</th>
+                                <th class="py-3 px-4 text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-list" class="divide-y divide-slate-700 text-sm">
+                            <!-- dynamic -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="invoice-preview" class="bg-white text-slate-900 rounded-2xl p-8 shadow-2xl hidden">
+                <div class="flex justify-between items-start border-b pb-6 mb-6">
+                    <div>
+                        <h1 class="text-2xl font-bold">貸出備品 破損・紛失ペナルティ請求書</h1>
+                        <p class="text-xs text-slate-500 mt-1">発行日: <span id="inv-date"></span></p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-lg">ボードゲームカフェ 運営元</p>
+                        <p class="text-xs text-slate-500">店舗資産管理部門</p>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <p class="text-lg font-bold mb-2"><span id="inv-customer"></span> 様</p>
+                    <p class="text-sm text-slate-600">平素は当店をご利用いただき誠にありがとうございます。<br>このたび、店舗内での貸出備品におきまして以下の破損・紛失が確認されましたため、規約に基づき弁償金額をご請求申し上げます。</p>
+                </div>
+                <table class="w-full text-left border-collapse mb-6 text-sm">
+                    <thead>
+                        <tr class="border-b text-xs text-slate-500 uppercase">
+                            <th class="py-2">品名</th>
+                            <th class="py-2">新品価格</th>
+                            <th class="py-2">経過年数</th>
+                            <th class="py-2 text-right">請求金額</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td id="inv-item" class="py-3 font-semibold"></td>
+                            <td id="inv-price" class="py-3"></td>
+                            <td id="inv-years" class="py-3"></td>
+                            <td id="inv-total" class="py-3 text-right font-bold text-indigo-600"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="bg-slate-50 p-4 rounded-xl text-xs text-slate-600 space-y-1 mb-6">
+                    <p>※算出根拠：上記金額は新品購入価格に対し稼働年数に応じた減価償却（耐用年数3年・残存価値下限10%）および破損パーツ割合を乗じた適正価格です。</p>
+                    <p>※本ツールは総容積ベースの概算ではなく個別のパーツ・コンポーネント基準で厳密に計算されています。</p>
+                </div>
+                <div class="flex justify-end gap-3">
+                    <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-4 py-2 rounded-lg text-sm transition">
+                        <i class="fas fa-print mr-1"></i> 印刷する
+                    </button>
+                    <button id="close-inv" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold px-4 py-2 rounded-lg text-sm transition">
+                        閉じる
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('copy-url').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('専用URLをコピーしました！');
+            });
+        });
+
+        function calculatePenalty(price, years, ratio) {
+            const p = Math.max(0, Number(price) || 0);
+            const y = Math.max(0, Number(years) || 0);
+            const r = Math.max(0, Math.min(1, Number(ratio) || 0));
+            const salvageRate = Math.max(0.1, 1 - (y / 3));
+            const currentVal = p * salvageRate;
+            const total = Math.round(currentVal * r);
+            return { currentVal: Math.round(currentVal), total };
+        }
+
+        let historyData = JSON.parse(localStorage.getItem('bg_penalty_history') || '[]');
+
+        function saveHistory() {
+            localStorage.setItem('bg_penalty_history', JSON.stringify(historyData));
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const tbody = document.getElementById('history-list');
+            tbody.textContent = '';
+            if (historyData.length === 0) {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.colSpan = 5;
+                td.className = 'py-6 text-center text-slate-500';
+                td.textContent = '履歴はまだありません。';
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+                return;
+            }
+
+            historyData.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-slate-800 hover:bg-slate-800/50';
+                
+                const tdDate = document.createElement('td');
+                tdDate.className = 'py-3 px-4 text-xs text-slate-400';
+                tdDate.textContent = item.date;
+                tr.appendChild(tdDate);
+
+                const tdCust = document.createElement('td');
+                tdCust.className = 'py-3 px-4 font-medium';
+                tdCust.textContent = item.customer;
+                tr.appendChild(tdCust);
+
+                const tdItem = document.createElement('td');
+                tdItem.className = 'py-3 px-4';
+                tdItem.textContent = item.name;
+                tr.appendChild(tdItem);
+
+                const tdTotal = document.createElement('td');
+                tdTotal.className = 'py-3 px-4 text-right font-mono text-emerald-400 font-bold';
+                tdTotal.textContent = item.total.toLocaleString() + '円';
+                tr.appendChild(tdTotal);
+
+                const tdAction = document.createElement('td');
+                tdAction.className = 'py-3 px-4 text-center space-x-2';
+                
+                const btnView = document.createElement('button');
+                btnView.className = 'bg-slate-700 hover:bg-slate-600 text-xs px-2.5 py-1.5 rounded transition';
+                btnView.innerHTML = '<i class="fas fa-file-invoice"></i>';
+                btnView.title = '請求書を表示';
+                btnView.onclick = () => showInvoice(index);
+                tdAction.appendChild(btnView);
+
+                const btnDel = document.createElement('button');
+                btnDel.className = 'bg-rose-950 hover:bg-rose-900 text-rose-300 text-xs px-2.5 py-1.5 rounded transition';
+                btnDel.innerHTML = '<i class="fas fa-trash"></i>';
+                btnDel.title = '削除';
+                btnDel.onclick = () => {
+                    historyData.splice(index, 1);
+                    saveHistory();
+                };
+                tdAction.appendChild(btnDel);
+
+                tr.appendChild(tdAction);
+                tbody.appendChild(tr);
+            });
+        }
+
+        document.getElementById('penalty-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('item-name').value;
+            const customer = document.getElementById('customer-name').value;
+            const price = document.getElementById('item-price').value;
+            const years = document.getElementById('item-years').value;
+            const ratio = document.getElementById('item-ratio').value;
+
+            const res = calculatePenalty(price, years, ratio);
+            const newItem = {
+                date: new Date().toISOString().split('T')[0],
+                name,
+                customer,
+                price: Number(price),
+                years: Number(years),
+                total: res.total
+            };
+
+            historyData.unshift(newItem);
+            saveHistory();
+            document.getElementById('penalty-form').reset();
+            document.getElementById('item-years').value = '1';
+            showInvoice(0);
+        });
+
+        function showInvoice(index) {
+            const item = historyData[index];
+            if (!item) return;
+            document.getElementById('inv-date').textContent = item.date;
+            document.getElementById('inv-customer').textContent = item.customer;
+            document.getElementById('inv-item').textContent = item.name;
+            document.getElementById('inv-price').textContent = item.price.toLocaleString() + '円';
+            document.getElementById('inv-years').textContent = item.years + '年';
+            document.getElementById('inv-total').textContent = item.total.toLocaleString() + '円';
+            document.getElementById('invoice-preview').classList.remove('hidden');
+            document.getElementById('invoice-preview').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('close-inv').addEventListener('click', () => {
+            document.getElementById('invoice-preview').classList.add('hidden');
+        });
+
+        document.getElementById('clear-all').addEventListener('click', () => {
+            if (confirm('すべての履歴を削除してもよろしいですか？')) {
+                historyData = [];
+                saveHistory();
+                document.getElementById('invoice-preview').classList.add('hidden');
+            }
+        });
+
+        document.getElementById('export-csv').addEventListener('click', () => {
+            if (historyData.length === 0) {
+                alert('出力するデータがありません。');
+                return;
+            }
+            let csv = '\uFEFF日付,お客様名,品名,新品価格,稼働年数,請求金額\n';
+            historyData.forEach(item => {
+                csv += `"${item.date}","${item.customer}","${item.name}",${item.price},${item.years},${item.total}\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `boardgame_penalty_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        renderHistory();
+    </script>
+</body>
+</html>
