@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const key = params.get('key');
+  const storageKey = 'vf_unlocked_20261121001143_project';
+  if (key === 'ykxk78rs41ca1ftt') {
+    localStorage.setItem(storageKey, 'true');
+    if (typeof gtag === 'function') gtag('event', 'purchase_unlocked', { item_name: '20261121001143_project' });
+  } else if (localStorage.getItem(storageKey) !== 'true') {
+    document.documentElement.innerHTML = '<body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;"><div style="text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px;"><h2 style="margin-top:0;">🔒 購入者専用ページ</h2><p style="color:#94a3b8;font-size:0.9rem;line-height:1.6;">このツールは購入完了後の正規リダイレクトからのみアクセス可能です。未購入の方は販売ページよりお手続きください。</p><a href="https://deguchry112445-cell.github.io/ai-venture-factory/20261121001143_project/" style="display:inline-block;margin-top:1rem;padding:0.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:0.5rem;font-weight:bold;">販売ページへ戻る</a></div></body>';
+    window.stop();
+  }
+})();
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】梱包サイズ・送料自動最適化ルート算出ビルダー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- 納品ページ重要注意バー -->
+    <div class="bg-amber-500 text-slate-950 px-4 py-3 text-center text-xs md:text-sm font-bold shadow-inner">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2">
+            <span>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください</span>
+            <button onclick="copyCurrentUrl()" class="bg-slate-950 text-white px-3 py-1 rounded text-xs hover:bg-slate-800 transition">
+                <i class="fa-solid fa-copy mr-1"></i> 現在の専用URLをコピー
+            </button>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="font-bold text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-box-open text-indigo-600"></i> 送料自動最適化ルート算出ビルダー <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded font-bold">完全版</span>
+            </h1>
+            <span class="text-xs text-slate-500">Venture Factory</span>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- 入力フォームカード -->
+        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 mb-8">
+            <h2 class="font-bold text-lg text-slate-900 mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-calculator text-indigo-600"></i> 新規シミュレーション・データ追加
+            </h2>
+            <form id="calc-form" onsubmit="handleSubmit(event)">
+                <div class="grid md:grid-cols-3 gap-6 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">商品名 / 管理ID</label>
+                        <input type="text" id="input-name" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm" placeholder="例: ブランドバッグA">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">総重量 (g)</label>
+                        <input type="number" id="input-weight" required min="1" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm" placeholder="例: 1200">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">プラットフォーム</label>
+                        <select id="input-platform" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                            <option value="メルカリ">メルカリ</option>
+                            <option value="ヤフオク">ヤフオク!</option>
+                            <option value="Amazon">Amazon</option>
+                            <option value="その他">その他</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-3">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">梱包サイズ (縦 × 横 × 高さ cm)</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <input type="number" id="input-l" required min="1" class="border border-slate-300 rounded-lg p-2.5 text-sm" placeholder="縦 (cm)">
+                            <input type="number" id="input-w" required min="1" class="border border-slate-300 rounded-lg p-2.5 text-sm" placeholder="横 (cm)">
+                            <input type="number" id="input-h" required min="1" class="border border-slate-300 rounded-lg p-2.5 text-sm" placeholder="高さ (cm)">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition shadow">
+                    最適ルートを算出して保存する
+                </button>
+            </form>
+        </div>
+
+        <!-- データ一覧・履歴エリア -->
+        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+                <h2 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-list text-indigo-600"></i> 計算・算出履歴一覧
+                </h2>
+                <div class="flex gap-2 w-full sm:w-auto">
+                    <button onclick="exportCSV()" class="flex-1 sm:flex-none bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-file-csv"></i> CSV出力
+                    </button>
+                    <button onclick="clearHistory()" class="flex-1 sm:flex-none bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold px-4 py-2.5 rounded-lg transition">
+                        履歴全削除
+                    </button>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-200 text-xs text-slate-500 uppercase">
+                            <th class="py-3 px-4">日時</th>
+                            <th class="py-3 px-4">商品名 / ID</th>
+                            <th class="py-3 px-4">プラットフォーム</th>
+                            <th class="py-3 px-4">サイズ計 / 重量</th>
+                            <th class="py-3 px-4">最適ルート</th>
+                            <th class="py-3 px-4 text-right">送料目安</th>
+                            <th class="py-3 px-4 text-center">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-table-body" class="text-sm divide-y divide-slate-100">
+                        <!-- 動的に挿入 -->
+                    </tbody>
+                </table>
+                <div id="empty-msg" class="text-center py-12 text-slate-400 text-sm hidden">
+                    履歴はまだありません。上記のフォームから計算を実行してください。
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-white border-t border-slate-200 mt-20 py-8 px-4 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <!-- アプリケーションスクリプト -->
+    <script>
+        let historyData = JSON.parse(localStorage.getItem('sedori_shipping_history')) || [];
+
+        function copyCurrentUrl() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('専用URLをクリップボードにコピーしました！次回以降アクセスする際にご利用ください。');
+            }).catch(err => {
+                alert('コピーに失敗しました。ブラウザのアドレスバーから手動でコピーしてください。');
+            });
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('input-name').value;
+            const weight = parseFloat(document.getElementById('input-weight').value);
+            const platform = document.getElementById('input-platform').value;
+            const l = parseFloat(document.getElementById('input-l').value);
+            const w = parseFloat(document.getElementById('input-w').value);
+            const h = parseFloat(document.getElementById('input-h').value);
+
+            const totalDim = l + w + h;
+            let method = 'ゆうパック (60サイズ)';
+            let price = 770;
+
+            if(totalDim <= 60 && weight <= 1000) {
+                method = 'ゆうパケットプラス';
+                price = 455;
+            } else if(totalDim <= 80 && weight <= 5000) {
+                method = '宅急便 (80サイズ)';
+                price = 1150;
+            } else if(totalDim <= 100 && weight <= 10000) {
+                method = '宅急便 (100サイズ)';
+                price = 1500;
+            } else {
+                method = '宅急便 (140サイズ以上)';
+                price = 2100;
+            }
+
+            const newItem = {
+                id: Date.now(),
+                date: new Date().toLocaleDateString('ja-JP') + ' ' + new Date().toLocaleTimeString('ja-JP', {hour: '2-digit', minute:'2-digit'}),
+                name,
+                platform,
+                spec: `計${totalDim}cm / ${weight}g`,
+                method,
+                price
+            };
+
+            historyData.unshift(newItem);
+            saveAndRender();
+            document.getElementById('calc-form').reset();
+        }
+
+        function deleteItem(id) {
+            historyData = historyData.filter(item => item.id !== id);
+            saveAndRender();
+        }
+
+        function clearHistory() {
+            if(confirm('すべての履歴を削除してもよろしいですか？')) {
+                historyData = [];
+                saveAndRender();
+            }
+        }
+
+        function saveAndRender() {
+            localStorage.setItem('sedori_shipping_history', JSON.stringify(historyData));
+            renderTable();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('history-table-body');
+            const emptyMsg = document.getElementById('empty-msg');
+            tbody.innerHTML = '';
+
+            if(historyData.length === 0) {
+                emptyMsg.classList.remove('hidden');
+                return;
+            }
+            emptyMsg.classList.add('hidden');
+
+            historyData.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 transition';
+                tr.innerHTML = `
+                    <td class="py-3 px-4 text-xs text-slate-500">${item.date}</td>
+                    <td class="py-3 px-4 font-bold text-slate-800">${escapeHtml(item.name)}</td>
+                    <td class="py-3 px-4"><span class="bg-slate-100 text-slate-700 text-xs px-2 py-0.5 rounded">${escapeHtml(item.platform)}</span></td>
+                    <td class="py-3 px-4 text-xs text-slate-600">${item.spec}</td>
+                    <td class="py-3 px-4 font-semibold text-indigo-600">${escapeHtml(item.method)}</td>
+                    <td class="py-3 px-4 text-right font-extrabold text-slate-900">¥${item.price.toLocaleString()}</td>
+                    <td class="py-3 px-4 text-center">
+                        <button onclick="deleteItem(${item.id})" class="text-slate-400 hover:text-red-600 transition">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[tag] || tag));
+        }
+
+        function exportCSV() {
+            if(historyData.length === 0) {
+                alert('エクスポートするデータがありません。');
+                return;
+            }
+            let csv = '\uFEFF日時,商品名,プラットフォーム,サイズ・重量,最適ルート,送料目安(円)\n';
+            historyData.forEach(item => {
+                csv += `"${item.date}","${item.name}","${item.platform}","${item.spec}","${item.method}",${item.price}\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `shipping_calc_${new Date().toISOString().slice(0,10)}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // 初期描画
+        renderTable();
+    </script>
+</body>
+</html>
