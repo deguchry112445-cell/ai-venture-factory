@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人美容室専用 薬剤使用量＆廃棄ロス自動算出ビルダー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans JP', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="../" class="text-sm text-slate-500 hover:text-slate-800 transition flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> ツール一覧へ戻る
+            </a>
+            <span class="text-xs font-bold bg-amber-100 text-amber-800 px-3 py-1 rounded-full">Venture Factory</span>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="py-20 px-6 bg-gradient-to-b from-slate-900 to-slate-800 text-white text-center">
+        <div class="max-w-4xl mx-auto">
+            <span class="inline-block bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded mb-6 uppercase tracking-widest">個人美容室専用 原価最適化ツール</span>
+            <h1 class="text-3xl md:text-5xl font-black mb-6 leading-tight">
+                そのカラー剤の余り、<br class="hidden md:inline"><span class="text-amber-400">月でいくら捨ててますか？</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed">
+                レングスと施術内容を入力するだけで、1g単位の最適使用量と発注数を30秒で自動算出。<br>
+                高額なPOSレジ不要。薬剤ロスを限界まで削る、個人サロンのための買い切り型ビルダー。
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="https://buy.stripe.com/bJe14n2ZVc9ObKK4xneQM0c" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-900 font-black text-lg px-8 py-4 rounded-xl shadow-xl transition transform hover:-translate-y-0.5">
+                    今すぐ導入する（1,480円・買い切り）
+                </a>
+                <span class="text-xs text-slate-400">※月額費なし・追加費用一切なし</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ライブ体験デモセクション -->
+    <section class="py-20 px-6 max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <span class="text-indigo-600 font-bold text-sm uppercase tracking-wider">Interactive Demo</span>
+            <h2 class="text-2xl md:text-3xl font-black mt-2">無料ライブ体験デモ</h2>
+            <p class="text-slate-600 mt-2">登録不要。実際の計算ロジックを今すぐブラウザでお試しいただけます。</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+                <h3 class="font-bold text-lg text-slate-800">薬剤使用量クイック試算</h3>
+                <button type="button" id="sampleBtn" class="bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-bold text-xs px-4 py-2 rounded-lg transition">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> サンプルデータを自動入力
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-2">レングス（髪の長さ）</label>
+                    <select id="demoLength" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500">
+                        <option value="short">ショート（全体目安: 60g）</option>
+                        <option value="medium" selected>ミディアム（全体目安: 90g）</option>
+                        <option value="long">ロング（全体目安: 120g）</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-2">施術メニュー</label>
+                    <select id="demoMenu" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500">
+                        <option value="entire" selected>全体カラー</option>
+                        <option value="retouch">リタッチ（根元2cm）</option>
+                        <option value="perm">パーマ＆カラー</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-2">薬剤ブランド</label>
+                    <select id="demoBrand" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500">
+                        <option value="standard" selected>スタンダード（原価: 15円/g）</option>
+                        <option value="organic">オーガニック（原価: 25円/g）</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-2">客数（月間想定など）</label>
+                    <input type="number" id="demoCount" value="30" min="1" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500">
+                </div>
+            </div>
+
+            <button type="button" id="calcBtn" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition mb-8">
+                計算を実行する
+            </button>
+
+            <!-- 計算結果 -->
+            <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+                <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">試算結果レポート</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    <div class="bg-white p-4 rounded-lg border border-slate-200">
+                        <span class="text-xs text-slate-500 block mb-1">1回あたり最適使用量</span>
+                        <span id="resUsage" class="text-2xl font-black text-slate-900">90</span><span class="text-sm font-bold text-slate-600">g</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border border-slate-200">
+                        <span class="text-xs text-slate-500 block mb-1">想定月間総使用量</span>
+                        <span id="resTotal" class="text-2xl font-black text-indigo-600">2,700</span><span class="text-sm font-bold text-slate-600">g</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border border-slate-200">
+                        <span class="text-xs text-slate-500 block mb-1">想定月間薬剤原価</span>
+                        <span class="text-sm font-black text-amber-600">¥</span><span id="resCost" class="text-2xl font-black text-amber-600">40,500</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ロックされた高度機能 -->
+            <div class="mt-8 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-sm text-slate-500 flex items-center gap-2">
+                    <i class="fa-solid fa-lock text-amber-500">v1.0完全版では「CSV出力・履歴保存・一括管理」が無制限に使えます</i>
+                </div>
+                <a href="https://buy.stripe.com/bJe14n2ZVc9ObKK4xneQM0c" class="locked-trigger bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs px-4 py-3 rounded-lg transition">
+                    完全版の機能を見る <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 課題と解決策 -->
+    <section class="py-20 px-6 bg-white border-t border-slate-200">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-2xl md:text-3xl font-black">なぜ、個人美容室にこのツールが必要なのか？</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+                    <div class="text-rose-500 font-black text-xl mb-4"><i class="fa-solid fa-triangle-exclamation mr-2"></i> 手動計算・どんぶり勘定の弊害</div>
+                    <ul class="space-y-3 text-slate-600 text-sm">
+                        <li>・「多めに作っておこう」の精神で毎月数千〜数万円の薬剤を廃棄</li>
+                        <li>・高額なPOSレジや在庫管理SaaSは月額が高すぎて小規模サロンでは採算が合わない</li>
+                        <li>・レングスやリタッチに応じた正確な原価計算に30分以上かかり疲弊する</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-2xl border border-indigo-100 bg-indigo-50/30">
+                    <div class="text-indigo-600 font-black text-xl mb-4"><i class="fa-solid fa-circle-check mr-2"></i> 本ツールの圧倒的メリット</div>
+                    <ul class="space-y-3 text-slate-700 text-sm">
+                        <li>・ブラウザ上で即座に動作する買い切りWebツール（データ自動保存・CSV出力機能付き）</li>
+                        <li>・1,480円のワンコイン投資で、初月のロス削減だけで簡単に元が取れる</li>
+                        <li>・面倒なインストール不要。スマホやタブレットでも快適動作</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 価格とCTA -->
+    <section class="py-20 px-6 bg-slate-900 text-white text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-black mb-6">今すぐ、無駄な薬剤ロスをゼロに。</h2>
+            <p class="text-slate-300 mb-8">月額費用は一切かかりません。一度の導入でずっとお使いいただけます。</p>
+            <div class="bg-white text-slate-800 p-8 rounded-2xl shadow-2xl max-w-xl mx-auto mb-8">
+                <span class="text-xs font-bold bg-amber-100 text-amber-800 px-3 py-1 rounded-full">完全買い切りプラン</span>
+                <div class="text-4xl font-black text-slate-900 my-4">1,480円<span class="text-sm font-normal text-slate-500">（税込）</span></div>
+                <p class="text-xs text-slate-500 mb-6">ブラウザ上で即座に使える完全版Webツール（データ自動保存・CSV出力機能付き）へのアクセス権</p>
+                <a href="https://buy.stripe.com/bJe14n2ZVc9ObKK4xneQM0c" class="block w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-black py-4 rounded-xl shadow-lg transition">
+                    今すぐ購入してツールを手に入れる
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-slate-950 text-slate-400 py-10 px-6 text-center text-xs">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <p>特定商取引法に基づく表記は決済画面（Stripe）にてご確認いただけます。</p>
+            <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ライブデモ計算ロジック
+        const sampleBtn = document.getElementById('sampleBtn');
+        const calcBtn = document.getElementById('calcBtn');
+        const demoLength = document.getElementById('demoLength');
+        const demoMenu = document.getElementById('demoMenu');
+        const demoBrand = document.getElementById('demoBrand');
+        const demoCount = document.getElementById('demoCount');
+
+        const resUsage = document.getElementById('resUsage');
+        const resTotal = document.getElementById('resTotal');
+        const resCost = document.getElementById('resCost');
+
+        function runCalculation() {
+            let baseGram = 90;
+            if (demoLength.value === 'short') baseGram = 60;
+            if (demoLength.value === 'long') baseGram = 120;
+
+            let multiplier = 1.0;
+            if (demoMenu.value === 'retouch') multiplier = 0.5;
+            if (demoMenu.value === 'perm') multiplier = 1.3;
+
+            let unitPrice = 15;
+            if (demoBrand.value === 'organic') unitPrice = 25;
+
+            const usage = Math.round(baseGram * multiplier);
+            const count = parseInt(demoCount.value) || 0;
+            const total = usage * count;
+            const cost = total * unitPrice;
+
+            resUsage.textContent = usage.toLocaleString();
+            resTotal.textContent = total.toLocaleString();
+            resCost.textContent = cost.toLocaleString();
+        }
+
+        sampleBtn.addEventListener('click', () => {
+            demoLength.value = 'medium';
+            demoMenu.value = 'entire';
+            demoBrand.value = 'standard';
+            demoCount.value = '45';
+            runCalculation();
+        });
+
+        calcBtn.addEventListener('click', runCalculation);
+        demoLength.addEventListener('change', runCalculation);
+        demoMenu.addEventListener('change', runCalculation);
+        demoBrand.addEventListener('change', runCalculation);
+        demoCount.addEventListener('input', runCalculation);
+
+        // ロックトリガーの動作
+        document.querySelectorAll('.locked-trigger').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = "https://buy.stripe.com/bJe14n2ZVc9ObKK4xneQM0c";
+            });
+        });
+
+        runCalculation();
+    </script>
+</body>
+</html>
