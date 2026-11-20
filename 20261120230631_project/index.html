@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キッチンカー専用 出店場所別・仕入原価最適シミュレーター</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-50 flex justify-between items-center">
+        <a href="../" class="text-sm text-slate-500 hover:text-slate-800 transition flex items-center gap-1">
+            <i class="fa-solid fa-arrow-left"></i> ツール一覧へ戻る
+        </a>
+        <div class="font-bold text-slate-900">Venture Factory</div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="py-16 px-6 bg-gradient-to-b from-slate-900 to-slate-800 text-white text-center">
+        <div class="max-w-3xl mx-auto">
+            <span class="bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">開業1〜3年目の個人オーナー必見</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+                週末の在庫ロスで利益を溶かすな。<br>
+                <span class="text-amber-400">仕入量を30秒で弾き出す</span>プロの計算ツール
+            </h1>
+            <p class="text-lg text-slate-300 mb-8">
+                天候と客層を入力するだけで「持っていくべき仕入量（グラム単位）」と「限界利益」が自動算出。プロの勘に頼らないデータ仕入シミュレーションツール。
+            </p>
+            <a href="https://buy.stripe.com/cNifZhfMH4Hm1665BreQM08" class="inline-block bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-lg px-8 py-4 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                今すぐ導入する（1,480円 / 買い切り）
+            </a>
+            <p class="text-xs text-slate-400 mt-3">※ブラウザ上で即座に使えるWebツール（データ自動保存・CSV出力機能付き）</p>
+        </div>
+    </section> 
+
+    <!-- 課題共感 -->
+    <section class="py-16 px-6 max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-center mb-10 text-slate-900">こんな「仕入れの悩み」、ありませんか？</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="text-amber-500 text-2xl mb-3"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <h3 class="font-bold text-lg mb-2">仕入の勘が外れる</h3>
+                <p class="text-sm text-slate-600">「雨だから少なめに…」と絞ったら大行列で食材切れ。逆に仕入れたら雨で大赤字。</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="text-amber-500 text-2xl mb-3"><i class="fa-solid fa-money-bill-wave"></i></div>
+                <h3 class="font-bold text-lg mb-2">数千円のロスの積み重ね</h3>
+                <p class="text-sm text-slate-600">余った食材の廃棄や、仕込ロスで毎週末数千円の利益が消えていく恐怖。</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="text-amber-500 text-2xl mb-3"><i class="fa-solid fa-calculator"></i></div>
+                <h3 class="font-bold text-lg mb-2">計算が面倒でドンブリ勘定</h3>
+                <p class="text-sm text-slate-600">イベントの特性や客単価に合わせた正確な必要グラム数の算出を諦めている。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 無料ライブ体験デモ枠 -->
+    <section class="py-16 px-6 bg-slate-100 border-y border-slate-200">
+        <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-md">
+            <div class="text-center mb-6">
+                <span class="text-xs bg-blue-100 text-blue-700 font-bold px-3 py-1 rounded-full">無料ライブ体験デモ</span>
+                <h2 class="text-xl font-bold text-slate-900 mt-2">仕入シミュレーションを今すぐ試す</h2>
+                <p class="text-xs text-slate-500">実際の計算ロジックをブラウザ上で体験できます</p>
+            </div>
+
+            <div class="mb-6 text-right">
+                <button onclick="loadDemoSample()" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-3 py-1.5 rounded transition">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> サンプルデータを自動入力して試す
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">予想来場者数 (人)</label>
+                    <input type="number" id="demoVisitors" value="150" class="w-full border border-slate-300 rounded p-2 text-sm" oninput="runDemo()">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">平均客単価 (円)</label>
+                    <input type="number" id="demoPrice" value="800" class="w-full border border-slate-300 rounded p-2 text-sm" oninput="runDemo()">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">天候係数 (晴れ:1.2 / 曇り:1.0 / 雨:0.7)</label>
+                    <select id="demoWeather" class="w-full border border-slate-300 rounded p-2 text-sm" onchange="runDemo()">
+                        <option value="1.2">晴れ (来客1.2倍)</option>
+                        <option value="1.0" selected>曇り (来客1.0倍)</option>
+                        <option value="0.7">雨 (来客0.7倍)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-8 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                <h3 class="text-sm font-bold text-slate-700 mb-2">シミュレーション結果（デモ出力）</h3>
+                <div class="grid grid-cols-2 gap-4 text-center">
+                    <div class="bg-white p-3 rounded border border-slate-100">
+                        <div class="text-xs text-slate-500">推奨仕入量 (メイン食材)</div>
+                        <div id="demoResultGram" class="text-lg font-bold text-slate-900">18,000 g</div>
+                    </div>
+                    <div class="bg-white p-3 rounded border border-slate-100">
+                        <div class="text-xs text-slate-500">予想限界利益</div>
+                        <div id="demoResultProfit" class="text-lg font-bold text-amber-600">¥64,800</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ロックされた高機能ボタン -->
+            <div class="mt-6 grid grid-cols-3 gap-2">
+                <button onclick="scrollToCta()" class="relative bg-slate-200 text-slate-500 text-xs font-bold py-2 rounded cursor-not-allowed">
+                    <i class="fa-solid fa-lock"></i> CSV出力
+                </button>
+                <button onclick="scrollToCta()" class="relative bg-slate-200 text-slate-500 text-xs font-bold py-2 rounded cursor-not-allowed">
+                    <i class="fa-solid fa-lock"></i> 履歴保存
+                </button>
+                <button onclick="scrollToCta()" class="relative bg-slate-200 text-slate-500 text-xs font-bold py-2 rounded cursor-not-allowed">
+                    <i class="fa-solid fa-lock"></i> 一括処理
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 価格・CTAセクション -->
+    <section id="ctaSection" class="py-20 px-6 max-w-xl mx-auto text-center">
+        <h2 class="text-2xl font-bold mb-4">数千円の在庫ロスを今日で終わりにしませんか？</h2>
+        <p class="text-slate-600 mb-8 text-sm">たった1回の仕入ミスを防ぐだけで、ツールの導入費なんて一瞬で回収できます。</p>
+        <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-xl">
+            <div class="text-xs text-slate-500 font-bold uppercase mb-1">完全買い切り型Webツール</div>
+            <div class="text-4xl font-extrabold text-slate-900 mb-2">1,480円<span class="text-sm font-normal text-slate-500">（税込）</span></div>
+            <p class="text-xs text-slate-500 mb-6">月額費なし・追加費用なし・データ自動保存</p>
+            <a href="https://buy.stripe.com/cNifZhfMH4Hm1665BreQM08" class="block bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-4 rounded-xl shadow transition">
+                今すぐツールを手に入れる
+            </a>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-slate-900 text-slate-400 py-8 px-6 text-center text-xs">
+        <p class="mb-2">特定商取引法に基づく表記は決済画面（Stripe）にてご確認いただけます。</p>
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function runDemo() {
+            const visitors = parseFloat(document.getElementById('demoVisitors').value) || 0;
+            const price = parseFloat(document.getElementById('demoPrice').value) || 0;
+            const weather = parseFloat(document.getElementById('demoWeather').value) || 1.0;
+            
+            const adjustedVisitors = visitors * weather;
+            const totalGram = Math.round(adjustedVisitors * 120); // 1人あたり120g想定
+            const totalSales = adjustedVisitors * price;
+            const totalProfit = Math.round(totalSales * 0.6);
+
+            document.getElementById('demoResultGram').innerText = totalGram.toLocaleString() + ' g';
+            document.getElementById('demoResultProfit').innerText = '¥' + totalProfit.toLocaleString();
+        }
+
+        function loadDemoSample() {
+            document.getElementById('demoVisitors').value = 180;
+            document.getElementById('demoPrice').value = 850;
+            document.getElementById('demoWeather').value = "1.2";
+            runDemo();
+        }
+
+        function scrollToCta() {
+            document.getElementById('ctaSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        runDemo();
+    </script>
+</body>
+</html>
