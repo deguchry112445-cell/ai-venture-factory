@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5CN8X87Q8W');
+  document.addEventListener('click', function(e) {
+    const a = e.target.closest('a');
+    if (a && a.href && a.href.includes('stripe.com')) {
+      gtag('event', 'begin_checkout', { item_name: '20261121014600_project', value: 980, currency: 'JPY' });
+    }
+  });
+</script>
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const key = params.get('key');
+  const storageKey = 'vf_unlocked_20261121014600_project';
+  if (key === 'lpvfo1cpsplhspio') {
+    localStorage.setItem(storageKey, 'true');
+    if (typeof gtag === 'function') gtag('event', 'purchase_unlocked', { item_name: '20261121014600_project' });
+  } else if (localStorage.getItem(storageKey) !== 'true') {
+    document.documentElement.innerHTML = '<body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;"><div style="text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px;"><h2 style="margin-top:0;">🔒 購入者専用ページ</h2><p style="color:#94a3b8;font-size:0.9rem;line-height:1.6;">このツールは購入完了後の正規リダイレクトからのみアクセス可能です。未購入の方は販売ページよりお手続きください。</p><a href="https://deguchry112445-cell.github.io/ai-venture-factory/20261121014600_project/" style="display:inline-block;margin-top:1rem;padding:0.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:0.5rem;font-weight:bold;">販売ページへ戻る</a></div></body>';
+    window.stop();
+  }
+})();
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】会費・レンタルスタジオ代動的按分ビルダー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- 注意バー -->
+    <div class="bg-amber-500 text-slate-900 px-4 py-3 text-xs md:text-sm font-bold text-center">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2">
+            <span>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください</span>
+            <button id="copy-url-btn" class="bg-slate-900 text-white px-3 py-1 rounded-lg text-xs hover:bg-slate-800 transition">
+                現在の専用URLをコピー
+            </button>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="font-bold text-sm md:text-base flex items-center gap-2">
+                <i class="fa-solid fa-calculator text-indigo-600"></i> レンタルスタジオ代動的按分ビルダー <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded">完全版</span>
+            </h1>
+            <span class="text-xs text-slate-500">Venture Factory</span>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full grid lg:grid-cols-3 gap-8">
+        
+        <!-- 入力フォームエリア -->
+        <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-6 h-fit">
+            <h2 class="font-bold text-base text-slate-800 border-b pb-3">
+                <i class="fa-solid fa-sliders text-indigo-600 mr-1"></i> 計算パラメータ設定
+            </h2>
+
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">セッション名 / メモ</label>
+                <input type="text" id="session-title" value="〇月〇日 スタジオ利用" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">レンタルスタジオ代総額（円）</label>
+                <input type="number" id="studio-cost" value="6000" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+
+            <div>
+                <div class="flex justify-between items-center mb-2">
+                    <label class="text-xs font-bold text-slate-700">生徒別 指導時間（分）</label>
+                    <button id="add-student-btn" class="text-xs bg-indigo-50 text-indigo-600 font-bold px-2.5 py-1 rounded-md hover:bg-indigo-100 transition">
+                        <i class="fa-solid fa-plus"></i> 生徒追加
+                    </button>
+                </div>
+                <div id="students-container" class="space-y-3 max-h-60 overflow-y-auto pr-1">
+                    <!-- 動的生成 -->
+                </div>
+            </div>
+
+            <button id="save-calc-btn" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl shadow transition">
+                <i class="fa-solid fa-floppy-disk mr-1"></i> 計算して履歴に保存
+            </button>
+        </div>
+
+        <!-- 結果・履歴エリア -->
+        <div class="lg:col-span-2 space-y-6">
+            
+            <!-- リアルタイム計算結果 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center mb-4 border-b pb-3">
+                    <h2 class="font-bold text-base text-slate-800">
+                        <i class="fa-solid fa-file-invoice-dollar text-emerald-600 mr-1"></i> 現在の按分結果プレビュー
+                    </h2>
+                    <button id="copy-text-btn" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-lg transition">
+                        <i class="fa-solid fa-copy"></i> 明細テキストをコピー
+                    </button>
+                </div>
+                <div id="live-result-view" class="text-sm text-slate-700 space-y-2">
+                    <!-- リアルタイム出力 -->
+                </div>
+            </div>
+
+            <!-- 履歴一覧 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center mb-4 border-b pb-3">
+                    <h2 class="font-bold text-base text-slate-800">
+                        <i class="fa-solid fa-clock-rotate-left text-indigo-600 mr-1"></i> 保存された計算履歴（localStorage）
+                    </h2>
+                    <button id="export-csv-btn" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">
+                        <i class="fa-solid fa-file-csv"><span class="font-sans"> 履歴をCSV出力</span></i>
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-slate-600">
+                        <thead class="bg-slate-100 text-xs uppercase text-slate-700">
+                            <tr>
+                                <th class="p-3">日時 / メモ</th>
+                                <th class="p-3">総額</th>
+                                <th class="p-3">内訳概要</th>
+                                <th class="p-3 text-right">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body">
+                            <!-- 履歴行 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // アプリケーションロジック
+        const studentsContainer = document.getElementById('students-container');
+        const addStudentBtn = document.getElementById('add-student-btn');
+        const studioCostInput = document.getElementById('studio-cost');
+        const sessionTitleInput = document.getElementById('session-title');
+        const liveResultView = document.getElementById('live-result-view');
+        const saveCalcBtn = document.getElementById('save-calc-btn');
+        const historyTableBody = document.getElementById('history-table-body');
+        const copyTextBtn = document.getElementById('copy-text-btn');
+        const exportCsvBtn = document.getElementById('export-csv-btn');
+        const copyUrlBtn = document.getElementById('copy-url-btn');
+
+        let students = [
+            { name: '生徒A', time: 60 },
+            { name: '生徒B', time: 60 }
+        ];
+
+        let historyData = JSON.parse(localStorage.getItem('trainer_split_history') || '[]');
+
+        function renderStudents() {
+            studentsContainer.innerHTML = '';
+            students.forEach((st, idx) => {
+                const div = document.createElement('div');
+                div.className = 'flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200';
+                div.innerHTML = `
+                    <input type="text" value="${st.name}" class="student-name w-24 border border-slate-300 rounded p-1 text-xs bg-white" data-index="${idx}">
+                    <input type="number" value="${st.time}" class="student-time w-full border border-slate-300 rounded p-1 text-xs bg-white" data-index="${idx}">
+                    <span class="text-xs text-slate-500">分</span>
+                    <button class="text-red-400 hover:text-red-600 px-2 text-xs remove-student" data-index="${idx}"><i class="fa-solid fa-trash"></i></button>
+                `;
+                studentsContainer.appendChild(div);
+            });
+            attachStudentEvents();
+            calculateLive();
+        }
+
+        function attachStudentEvents() {
+            document.querySelectorAll('.student-name').forEach(input => {
+                input.addEventListener('input', (e) => {
+                    students[e.target.dataset.index].name = e.target.value;
+                    calculateLive();
+                });
+            });
+            document.querySelectorAll('.student-time').forEach(input => {
+                input.addEventListener('input', (e) => {
+                    students[e.target.dataset.index].time = parseFloat(e.target.value) || 0;
+                    calculateLive();
+                });
+            });
+            document.querySelectorAll('.remove-student').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = e.currentTarget.dataset.index;
+                    if(students.length <= 1) {
+                        alert('最低1人の生徒が必要です。');
+                        return;
+                    }
+                    students.splice(idx, 1);
+                    renderStudents();
+                });
+            });
+        }
+
+        addStudentBtn.addEventListener('click', () => {
+            students.push({ name: `生徒${String.fromCharCode(65 + students.length)}`, time: 60 });
+            renderStudents();
+        });
+
+        studioCostInput.addEventListener('input', calculateLive);
+
+        function calculateLive() {
+            const cost = parseFloat(studioCostInput.value) || 0;
+            let totalTime = 0;
+            students.forEach(s => totalTime += s.time);
+
+            if(totalTime === 0) {
+                liveResultView.innerHTML = '<p class="text-red-500">指導時間の合計が0分になっています。</p>';
+                return { totalTime: 0, results: [] };
+            }
+
+            let html = `<p class="font-bold mb-2">スタジオ代総額: ¥${cost.toLocaleString()} / 合計時間: ${totalTime}分</p>`;
+            let results = [];
+            students.forEach(s => {
+                const share = Math.round(cost * (s.time / totalTime));
+                results.push({ name: s.name, time: s.time, share: share });
+                html += `<div class="flex justify-between items-center py-1.5 border-b border-slate-100"><span>${s.name} (${s.time}分)</span><span class="font-bold text-indigo-600">¥${share.toLocaleString()}</span></div>`;
+            });
+
+            liveResultView.innerHTML = html;
+            return { totalTime, cost, results };
+        }
+
+        copyTextBtn.addEventListener('click', () => {
+            const calc = calculateLive();
+            if(calc.totalTime === 0) return;
+            let text = `【スタジオ代按分明細：${sessionTitleInput.value}】\n総額: ¥${calc.cost.toLocaleString()}\n`;
+            calc.results.forEach(r => {
+                text += `- ${r.name} (${r.time}分): ¥${r.share.toLocaleString()}\n`;
+            });
+            navigator.clipboard.writeText(text);
+            alert('明細テキストをコピーしました！');
+        });
+
+        saveCalcBtn.addEventListener('click', () => {
+            const calc = calculateLive();
+            if(calc.totalTime === 0) return;
+
+            const record = {
+                id: Date.now(),
+                date: new Date().toLocaleDateString(),
+                title: sessionTitleInput.value || '無題',
+                cost: calc.cost,
+                details: calc.results
+            };
+
+            historyData.unshift(record);
+            localStorage.setItem('trainer_split_history', JSON.stringify(historyData));
+            renderHistory();
+            alert('計算結果を履歴に保存しました！');
+        });
+
+        function renderHistory() {
+            historyTableBody.innerHTML = '';
+            if(historyData.length === 0) {
+                historyTableBody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-slate-400">保存された履歴はありません</td></tr>';
+                return;
+            }
+
+            historyData.forEach((item, index) => {
+                const detailStr = item.details.map(d => `${d.name}:¥${d.share}`).join(', ');
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-slate-100 hover:bg-slate-50';
+                tr.innerHTML = `
+                    <td class="p-3"><div class="font-bold text-slate-800">${item.title}</div><div class="text-xs text-slate-400">${item.date}</div></td>
+                    <td class="p-3 font-semibold">¥${item.cost.toLocaleString()}</td>
+                    <td class="p-3 text-xs text-slate-500 max-w-xs truncate">${detailStr}</td>
+                    <td class="p-3 text-right">
+                        <button class="text-red-500 hover:text-red-700 text-xs delete-history" data-index="${index}"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                historyTableBody.appendChild(tr);
+            });
+
+            document.querySelectorAll('.delete-history').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = e.currentTarget.dataset.index;
+                    historyData.splice(idx, 1);
+                    localStorage.setItem('trainer_split_history', JSON.stringify(historyData));
+                    renderHistory();
+                });
+            });
+        }
+
+        exportCsvBtn.addEventListener('click', () => {
+            if(historyData.length === 0) {
+                alert('出力する履歴がありません。');
+                return;
+            }
+            let csv = '\uFEFF日付,タイトル,総額,生徒名,指導時間(分),負担額(円)\n';
+            historyData.forEach(item => {
+                item.details.forEach(d => {
+                    csv += `${item.date},"${item.title}",${item.cost},"${d.name}",${d.time},${d.share}\n`;
+                });
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `studio_split_history_${Date.now()}.csv`;
+            a.click();
+        });
+
+        copyUrlBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href);
+            alert('現在の専用URLをコピーしました！');
+        });
+
+        renderStudents();
+        renderHistory();
+    </script>
+</body>
+</html>
