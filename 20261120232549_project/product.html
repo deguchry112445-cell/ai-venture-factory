@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const key = params.get('key');
+  const storageKey = 'vf_unlocked_20261120232549_project';
+  if (key === 'szzt0nqqy1zsmstg') {
+    localStorage.setItem(storageKey, 'true');
+    if (typeof gtag === 'function') gtag('event', 'purchase_unlocked', { item_name: '20261120232549_project' });
+  } else if (localStorage.getItem(storageKey) !== 'true') {
+    document.documentElement.innerHTML = '<body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;"><div style="text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px;"><h2 style="margin-top:0;">🔒 購入者専用ページ</h2><p style="color:#94a3b8;font-size:0.9rem;line-height:1.6;">このツールは購入完了後の正規リダイレクトからのみアクセス可能です。未購入の方は販売ページよりお手続きください。</p><a href="https://deguchry112445-cell.github.io/ai-venture-factory/20261120232549_project/" style="display:inline-block;margin-top:1rem;padding:0.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:0.5rem;font-weight:bold;">販売ページへ戻る</a></div></body>';
+    window.stop();
+  }
+})();
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】軽貨物リアルタイム損益自動シミュレーター</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+    <!-- 注意バー -->
+    <div class="bg-amber-500 text-slate-950 px-4 py-3 text-xs sm:text-sm font-bold text-center">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2">
+            <span>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください</span>
+            <button onclick="copyCurrentUrl()" class="px-3 py-1 bg-slate-950 text-amber-400 rounded-lg text-xs hover:bg-slate-900 transition flex items-center gap-1">
+                <i class="fa-solid fa-copy"></i> 現在の専用URLをコピー
+            </button>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="bg-slate-900 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-amber-500/10 text-amber-400 rounded-lg flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <span class="font-bold text-sm sm:text-base">軽貨物リアルタイム損益シミュレーター <span class="text-xs px-2 py-0.5 bg-amber-500/10 text-amber-400 rounded border border-amber-500/20">完全版</span></span>
+            </div>
+            <span class="text-xs text-slate-400">Venture Factory</span>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <!-- 入力フォームカード -->
+        <div class="bg-slate-950 p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl mb-8">
+            <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-calculator text-amber-400"></i> 月別データ入力・シミュレーション
+            </h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 mb-2">対象年月 / 案件名</label>
+                    <input type="text" id="input-title" value="2026年3月度" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 mb-2">月間総売上（円）</label>
+                    <input type="number" id="input-sales" value="450000" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 mb-2">月間走行距離（km）</label>
+                    <input type="number" id="input-km" value="3500" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 mb-2">ガソリン単価（円/L）</label>
+                    <input type="number" id="input-gas-price" value="175" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 mb-2">燃費（km/L）</label>
+                    <input type="number" id="input-fuel-eff" value="10" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 mb-2">月間高速代（円）</label>
+                    <input type="number" id="input-highway" value="25000" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 mb-2">車両減価償却単価（円/km）</label>
+                    <input type="number" id="input-dep-rate" value="15" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 mb-2">月間稼働時間（時間）</label>
+                    <input type="number" id="input-hours" value="180" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                </div>
+            </div>
+
+            <!-- リアルタイム結果カード -->
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 mb-6">
+                <div class="grid sm:grid-cols-4 gap-4 text-center">
+                    <div>
+                        <div class="text-xs text-slate-400 mb-1">ガソリン代合計</div>
+                        <div id="res-gas" class="text-xl font-bold text-slate-200">¥0</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 mb-1">車両減価償却費</div>
+                        <div id="res-dep" class="text-xl font-bold text-slate-200">¥0</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 mb-1">月間実質利益</div>
+                        <div id="res-profit" class="text-2xl font-black text-amber-400">¥0</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 mb-1">実質時給換算</div>
+                        <div id="res-wage" class="text-2xl font-black text-emerald-400">¥0 /h</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-4">
+                <button onclick="saveRecord()" class="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold rounded-xl shadow transition">
+                    <i class="fa-solid fa-plus mr-2"></i> このデータを履歴に保存
+                </button>
+                <button onclick="exportCSV()" class="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold rounded-xl border border-slate-700 transition">
+                    <i class="fa-solid fa-download mr-2"></i> CSVダウンロード（BOM付き）
+                </button>
+            </div>
+        </div>
+
+        <!-- 履歴一覧 -->
+        <div class="bg-slate-950 p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-lg font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-clock-rotate-left text-amber-400"></i> 保存済み履歴一覧
+                </h2>
+                <button onclick="clearHistory()" class="text-xs text-red-400 hover:text-red-300 transition">
+                    <i class="fa-solid fa-trash mr-1"></i> 履歴を全削除
+                </button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-800 text-xs text-slate-400">
+                            <th class="py-3 px-4">年月/案件</th>
+                            <th class="py-3 px-4">売上</th>
+                            <th class="py-3 px-4">走行距離</th>
+                            <th class="py-3 px-4">経費合計</th>
+                            <th class="py-3 px-4">実質利益</th>
+                            <th class="py-3 px-4">実質時給</th>
+                            <th class="py-3 px-4 text-right">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-table-body" class="text-sm">
+                        <!-- 動的に挿入 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-xs text-slate-500 mt-20">
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let historyData = JSON.parse(localStorage.getItem('vf_delivery_simulator_history')) || [];
+
+        function calculate() {
+            const sales = parseFloat(document.getElementById('input-sales').value) || 0;
+            const km = parseFloat(document.getElementById('input-km').value) || 0;
+            const gasPrice = parseFloat(document.getElementById('input-gas-price').value) || 0;
+            const fuelEff = parseFloat(document.getElementById('input-fuel-eff').value) || 1;
+            const highway = parseFloat(document.getElementById('input-highway').value) || 0;
+            const depRate = parseFloat(document.getElementById('input-dep-rate').value) || 0;
+            const hours = parseFloat(document.getElementById('input-hours').value) || 1;
+
+            const gasCost = (km / fuelEff) * gasPrice;
+            const depCost = km * depRate;
+            const totalCost = gasCost + highway + depCost;
+            const profit = sales - totalCost;
+            const wage = profit / hours;
+
+            document.getElementById('res-gas').innerText = '¥' + Math.round(gasCost).toLocaleString();
+            document.getElementById('res-dep').innerText = '¥' + Math.round(depCost).toLocaleString();
+            document.getElementById('res-profit').innerText = '¥' + Math.round(profit).toLocaleString();
+            document.getElementById('res-wage').innerText = '¥' + Math.round(wage).toLocaleString() + ' /h';
+
+            return { gasCost, depCost, totalCost, profit, wage };
+        }
+
+        // 入力イベントリスナー
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', calculate);
+        });
+
+        function saveRecord() {
+            const title = document.getElementById('input-title').value;
+            const sales = parseFloat(document.getElementById('input-sales').value) || 0;
+            const km = parseFloat(document.getElementById('input-km').value) || 0;
+            const res = calculate();
+
+            const record = {
+                id: Date.now(),
+                title,
+                sales,
+                km,
+                totalCost: res.totalCost,
+                profit: res.profit,
+                wage: res.wage
+            };
+
+            historyData.unshift(record);
+            localStorage.setItem('vf_delivery_simulator_history', JSON.stringify(historyData));
+            renderHistory();
+            alert('データを保存しました！');
+        }
+
+        function renderHistory() {
+            const tbody = document.getElementById('history-table-body');
+            if (historyData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-slate-500">保存された履歴はありません</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = historyData.map(item => `
+                <tr class="border-b border-slate-800/50 hover:bg-slate-900/50">
+                    <td class="py-3 px-4 font-bold text-slate-200">${item.title}</td>
+                    <td class="py-3 px-4">¥${item.sales.toLocaleString()}</td>
+                    <td class="py-3 px-4">${item.km.toLocaleString()} km</td>
+                    <td class="py-3 px-4">¥${Math.round(item.totalCost).toLocaleString()}</td>
+                    <td class="py-3 px-4 font-bold text-amber-400">¥${Math.round(item.profit).toLocaleString()}</td>
+                    <td class="py-3 px-4 font-bold text-emerald-400">¥${Math.round(item.wage).toLocaleString()} /h</td>
+                    <td class="py-3 px-4 text-right">
+                        <button onclick="deleteRecord(${item.id})" class="text-xs text-slate-500 hover:text-red-400 transition"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function deleteRecord(id) {
+            historyData = historyData.filter(item => item.id !== id);
+            localStorage.setItem('vf_delivery_simulator_history', JSON.stringify(historyData));
+            renderHistory();
+        }
+
+        function clearHistory() {
+            if (confirm('本当にすべての履歴を削除しますか？')) {
+                historyData = [];
+                localStorage.removeItem('vf_delivery_simulator_history');
+                renderHistory();
+            }
+        }
+
+        function exportCSV() {
+            if (historyData.length === 0) {
+                alert('エクスポートするデータがありません。');
+                return;
+            }
+
+            let csv = '\uFEFF年月/案件,月間売上(円),走行距離(km),経費合計(円),実質利益(円),実質時給(円)\n';
+            historyData.forEach(item => {
+                csv += `"${item.title}",${item.sales},${item.km},${Math.round(item.totalCost)},${Math.round(item.profit)},${Math.round(item.wage)}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'delivery_profit_history.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function copyCurrentUrl() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('現在の専用URLをコピーしました！ブックマーク等に保存してください。');
+            });
+        }
+
+        // 初期計算・履歴描画
+        calculate();
+        renderHistory();
+    </script>
+</body>
+</html>
