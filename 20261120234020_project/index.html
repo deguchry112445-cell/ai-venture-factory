@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>農薬散布・収穫期ダイナミック自動スケジュール最適化ビルダー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="../" class="text-xs text-slate-500 hover:text-slate-800 transition flex items-center gap-1">
+                <i class="fa-solid fa-arrow-left"></i> ツール一覧へ戻る
+            </a>
+            <div class="font-bold text-emerald-700 flex items-center gap-2">
+                <i class="fa-solid fa-seedling"></i> AgriOptimizer
+            </div>
+            <a href="https://buy.stripe.com/5kQ14n9oj3Di9CC5BreQM0a" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold py-2 px-4 rounded-lg shadow transition">
+                今すぐ導入 (1,480円)
+            </a>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="py-16 sm:py-24 bg-gradient-to-b from-emerald-50 to-white text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full mb-4">
+                就農1〜3年目の個人農家必携・ブラウザ完結型ツール
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+                収穫日の重なり・農薬の規定違反ゼロへ。<br>
+                <span class="text-emerald-600">天候と品種を入れるだけで、今日やるべき作業が30秒で自動最適化。</span>
+            </h1>
+            <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8">
+                複雑な生育日数、農薬の散布間隔、収穫適期の計算をアルゴリズムが一発自動算出。毎日の計画ミスによる作物のロスや規定違反の不安から解放されます。
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://buy.stripe.com/5kQ14n9oj3Di9CC5BreQM0a" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bolt"></i> 完全版を今すぐ購入する (1,480円)
+                </a>
+                <a href="#demo" class="bg-white hover:bg-slate-100 text-slate-700 font-bold text-lg py-4 px-8 rounded-xl border border-slate-300 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-eye">D</i> 無料ライブ体験デモを見る
+                </a>
+            </div>
+            <p class="text-xs text-slate-400 mt-3">買い切り型（追加料金なし） / 決済後即座にブラウザで利用可能</p>
+        </div>
+    </section>
+
+    <!-- 課題セクション -->
+    <section class="py-16 bg-white border-y border-slate-200">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-12">
+                こんな「スケジューリングの悩み」、ありませんか？
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-rose-50 border border-rose-100 p-6 rounded-2xl">
+                    <div class="text-rose-600 text-xl font-bold mb-3"><i class="fa-solid fa-triangle-exclamation"></i> 予定のバッティング</div>
+                    <p class="text-slate-700 text-sm">
+                        複数品目を同時栽培していると、収穫期が重なり手が回らない。人手不足で収穫遅れによる品質低下を招く恐怖。
+                    </p>
+                </div>
+                <div class="bg-rose-50 border border-rose-100 p-6 rounded-2xl">
+                    <div class="text-rose-600 text-xl font-bold mb-3"><i class="fa-solid fa-triangle-exclamation"></i> 農薬の規定違反リスク</div>
+                    <p class="text-slate-700 text-sm">
+                        散布間隔や収穫前日数（PHI）の計算ミスが怖い。手帳やエクセルでの管理はヒューマンエラーが起きやすい。
+                    </p>
+                </div>
+                <div class="bg-rose-50 border border-rose-100 p-6 rounded-2xl">
+                    <div class="text-rose-600 text-xl font-bold mb-3"><i class="fa-solid fa-triangle-exclamation"></i> 毎日の計算に数時間</div>
+                    <p class="text-slate-700 text-sm">
+                        天候変化による生育日のズレを毎回手動で計算し直すため、毎日の計画づくりだけで膨大な時間を消耗している。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 無料ライブ体験デモ枠 -->
+    <section id="demo" class="py-16 bg-slate-100">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-8">
+                <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full">無料ライブ体験デモ</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">30秒自動最適化を今すぐ体感</h2>
+                <p class="text-slate-600 text-sm mt-1">登録不要。ブラウザ上で動くアルゴリズムの精度をお試しください。</p>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-slate-200">
+                <div class="flex justify-end mb-4">
+                    <button id="sample-btn" class="bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold py-2 px-4 rounded transition flex items-center gap-1">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> サンプルデータを自動入力して試す
+                    </button>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">品目名 / 品種</label>
+                        <input type="text" id="demo-crop" value="ミニトマト（アイコ）" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">定植日 / 基準日</label>
+                        <input type="date" id="demo-date" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">想定生育日数（日）</label>
+                        <input type="number" id="demo-days" value="60" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">最終農薬散布からの経過日数</label>
+                        <input type="number" id="demo-pesticide" value="10" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                    </div>
+                </div>
+                <button id="calc-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl transition shadow">
+                    スケジュールを自動算出する
+                </button>
+
+                <!-- デモ結果表示 -->
+                <div id="demo-result" class="mt-6 p-4 bg-emerald-50 rounded-xl border border-emerald-200 hidden">
+                    <h3 class="font-bold text-emerald-800 text-sm mb-2"><i class="fa-solid fa-circle-check"></i> 最適化計算結果（デモプレビュー）</h3>
+                    <div class="grid sm:grid-cols-3 gap-2 text-xs text-slate-700">
+                        <div class="bg-white p-3 rounded border border-emerald-100">
+                            <span class="block text-slate-400">予想収穫適期</span>
+                            <strong id="res-harvest" class="text-emerald-700 text-sm">-</strong>
+                        </div>
+                        <div class="bg-white p-3 rounded border border-emerald-100">
+                            <span class="block text-slate-400">農薬安全確認（PHI）</span>
+                            <strong id="res-pesticide" class="text-emerald-700 text-sm">-</strong>
+                        </div>
+                        <div class="bg-white p-3 rounded border border-emerald-100">
+                            <span class="block text-slate-400">本日の推奨作業</span>
+                            <strong id="res-task" class="text-emerald-700 text-sm">-</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ロックされた高度機能プレビュー -->
+                <div class="mt-8 pt-6 border-t border-slate-200">
+                    <p class="text-xs font-bold text-slate-500 mb-3">完全版で解放される機能：</p>
+                    <div class="grid sm:grid-cols-3 gap-3">
+                        <div class="lock-trigger bg-slate-50 border border-slate-200 p-3 rounded-lg text-center cursor-pointer hover:border-emerald-500 transition">
+                            <i class="fa-solid fa-lock text-slate-400 mb-1"></i>
+                            <p class="text-xs font-bold text-slate-600">CSV一括出力</p>
+                        </div>
+                        <div class="lock-trigger bg-slate-50 border border-slate-200 p-3 rounded-lg text-center cursor-pointer hover:border-emerald-500 transition">
+                            <i class="fa-solid fa-lock text-slate-400 mb-1"></i>
+                            <p class="text-xs font-bold text-slate-600">履歴自動保存</p>
+                        </div>
+                        <div class="lock-trigger bg-slate-50 border border-slate-200 p-3 rounded-lg text-center cursor-pointer hover:border-emerald-500 transition">
+                            <i class="fa-solid fa-lock text-slate-400 mb-1"></i>
+                            <p class="text-xs font-bold text-slate-600">複数品目一括処理</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 解決策・メリット -->
+    <section class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-12">
+                このツールが選ばれる3つの理由
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">30秒で計算完了</h3>
+                    <p class="text-slate-600 text-sm">
+                        面倒な日数の計算やスケジュール調整を自動化。毎日の事務作業から解放されます。
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">規定違反を完全ブロック</h3>
+                    <p class="text-slate-600 text-sm">
+                        農薬の安全散布期間を自動でチェック。うっかりミスによる信用失墜を防ぎます。
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-desktop"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">即座に使えるWebツール</h3>
+                    <p class="text-slate-600 text-sm">
+                        ブラウザ上で動く買い切り型Webツール。データ自動保存・CSV出力機能完備でスマホからも快適。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 価格セクション & CTA -->
+    <section class="py-20 bg-slate-900 text-white text-center">
+        <div class="max-w-3xl mx-auto px-4">
+            <span class="bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 inline-block">
+                買い切りプラン・追加費用なし
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold mb-6">
+                日当換算ですら圧倒的にお釣りが来る投資。
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base mb-8">
+                毎日のスケジュール作成やミスによるロスのリスクを考えれば、わずか1,480円の投資は即座に回収できます。
+            </p>
+            <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 max-w-md mx-auto mb-8">
+                <p class="text-slate-400 text-xs mb-1">農薬散布・収穫期ダイナミック自動スケジュール最適化ビルダー</p>
+                <div class="text-4xl font-extrabold text-emerald-400 mb-2">1,480円<span class="text-xs font-normal text-slate-400">（税込・買い切り）</span></div>
+                <p class="text-xs text-slate-400 mb-6">ブラウザ対応 / データ自動保存・CSV出力付き完全版</p>
+                <a href="https://buy.stripe.com/5kQ14n9oj3Di9CC5BreQM0a" class="block w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-xl shadow-lg transition">
+                    今すぐ導入する (1,480円)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-slate-950 text-slate-500 py-8 text-center text-xs">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="mb-2">特定商取引法に基づく表記は決済画面（Stripe）にてご確認いただけます。</p>
+            <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // デモ用の日付初期値設定
+        document.getElementById('demo-date').valueAsDate = new Date();
+
+        document.getElementById('calc-btn').addEventListener('click', function() {
+            const days = parseInt(document.getElementById('demo-days').value) || 60;
+            const dateVal = document.getElementById('demo-date').value;
+            const pesticideDays = parseInt(document.getElementById('demo-pesticide').value) || 0;
+
+            if(!dateVal) return;
+
+            const baseDate = new Date(dateVal);
+            const harvestDate = new Date(baseDate);
+            harvestDate.setDate(baseDate.getDate() + days);
+
+            document.getElementById('res-harvest').innerText = harvestDate.toLocaleDateString('ja-JP');
+            
+            if(pesticideDays >= 14) {
+                document.getElementById('res-pesticide').innerText = '安全（散布可能）';
+                document.getElementById('res-pesticide').className = 'text-emerald-700 text-sm font-bold';
+            } else {
+                document.getElementById('res-pesticide').innerText = '要警戒（散布制限中）';
+                document.getElementById('res-pesticide').className = 'text-rose-600 text-sm font-bold';
+            }
+
+            document.getElementById('res-task').innerText = '追肥および誘引作業の実施';
+            document.getElementById('demo-result').classList.remove('hidden');
+        });
+
+        document.getElementById('sample-btn').addEventListener('click', function() {
+            document.getElementById('demo-crop').value = 'ナス（千両2号）';
+            document.getElementById('demo-days').value = '50';
+            document.getElementById('demo-pesticide').value = '15';
+            document.getElementById('calc-btn').click();
+        });
+
+        document.querySelectorAll('.lock-trigger').forEach(el => {
+            el.addEventListener('click', function() {
+                document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+                window.location.href = 'https://buy.stripe.com/5kQ14n9oj3Di9CC5BreQM0a';
+            });
+        });
+    </script>
+</body>
+</html>
