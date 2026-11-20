@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>軽貨物ドライバー専用 リアルタイム損益自動シミュレーター</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+    <!-- ヘッダー -->
+    <header class="bg-slate-900/80 backdrop-blur border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="../" class="text-sm text-slate-400 hover:text-white transition flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> ツール一覧へ戻る
+            </a>
+            <span class="text-xs font-semibold px-3 py-1 bg-amber-500/10 text-amber-400 rounded-full border border-amber-500/20">Venture Factory</span>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="relative pt-20 pb-16 overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold mb-6">
+                <i class="fa-solid fa-triangle-exclamation"></i> 開業1〜3年目の個人事業主・委託ドライバー必見
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+                その配送、本当に黒字ですか？<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">ガソリン高と高速代で削られる手取りを完全可視化</span>
+            </h1>
+            <p class="text-lg text-slate-300 mb-10 max-w-2xl mx-auto">
+                スマホで数値を入力するだけで、月別実質時給と車両減価償却費を含めたリアルタイム損益を30秒で自動算出するプロ専用シミュレーター。
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://buy.stripe.com/dRmeVd0RNb5KbKKe7XeQM09" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 text-center">
+                    <i class="fa-solid fa-bolt mr-2"></i> 今すぐ導入する（1,480円・買い切り）
+                </a>
+                <a href="#demo" class="w-full sm:w-auto px-8 py-4 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-xl border border-slate-700 transition text-center">
+                    <i class="fa-solid fa-desktop mr-2"></i> 無料ライブ体験デモを見る
+                </a>
+            </div>
+            <p class="text-xs text-slate-500 mt-4">※外部スプレッドシートではなく、ブラウザ上で即座に動く専用Webアプリです</p>
+        </div>
+    </section>
+
+    <!-- 課題セクション -->
+    <section class="py-16 bg-slate-950/50 border-y border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center mb-12">こんなお悩みありませんか？</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 bg-red-500/10 text-red-400 rounded-lg flex items-center justify-center mb-4 text-lg font-bold">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 text-slate-200">手作業の計算に30分以上</h3>
+                    <p class="text-sm text-slate-400">毎月の売上からガソリン代や経費を引く作業が面倒で、月末まで実際の儲けが分からない。</p>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 bg-red-500/10 text-red-400 rounded-lg flex items-center justify-center mb-4 text-lg font-bold">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 text-slate-200">赤字案件に気づけない</h3>
+                    <p class="text-sm text-slate-400">高速代や車両の減価償却費を入れると、実は割に合わない配送ルートを延々と走っている。</p>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 bg-red-500/10 text-red-400 rounded-lg flex items-center justify-center mb-4 text-lg font-bold">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 text-slate-200">自分の実質時給が不明</h3>
+                    <p class="text-sm text-slate-400">長時間働いている割に手元に残るお金が少ない気がするが、正確な数値が出てこない。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 無料ライブ体験デモ枠 -->
+    <section id="demo" class="py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Interactive Demo</span>
+                <h2 class="text-2xl sm:text-3xl font-bold mt-2">無料ライブ体験デモ</h2>
+                <p class="text-sm text-slate-400 mt-1">実際の計算ロジックをブラウザ上で今すぐお試しいただけます</p>
+                <button onclick="fillSampleData()" class="mt-4 px-4 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 text-xs font-bold rounded-lg border border-amber-500/30 transition">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> サンプルデータを自動入力して試す
+                </button>
+            </div>
+
+            <div class="bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl">
+                <div class="grid sm:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 mb-2">月間総売上（円）</label>
+                        <input type="number" id="demo-sales" value="450000" oninput="calculateDemo()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 mb-2">月間走行距離（km）</label>
+                        <input type="number" id="demo-km" value="3500" oninput="calculateDemo()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 mb-2">ガソリン単価（円/L）</label>
+                        <input type="number" id="demo-gas-price" value="175" oninput="calculateDemo()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 mb-2">燃費（km/L）</label>
+                        <input type="number" id="demo-fuel-efficiency" value="10" oninput="calculateDemo()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 mb-2">月間高速代（円）</label>
+                        <input type="number" id="demo-highway" value="25000" oninput="calculateDemo()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 mb-2">月間稼働時間（時間）</label>
+                        <input type="number" id="demo-hours" value="180" oninput="calculateDemo()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                    </div>
+                </div>
+
+                <!-- デモ結果表示 -->
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 mb-6">
+                    <div class="grid sm:grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-xs text-slate-400 mb-1">月間実質利益</div>
+                            <div id="demo-res-profit" class="text-2xl font-black text-amber-400">¥0</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 mb-1">車両減価償却費(月換算)</div>
+                            <div id="demo-res-dep" class="text-xl font-bold text-slate-300">¥0</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 mb-1">実質時給換算</div>
+                            <div id="demo-res-wage" class="text-2xl font-black text-emerald-400">¥0 /h</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ロックされた拡張機能 -->
+                <div class="grid sm:grid-cols-3 gap-4">
+                    <button onclick="scrollToPayment()" class="relative p-4 bg-slate-950/60 rounded-xl border border-slate-800 text-left cursor-pointer hover:border-amber-500/50 transition group">
+                        <div class="absolute top-3 right-3 text-amber-400 text-xs"><i class="fa-solid fa-lock"></i></div>
+                        <div class="text-xs font-bold text-slate-300 mb-1">CSV出力機能</div>
+                        <div class="text-[10px] text-slate-500">データをExcel等で管理</div>
+                    </button>
+                    <button onclick="scrollToPayment()" class="relative p-4 bg-slate-950/60 rounded-xl border border-slate-800 text-left cursor-pointer hover:border-amber-500/50 transition group">
+                        <div class="absolute top-3 right-3 text-amber-400 text-xs"><i class="fa-solid fa-lock"></i></div>
+                        <div class="text-xs font-bold text-slate-300 mb-1">履歴自動保存</div>
+                        <div class="text-[10px] text-slate-500">過去の月別データを保管</div>
+                    </button>
+                    <button onclick="scrollToPayment()" class="relative p-4 bg-slate-950/60 rounded-xl border border-slate-800 text-left cursor-pointer hover:border-amber-500/50 transition group">
+                        <div class="absolute top-3 right-3 text-amber-400 text-xs"><i class="fa-solid fa-lock"></i></div>
+                        <div class="text-xs font-bold text-slate-300 mb-1">一括処理・車両管理</div>
+                        <div class="text-[10px] text-slate-500">複数台の車両データに対応</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特徴セクション -->
+    <section class="py-16 bg-slate-950/50 border-y border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center mb-12">完全版Webツールの特徴</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center shrink-0 text-xl font-bold">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">30秒で完了する圧倒的スピード</h3>
+                        <p class="text-sm text-slate-400">複雑な関数や設定は一切不要。スマホから数値を打ち込むだけで瞬時に実質利益と時給がはじき出されます。</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center shrink-0 text-xl font-bold">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">車両減価償却費の自動計算</h3>
+                        <p class="text-sm text-slate-400">見落としがちな車両の価値低下（減価償却費）を自動算入。本当のコストが見えてきます。</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center shrink-0 text-xl font-bold">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">ブラウザ自動保存 & CSV出力</h3>
+                        <p class="text-sm text-slate-400">入力データは端末（localStorage）に自動保存。文字化け防止BOM付きUTF-8でのCSVダウンロードも完備。</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center shrink-0 text-xl font-bold">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">スマホ・PC完全対応</h3>
+                        <p class="text-sm text-slate-400">配送の合間の車内でも、自宅のPCでも、いつでもどこでもスムーズにアクセスして確認できます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 価格・CTAセクション -->
+    <section id="pricing" class="py-20">
+        <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-b from-slate-900 to-slate-950 p-8 sm:p-10 rounded-3xl border border-amber-500/30 shadow-2xl text-center relative">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider">
+                    買い切り・追加費用なし
+                </div>
+                <h2 class="text-2xl font-bold mb-4 mt-2">軽貨物リアルタイム損益シミュレーター</h2>
+                <p class="text-sm text-slate-400 mb-8">ガソリン代高騰の波を乗りこなし、確実に利益を残すためのプロフェッショナル専用ツール</p>
+                
+                <div class="mb-8">
+                    <span class="text-4xl sm:text-5xl font-black text-amber-400">1,480円</span>
+                    <span class="text-sm text-slate-400 ml-2">（税込・買い切り）</span>
+                </div>
+
+                <ul class="text-sm text-slate-300 space-y-3 mb-8 text-left max-w-sm mx-auto">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> 完全版Webアプリケーション即時利用権</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> リアルタイム損益・実質時給自動計算</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> 車両減価償却費自動算出ロジック</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> ブラウザ自動データ保存機能</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> CSVエクスポート機能（BOM付き）</li>
+                </ul>
+
+                <a href="https://buy.stripe.com/dRmeVd0RNb5KbKKe7XeQM09" class="block w-full py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 text-center mb-4">
+                    <i class="fa-solid fa-bolt mr-2"></i> 今すぐ購入してツールを手に入れる
+                </a>
+                <p class="text-xs text-slate-500">※決済完了後、即座に専用ツールページへリダイレクトされます</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-12 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <p>特定商取引法に基づく表記は決済画面（Stripe）にてご確認いただけます。</p>
+            <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateDemo() {
+            const sales = parseFloat(document.getElementById('demo-sales').value) || 0;
+            const km = parseFloat(document.getElementById('demo-km').value) || 0;
+            const gasPrice = parseFloat(document.getElementById('demo-gas-price').value) || 0;
+            const fuelEff = parseFloat(document.getElementById('demo-fuel-efficiency').value) || 1;
+            const highway = parseFloat(document.getElementById('demo-highway').value) || 0;
+            const hours = parseFloat(document.getElementById('demo-hours').value) || 1;
+
+            const gasCost = (km / fuelEff) * gasPrice;
+            const depreciation = km * 15; // 簡易減価償却費 15円/km
+            const totalCost = gasCost + highway + depreciation;
+            const profit = sales - totalCost;
+            const wage = profit / hours;
+
+            document.getElementById('demo-res-profit').innerText = '¥' + Math.round(profit).toLocaleString();
+            document.getElementById('demo-res-dep').innerText = '¥' + Math.round(depreciation).toLocaleString();
+            document.getElementById('demo-res-wage').innerText = '¥' + Math.round(wage).toLocaleString() + ' /h';
+        }
+
+        function fillSampleData() {
+            document.getElementById('demo-sales').value = 480000;
+            document.getElementById('demo-km').value = 3800;
+            document.getElementById('demo-gas-price').value = 175;
+            document.getElementById('demo-fuel-efficiency').value = 11;
+            document.getElementById('demo-highway').value = 28000;
+            document.getElementById('demo-hours').value = 170;
+            calculateDemo();
+        }
+
+        function scrollToPayment() {
+            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 初期計算実行
+        calculateDemo();
+    </script>
+</body>
+</html>
