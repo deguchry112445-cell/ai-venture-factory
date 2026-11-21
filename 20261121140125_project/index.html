@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"20261121140125_project",value:1480,currency:"JPY"});}});</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人キッチンカー専用 複数出店料・売上連動歩合計算機</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="../" class="text-sm text-slate-500 hover:text-slate-800 transition flex items-center gap-1">
+                <i class="fas fa-arrow-left"></i> ツール一覧へ戻る
+            </a>
+            <span class="text-xs font-semibold px-2.5 py-1 bg-amber-100 text-amber-800 rounded-full">Venture Factory</span>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 bg-rose-50 text-rose-600 px-4 py-1.5 rounded-full text-sm font-bold mb-6">
+            <i class="fas fa-triangle-exclamation"></i> 開業1〜3年目の個人オーナー必見
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+            出店料の計算ミスで赤字回避！<br>
+            売上と歩合率を入力するだけで、<br class="hidden sm:inline">複数会場の純利益を<span class="text-rose-600">30秒で自動算出</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto mb-10">
+            イベントや商業施設ごとに異なる複雑な出店料体系（固定費＋売上歩合％の複合条件）を手計算していませんか？ブラウザ上で瞬時に正味利益と歩合を算出できるプロ向け計算ツール。
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <a href="#https://buy.stripe.com/8x2cN5gQL7TycOOd3TeQM0l" class="w-full sm:w-auto bg-rose-600 hover:bg-rose-700 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5">
+                <i class="fas fa-bolt mr-2"></i> 今すぐ導入する（1,480円）
+            </a>
+            <span class="text-xs text-slate-500">※買い切り型・追加費用なし・登録不要ですぐ使える</span>
+        </div>
+    </section>
+
+    <!-- 無料ライブ体験デモ枠 -->
+    <section id="demo-section" class="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+            <div class="bg-slate-900 text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-laptop-code text-rose-400"></i>
+                    <h3 class="font-bold text-lg">無料ライブ体験デモ</h3>
+                </div>
+                <button id="sample-btn" class="bg-slate-800 hover:bg-slate-700 text-rose-300 text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-700 transition">
+                    <i class="fas fa-magic mr-1"></i> サンプルデータを自動入力して試す
+                </button>
+            </div>
+            <div class="p-6 sm:p-8">
+                <form id="demo-form" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">会場名・イベント名</label>
+                        <input type="text" id="demo-name" placeholder="例: ○○駅前マルシェ" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">売上総額 (円)</label>
+                        <input type="number" id="demo-sales" placeholder="例: 85000" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">固定出店料 (円)</label>
+                        <input type="number" id="demo-fixed" placeholder="例: 5000" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">売上歩合率 (%)</label>
+                        <input type="number" step="0.1" id="demo-rate" placeholder="例: 10" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">その他経費・原価 (円)</label>
+                        <input type="number" id="demo-cost" placeholder="例: 25000" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                    </div>
+                    <div class="flex items-end">
+                        <button type="button" id="demo-calc-btn" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm py-2 rounded-lg transition">
+                            計算する
+                        </button>
+                    </div>
+                </form>
+
+                <!-- デモ結果表示 -->
+                <div id="demo-result" class="bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-6 hidden">
+                    <h4 class="text-sm font-bold text-slate-700 mb-3"><i class="fas fa-calculator mr-1 text-rose-600"></i> 計算結果プレビュー</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                        <div class="bg-white p-3 rounded-lg border border-slate-100">
+                            <span class="block text-xs text-slate-500">出店料合計</span>
+                            <span id="res-fee" class="text-base font-bold text-slate-800">0円</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-slate-100">
+                            <span class="block text-xs text-slate-500">総経費（出店料+原価）</span>
+                            <span id="res-total-cost" class="text-base font-bold text-slate-800">0円</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-slate-100">
+                            <span class="block text-xs text-slate-500">正味利益</span>
+                            <span id="res-profit" class="text-base font-bold text-rose-600">0円</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-slate-100">
+                            <span class="block text-xs text-slate-500">利益率</span>
+                            <span id="res-margin" class="text-base font-bold text-slate-800">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ロックされた高度機能 -->
+                <div class="mt-6 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 bg-amber-50/50 p-4 rounded-xl border border-amber-200/60">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-bold text-slate-800">CSV一括出力・データ自動保存・複数日管理機能</h5>
+                            <p class="text-xs text-slate-600">完全版では、複数会場のデータを一覧管理し、CSV形式で一括ダウンロード可能です。</p>
+                        </div>
+                    </div>
+                    <a href="#https://buy.stripe.com/8x2cN5gQL7TycOOd3TeQM0l" class="shrink-0 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition">
+                        完全版の機能を見る <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特徴セクション -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">個人キッチンカーオーナーが抱える出店料の悩み</h2>
+            <p class="text-slate-600 mt-2">毎回の複雑な計算から解放され、確実な利益を残すための3つの理由</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="font-bold text-lg text-slate-900 mb-2">30秒で複合条件を即時計算</h3>
+                <p class="text-slate-600 text-sm">
+                    「固定費＋売上歩合％」のような複雑な計算も、数値を打ち込むだけで瞬時に算出。手計算によるミスや赤字リスクを完全に防ぎます。
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3 class="font-bold text-lg text-slate-900 mb-2">完全ブラウザ動作＆自動保存</h3>
+                <p class="text-slate-600 text-sm">
+                    面倒なインストールや会員登録は一切不要。データは自動的にブラウザ（localStorage）に保存されるため、スマホやPCからいつでも再確認できます。
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                    <i class="fas fa-file-csv"></i>
+                </div>
+                <h3 class="font-bold text-lg text-slate-900 mb-2">BOM付きCSV出力対応</h3>
+                <p class="text-slate-600 text-sm">
+                    入力・計算したデータをワンクリックでExcelやGoogleスプレッドシートにインポート可能なCSV形式（文字化け防止BOM付）でダウンロード可能。
+                </p>
+            </div>
+        </div>
+    </section> 
+
+    <!-- CTAセクション -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
+        <div class="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+            <div class="relative z-10">
+                <h2 class="text-2xl sm:text-4xl font-extrabold mb-4">
+                    今すぐ、出店料計算のストレスから解放されよう
+                </h2>
+                <p class="text-slate-300 max-w-xl mx-auto mb-8 text-sm sm:text-base">
+                    一度の購入でずっと使える買い切り型ツール。日々の出店管理を効率化し、売上アップに集中しましょう。
+                </p>
+                <a href="#https://buy.stripe.com/8x2cN5gQL7TycOOd3TeQM0l" class="inline-block bg-rose-600 hover:bg-rose-700 text-white font-bold text-lg px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5">
+                    <i class="fas fa-cart-shopping mr-2"></i> 完全版ツールを購入する (1,480円)
+                </a>
+                <p class="text-xs text-slate-400 mt-4">※安全な決済システム（Stripe）を利用しています</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-white border-t border-slate-200 py-8 px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+            <p>特定商取引法に基づく表記は決済画面（Stripe）にてご確認いただけます</p>
+        </div>
+    </footer>
+
+    <!-- デモ用スクリプト -->
+    <script>
+        function calculateFee(sales, fixed, rate) {
+            const s = Math.max(0, isNaN(sales) ? 0 : sales);
+            const f = Math.max(0, isNaN(fixed) ? 0 : fixed);
+            const r = Math.max(0, isNaN(rate) ? 0 : rate);
+            const commission = Math.round(s * (r / 100));
+            return f + commission;
+        }
+
+        document.getElementById('sample-btn').addEventListener('click', () => {
+            document.getElementById('demo-name').value = '週末マリンパーク出店';
+            document.getElementById('demo-sales').value = '125000';
+            document.getElementById('demo-fixed').value = '10000';
+            document.getElementById('demo-rate').value = '15';
+            document.getElementById('demo-cost').value = '38000';
+            triggerCalc();
+        });
+
+        document.getElementById('demo-calc-btn').addEventListener('click', triggerCalc);
+
+        function triggerCalc() {
+            const sales = parseFloat(document.getElementById('demo-sales').value);
+            const fixed = parseFloat(document.getElementById('demo-fixed').value);
+            const rate = parseFloat(document.getElementById('demo-rate').value);
+            const cost = parseFloat(document.getElementById('demo-cost').value) || 0;
+
+            const fee = calculateFee(sales, fixed, rate);
+            const totalCost = fee + cost;
+            const profit = (isNaN(sales) ? 0 : sales) - totalCost;
+            const margin = sales > 0 ? ((profit / sales) * 100).toFixed(1) : '0.0';
+
+            document.getElementById('res-fee').textContent = fee.toLocaleString() + '円';
+            document.getElementById('res-total-cost').textContent = totalCost.toLocaleString() + '円';
+            document.getElementById('res-profit').textContent = profit.toLocaleString() + '円';
+            document.getElementById('res-margin').textContent = margin + '%';
+
+            document.getElementById('demo-result').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
