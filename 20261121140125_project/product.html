@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"20261121140125_project",value:1480,currency:"JPY"});}});</script><script>(function(){var p=new URLSearchParams(window.location.search),k=p.get("key"),s="vf_unlocked_20261121140125_project";if(k==="6rgthbupzpak5xd1"){var f=localStorage.getItem(s)!=="true";localStorage.setItem(s,"true");if(f&&typeof gtag==="function"){gtag("event","first_product_access",{item_name:"20261121140125_project"});}}else if(localStorage.getItem(s)!=="true"){document.documentElement.innerHTML="<body style=\"background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\"><div style=\"text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px\"><h2>購入者専用ページ</h2><p style=\"color:#94a3b8;font-size:.9rem\">購入完了後の正規リダイレクトからのみアクセス可能です。</p><a href=\"https://deguchry112445-cell.github.io/ai-venture-factory/20261121140125_project/\" style=\"display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:.5rem\">販売ページへ戻る</a></div></body>";window.stop();}})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】個人キッチンカー専用 複数出店料・売上連動歩合計算機</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased pb-20">
+    <!-- ブックマーク・URL注意バー -->
+    <div class="bg-amber-500 text-slate-900 px-4 py-3 text-xs sm:text-sm font-bold shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div class="flex items-center gap-2 text-center sm:text-left">
+                <i class="fas fa-triangle-exclamation text-base shrink-0"></i>
+                <span>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください</span>
+            </div>
+            <button id="copy-url-btn" class="bg-slate-900 text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg text-xs transition shrink-0">
+                <i class="fas fa-copy mr-1"></i> 現在の専用URLをコピー
+            </button>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-rose-600 text-white rounded-xl flex items-center justify-center font-bold">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-sm sm:text-base text-slate-900">キッチンカー出店料・歩合計算機</h1>
+                    <span class="text-xs text-slate-500">Venture Factory 完全版ツール</span>
+                </div>
+            </div>
+            <button id="reset-all-btn" class="text-xs text-rose-600 hover:text-rose-700 font-semibold border border-rose-200 px-3 py-1.5 rounded-lg transition">
+                <i class="fas fa-trash-alt mr-1"></i> 全データをリセット
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- 入力フォームカード -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 mb-8">
+            <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <i class="fas fa-plus-circle text-rose-600"></i> 新規出店データの追加・計算
+            </h2>
+            <form id="calc-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">会場名・イベント名</label>
+                    <input type="text" id="input-name" required placeholder="例: ○○モール前広場" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">売上総額 (円)</label>
+                    <input type="number" id="input-sales" required min="0" placeholder="例: 95000" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">固定出店料 (円)</label>
+                    <input type="number" id="input-fixed" required min="0" placeholder="例: 5000" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">売上歩合率 (%)</label>
+                    <input type="number" id="input-rate" required min="0" step="0.1" placeholder="例: 10" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">その他原価・経費 (円)</label>
+                    <input type="number" id="input-cost" required min="0" placeholder="例: 30000" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                </div>
+            </form>
+            <div class="flex justify-end">
+                <button type="button" id="add-btn" class="bg-rose-600 hover:bg-rose-700 text-white font-bold text-sm px-6 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+                    <i class="fas fa-plus"></i> リストに追加して保存
+                </button>
+            </div>
+        </div>
+
+        <!-- サマリー・統計カード -->
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <span class="block text-xs font-semibold text-slate-500 mb-1">総売上実績</span>
+                <span id="summary-sales" class="text-2xl font-extrabold text-slate-900">0円</span>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <span class="block text-xs font-semibold text-slate-500 mb-1">出店料総額 (固定+歩合)</span>
+                <span id="summary-fees" class="text-2xl font-extrabold text-slate-900">0円</span>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <span class="block text-xs font-semibold text-slate-500 mb-1">正味利益合計</span>
+                <span id="summary-profit" class="text-2xl font-extrabold text-rose-600">0円</span>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <span class="block text-xs font-semibold text-slate-500 mb-1">平均利益率</span>
+                <span id="summary-margin" class="text-2xl font-extrabold text-slate-900">0.0%</span>
+            </div>
+        </div>
+
+        <!-- 登録データ一覧テーブル -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-8">
+            <div class="px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <h3 class="font-bold text-slate-900 flex items-center gap-2">
+                    <i class="fas fa-list text-rose-600"></i> 登録済み出店データ一覧
+                </h3>
+                <button id="export-csv-btn" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2 rounded-lg transition flex items-center gap-2">
+                    <i class="fas fa-file-csv text-sm"></i> BOM付きCSVダウンロード
+                </button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 text-xs">
+                            <th class="py-3 px-4 font-bold">会場名</th>
+                            <th class="py-3 px-4 font-bold text-right">売上総額</th>
+                            <th class="py-3 px-4 font-bold text-right">出店料 (固定+歩合)</th>
+                            <th class="py-3 px-4 font-bold text-right">経費・原価</th>
+                            <th class="py-3 px-4 font-bold text-right">正味利益</th>
+                            <th class="py-3 px-4 font-bold text-right">利益率</th>
+                            <th class="py-3 px-4 font-center">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-table-body">
+                        <!-- 動的に挿入 -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="empty-state" class="p-12 text-center text-slate-400 hidden">
+                <i class="fas fa-folder-open text-3xl mb-2"></i>
+                <p class="text-sm">データがまだ登録されていません。上のフォームから追加してください。</p>
+            </div>
+        </div>
+
+        <!-- 前提条件・制限事項カード -->
+        <div class="bg-slate-100 rounded-2xl p-6 text-xs text-slate-600 space-y-2 border border-slate-200">
+            <h4 class="font-bold text-slate-700 flex items-center gap-1">
+                <i class="fas fa-circle-info"></i> ご利用上の前提条件・制限事項
+            </h4>
+            <p>※本ツールにおける歩合計算は「売上総額 × 歩合率(%)」の小数点以下四捨五入を基本ロジックとして算出します。</p>
+            <p>※入力されたデータはすべてお使いのブラウザのローカルストレージ（localStorage）に安全に保存され、外部サーバーには送信されません。</p>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-white border-t border-slate-200 py-8 px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+            <p>特定商取引法に基づく決済完了確認済み購入者専用ページ</p>
+        </div>
+    </footer>
+
+    <!-- アプリケーションロジック -->
+    <script>
+        const STORAGE_KEY = 'foodtruck_calc_data_v1';
+
+        // 純粋な計算ロジック（ゼロ除算・負数・NaNガード完全実装）
+        function calculateItem(sales, fixed, rate, cost) {
+            const s = Math.max(0, isNaN(sales) ? 0 : sales);
+            const f = Math.max(0, isNaN(fixed) ? 0 : fixed);
+            const r = Math.max(0, isNaN(rate) ? 0 : rate);
+            const c = Math.max(0, isNaN(cost) ? 0 : cost);
+
+            const commission = Math.round(s * (r / 100));
+            const totalFee = f + commission;
+            const totalCost = totalFee + c;
+            const profit = s - totalCost;
+            const margin = s > 0 ? (profit / s) * 100 : 0;
+
+            return {
+                sales: s,
+                fixed: f,
+                rate: r,
+                cost: c,
+                commission: commission,
+                totalFee: totalFee,
+                totalCost: totalCost,
+                profit: profit,
+                margin: margin
+            };
+        }
+
+        // データの読み込み・保存
+        function loadData() {
+            try {
+                const data = localStorage.getItem(STORAGE_KEY);
+                return data ? JSON.parse(data) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveData(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        // URLコピー機能
+        document.getElementById('copy-url-btn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('専用URLをクリップボードにコピーしました！');
+            }).catch(() => {
+                alert('コピーに失敗しました。ブラウザのアドレスバーから手動でコピーしてください。');
+            });
+        });
+
+        // 画面描画の更新
+        function render() {
+            const items = loadData();
+            const tbody = document.getElementById('data-table-body');
+            const emptyState = document.getElementById('empty-state');
+            tbody.innerHTML = '';
+
+            if (items.length === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+
+                let totalSales = 0;
+                let totalFees = 0;
+                let totalProfit = 0;
+
+                items.forEach((item, index) => {
+                    const calc = calculateItem(item.sales, item.fixed, item.rate, item.cost);
+                    totalSales += calc.sales;
+                    totalFees += calc.totalFee;
+                    totalProfit += calc.profit;
+
+                    const tr = document.createElement('tr');
+                    tr.className = 'border-b border-slate-100 hover:bg-slate-50/80';
+
+                    // XSS防止のためtextContentを利用
+                    const tdName = document.createElement('td');
+                    tdName.className = 'py-3 px-4 font-semibold text-slate-800';
+                    tdName.textContent = item.name;
+
+                    const tdSales = document.createElement('td');
+                    tdSales.className = 'py-3 px-4 text-right';
+                    tdSales.textContent = calc.sales.toLocaleString() + '円';
+
+                    const tdFee = document.createElement('td');
+                    tdFee.className = 'py-3 px-4 text-right text-slate-600';
+                    tdFee.textContent = calc.totalFee.toLocaleString() + '円';
+
+                    const tdCost = document.createElement('td');
+                    tdCost.className = 'py-3 px-4 text-right text-slate-600';
+                    tdCost.textContent = calc.cost.toLocaleString() + '円';
+
+                    const tdProfit = document.createElement('td');
+                    tdProfit.className = 'py-3 px-4 text-right font-bold ' + (calc.profit >= 0 ? 'text-rose-600' : 'text-blue-600');
+                    tdProfit.textContent = calc.profit.toLocaleString() + '円';
+
+                    const tdMargin = document.createElement('td');
+                    tdMargin.className = 'py-3 px-4 text-right text-slate-600';
+                    tdMargin.textContent = calc.margin.toFixed(1) + '%';
+
+                    const tdAction = document.createElement('td');
+                    tdAction.className = 'py-3 px-4 text-center';
+                    const delBtn = document.createElement('button');
+                    delBtn.className = 'text-slate-400 hover:text-rose-600 p-1 transition';
+                    delBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+                    delBtn.title = '削除';
+                    delBtn.addEventListener('click', () => {
+                        deleteItem(index);
+                    });
+                    tdAction.appendChild(delBtn);
+
+                    tr.appendChild(tdName);
+                    tr.appendChild(tdSales);
+                    tr.appendChild(tdFee);
+                    tr.appendChild(tdCost);
+                    tr.appendChild(tdProfit);
+                    tr.appendChild(tdMargin);
+                    tr.appendChild(tdAction);
+
+                    tbody.appendChild(tr);
+                });
+
+                // サマリー更新
+                document.getElementById('summary-sales').textContent = totalSales.toLocaleString() + '円';
+                document.getElementById('summary-fees').textContent = totalFees.toLocaleString() + '円';
+                document.getElementById('summary-profit').textContent = totalProfit.toLocaleString() + '円';
+                const avgMargin = totalSales > 0 ? (totalProfit / totalSales) * 100 : 0;
+                document.getElementById('summary-margin').textContent = avgMargin.toFixed(1) + '%';
+            }
+        }
+
+        // アイテム追加
+        document.getElementById('add-btn').addEventListener('click', () => {
+            const nameInput = document.getElementById('input-name');
+            const salesInput = document.getElementById('input-sales');
+            const fixedInput = document.getElementById('input-fixed');
+            const rateInput = document.getElementById('input-rate');
+            const costInput = document.getElementById('input-cost');
+
+            if (!nameInput.value || !salesInput.value || !fixedInput.value || !rateInput.value || !costInput.value) {
+                alert('すべての項目を入力してください。');
+                return;
+            }
+
+            const newItem = {
+                name: nameInput.value,
+                sales: parseFloat(salesInput.value),
+                fixed: parseFloat(fixedInput.value),
+                rate: parseFloat(rateInput.value),
+                cost: parseFloat(costInput.value)
+            };
+
+            const items = loadData();
+            items.push(newItem);
+            saveData(items);
+            render();
+
+            // フォームリセット
+            nameInput.value = '';
+            salesInput.value = '';
+            fixedInput.value = '';
+            rateInput.value = '';
+            costInput.value = '';
+            nameInput.focus();
+        });
+
+        // アイテム削除
+        function deleteItem(index) {
+            if (confirm('この出店データを削除してもよろしいですか？')) {
+                const items = loadData();
+                items.splice(index, 1);
+                saveData(items);
+                render();
+            }
+        }
+
+        // 全データリセット
+        document.getElementById('reset-all-btn').addEventListener('click', () => {
+            if (confirm('すべての登録データをリセットします。よろしいですか？')) {
+                localStorage.removeItem(STORAGE_KEY);
+                render();
+            }
+        });
+
+        // BOM付きCSVダウンロード
+        document.getElementById('export-csv-btn').addEventListener('click', () => {
+            const items = loadData();
+            if (items.length === 0) {
+                alert('エクスポートするデータがありません。');
+                return;
+            }
+
+            let csvContent = '\uFEFF'; // 文字化け防止BOM
+            csvContent += '会場名,売上総額,固定出店料,売上歩合率(%),歩合額,出店料合計,原価経費,総経費,正味利益,利益率(%)\n';
+
+            items.forEach(item => {
+                const calc = calculateItem(item.sales, item.fixed, item.rate, item.cost);
+                const row = [
+                    `"${item.name.replace(/"/g, '""')}"`,
+                    calc.sales,
+                    calc.fixed,
+                    calc.rate,
+                    calc.commission,
+                    calc.totalFee,
+                    calc.cost,
+                    calc.totalCost,
+                    calc.profit,
+                    calc.margin.toFixed(2)
+                ].join(',');
+                csvContent += row + '\n';
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `foodtruck_profit_data_${new Date().toISOString().slice(0, 10)}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // 初期描画
+        render();
+    </script>
+</body>
+</html>
