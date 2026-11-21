@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"proj_6ec965e3-3d21-4cc0-a2e8-ba46e3427a90_project",value:1480,currency:"JPY"});}});</script><script>(function(){var p=new URLSearchParams(window.location.search),k=p.get("key"),s="vf_unlocked_proj_6ec965e3-3d21-4cc0-a2e8-ba46e3427a90_project";if(k==="kbs5wj3rnbi3tm1z4kmbt8"){var f=localStorage.getItem(s)!=="true";localStorage.setItem(s,"true");if(f&&typeof gtag==="function"){gtag("event","first_product_access",{item_name:"proj_6ec965e3-3d21-4cc0-a2e8-ba46e3427a90_project"});}}else if(localStorage.getItem(s)!=="true"){document.documentElement.innerHTML="<body style=\"background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\"><div style=\"text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px\"><h2>購入者専用ページ</h2><p style=\"color:#94a3b8;font-size:.9rem\">購入完了後の正規リダイレクトからのみアクセス可能です。</p><a href=\"https://deguchry112445-cell.github.io/ai-venture-factory/proj_6ec965e3-3d21-4cc0-a2e8-ba46e3427a90_project/\" style=\"display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:.5rem\">販売ページへ戻る</a></div></body>";window.stop();}})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】個人コインランドリー専用 複数乾燥機・電気代動的按分計算機 | Venture Factory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+    <!-- 重要注意バー -->
+    <div class="bg-amber-500 text-slate-900 px-4 py-3 text-center text-xs md:text-sm font-bold shadow-md sticky top-0 z-50 flex flex-col sm:flex-row items-center justify-center gap-2">
+        <span>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください</span>
+        <button id="copy-url-btn" class="bg-slate-900 text-white text-xs px-3 py-1 rounded hover:bg-slate-800 transition">
+            現在の専用URLをコピー
+        </button>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="bg-indigo-600 text-white text-xs px-2.5 py-1 rounded font-bold">完全版</span>
+                <span class="font-bold text-slate-900">コインランドリー電気代動的按分計算機</span>
+            </div>
+            <span class="text-xs text-slate-500">Venture Factory</span>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- 前提条件・制限事項通知 -->
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 text-xs text-blue-800">
+            <span class="font-bold"><i class="fa-solid fa-circle-info mr-1"></i> 運用上の前提条件・制限事項：</span>
+            本ツールは入力された定格ワット数と稼働時間に基づく電力量（kWh）比例按分です。端数処理には「最大剰余法」を採用しており、配分後の合計金額が元の総電気代と100%一致することを保証します（外部API非依存・ブラウザ内完結）。
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- 入力パネル -->
+            <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 h-fit">
+                <h2 class="font-bold text-lg mb-4 text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-indigo-600"></i> 基本設定 & 機器追加
+                </h2>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">電力会社からの当月総電気代 (円)</label>
+                        <input type="number" id="input-total-bill" value="95000" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">テナント / グループ名</label>
+                        <input type="text" id="input-group-name" value="コインランドリー区画A" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    </div>
+
+                    <hr class="border-slate-200 my-4">
+
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-xs font-semibold text-slate-600">稼働機器リスト</label>
+                            <button id="add-machine-btn" class="text-indigo-600 hover:text-indigo-800 text-xs font-bold">
+                                <i class="fa-solid fa-plus"></i> 機器を追加
+                            </button>
+                        </div>
+                        <div id="machine-inputs-container" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                            <!-- 動的挿入 -->
+                        </div>
+                    </div>
+
+                    <button id="calc-execute-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition shadow">
+                        計算を実行して保存
+                    </button>
+                </div>
+            </div>
+
+            <!-- 結果 & 履歴パネル -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- 最新結果表示 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-lg text-slate-900">
+                            <i class="fa-solid fa-square-poll-vertical text-indigo-600 mr-2"></i> 当月按分結果
+                        </h3>
+                        <button id="export-csv-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-download"></i> CSV出力 (UTF-8 BOM)
+                        </button>
+                    </div>
+
+                    <div class="grid sm:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <span class="text-xs text-slate-500 block mb-1">対象グループ</span>
+                            <span id="res-group-name" class="font-bold text-slate-900 text-sm">-</span>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <span class="text-xs text-slate-500 block mb-1">総電力量</span>
+                            <span id="res-total-kwh" class="font-bold text-slate-900 text-sm">0 kWh</span>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100">
+                            <span class="text-xs text-indigo-600 block mb-1 font-semibold">按分請求額（税込）</span>
+                            <span id="res-allocated-amount" class="font-extrabold text-indigo-700 text-lg">0 円</span>
+                        </div>
+                    </div>
+
+                    <!-- 詳細内訳テーブル -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-600">
+                                    <th class="p-2.5 rounded-l-lg">機器名</th>
+                                    <th class="p-2.5">定格ワット数</th>
+                                    <th class="p-2.5">稼働時間</th>
+                                    <th class="p-2.5 rounded-r-lg text-right">電力量 (kWh)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="res-breakdown-tbody" class="divide-y divide-slate-100">
+                                <!-- 動的挿入 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 過去の計算履歴 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-base text-slate-900">
+                            <i class="fa-solid fa-clock-rotate-left text-slate-500 mr-2"></i> 計算履歴 (LocalStorage自動保存)
+                        </h3>
+                        <button id="clear-history-btn" class="text-xs text-rose-600 hover:text-rose-800 font-semibold">
+                            履歴をすべて削除
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-600">
+                                    <th class="p-2.5 rounded-l-lg">日時</th>
+                                    <th class="p-2.5">グループ名</th>
+                                    <th class="p-2.5">総電気代</th>
+                                    <th class="p-2.5 rounded-r-lg text-right">按分結果</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-tbody" class="divide-y divide-slate-100">
+                                <!-- 動的挿入 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-white border-t border-slate-200 py-8 text-center text-xs text-slate-500 mt-12">
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <!-- コア計算ロジック＆アプリケーション制御 -->
+    <script>
+        // 1. 純粋関数による最大剰余法按分計算ロジック（ゼロ除算・負数・NaN完全ガード）
+        function calculateApportionment(totalBill, items) {
+            const safeTotalBill = Math.max(0, parseFloat(totalBill) || 0);
+            if (!Array.isArray(items) || items.length === 0 || safeTotalBill === 0) {
+                return { totalKwh: 0, allocatedAmount: 0, breakdown: [] };
+            }
+
+            let totalKwh = 0;
+            const breakdown = items.map(item => {
+                const w = Math.max(0, parseFloat(item.w) || 0);
+                const h = Math.max(0, parseFloat(item.h) || 0);
+                const kwh = (w * h) / 1000;
+                totalKwh += kwh;
+                return { name: item.name || '無名機器', w, h, kwh };
+            });
+
+            if (totalKwh <= 0) {
+                return { totalKwh: 0, allocatedAmount: 0, breakdown };
+            }
+
+            // 最大剰余法（Largest Remainder Method）による端数調整
+            let allocatedAmount = 0;
+            let remainderList = [];
+            let sumFloored = 0;
+
+            breakdown.forEach((item, index) => {
+                const exactShare = (item.kwh / totalKwh) * safeTotalBill;
+                const floored = Math.floor(exactShare);
+                sumFloored += floored;
+                remainderList.push({ index, remainder: exactShare - floored });
+            });
+
+            let difference = Math.round(safeTotalBill - sumFloored);
+            remainderList.sort((a, b) => b.remainder - a.remainder);
+
+            const adjustedAllocations = new Array(breakdown.length);
+            breakdown.forEach((item, index) => {
+                const exactShare = (item.kwh / totalKwh) * safeTotalBill;
+                let val = Math.floor(exactShare);
+                const remIndex = remainderList.findIndex(r => r.index === index);
+                if (remIndex >= 0 && remIndex < difference) {
+                    val += 1;
+                }
+                adjustedAllocations[index] = val;
+            });
+
+            // 全体の按分額（今回は単一グループ向けの集計結果として総額を返す）
+            allocatedAmount = adjustedAllocations.reduce((acc, cur) => acc + cur, 0);
+
+            return {
+                totalKwh: Number(totalKwh.toFixed(2)),
+                allocatedAmount,
+                breakdown
+            };
+        }
+
+        // 2. アプリケーション状態とUI制御
+        let machines = [
+            { name: '大型乾燥機 25kg', w: 4000, h: 160 },
+            { name: '中型乾燥機 14kg', w: 2500, h: 200 },
+            { name: '全自動洗濯機', w: 800, h: 120 }
+        ];
+
+        let historyData = JSON.parse(localStorage.getItem('vf_laundry_history') || '[]');
+
+        function renderMachineInputs() {
+            const container = document.getElementById('machine-inputs-container');
+            container.innerHTML = '';
+            machines.forEach((m, idx) => {
+                const row = document.createElement('div');
+                row.className = 'flex gap-2 items-center bg-slate-50 p-2 rounded-lg border border-slate-200';
+                row.innerHTML = `
+                    <input type="text" value="${escapeHtml(m.name)}" data-idx="${idx}" data-field="name" placeholder="機器名" class="flex-2 border border-slate-300 rounded p-1.5 text-xs machine-input">
+                    <input type="number" value="${m.w}" data-idx="${idx}" data-field="w" placeholder="W" class="w-20 border border-slate-300 rounded p-1.5 text-xs machine-input">
+                    <input type="number" value="${m.h}" data-idx="${idx}" data-field="h" placeholder="時間" class="w-16 border border-slate-300 rounded p-1.5 text-xs machine-input">
+                    <button data-idx="${idx}" class="delete-machine-btn text-rose-500 hover:text-rose-700 px-1 text-xs"><i class="fa-solid fa-trash"></i></button>
+                `;
+                container.appendChild(row);
+            });
+
+            // イベント紐付け
+            container.querySelectorAll('.machine-input').forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const idx = parseInt(e.target.dataset.idx);
+                    const field = e.target.dataset.field;
+                    machines[idx][field] = field === 'name' ? e.target.value : parseFloat(e.target.value) || 0;
+                });
+            });
+
+            container.querySelectorAll('.delete-machine-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = parseInt(e.currentTarget.dataset.idx);
+                    machines.splice(idx, 1);
+                    renderMachineInputs();
+                });
+            });
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[tag] || tag));
+        }
+
+        function executeCalculation(saveToHistory = true) {
+            const totalBill = parseFloat(document.getElementById('input-total-bill').value) || 0;
+            const groupName = document.getElementById('input-group-name').value || '未設定グループ';
+
+            const result = calculateApportionment(totalBill, machines);
+
+            // 結果表示反映
+            document.getElementById('res-group-name').textContent = groupName;
+            document.getElementById('res-total-kwh').textContent = result.totalKwh.toLocaleString() + ' kWh';
+            document.getElementById('res-allocated-amount').textContent = result.allocatedAmount.toLocaleString() + ' 円';
+
+            const tbody = document.getElementById('res-breakdown-tbody');
+            tbody.innerHTML = '';
+            result.breakdown.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-2.5 font-medium text-slate-900">${escapeHtml(item.name)}</td>
+                    <td class="p-2.5 text-slate-600">${item.w.toLocaleString()} W</td>
+                    <td class="p-2.5 text-slate-600">${item.h.toLocaleString()} h</td>
+                    <td class="p-2.5 text-right font-semibold text-slate-900">${((item.w * item.h)/1000).toFixed(2)} kWh</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            if (saveToHistory && result.allocatedAmount > 0) {
+                const historyItem = {
+                    date: new Date().toLocaleDateString('ja-JP') + ' ' + new Date().toLocaleTimeString('ja-JP', {hour: '2-digit', minute:'2-digit'}),
+                    groupName,
+                    totalBill,
+                    allocatedAmount: result.allocatedAmount
+                };
+                historyData.unshift(historyItem);
+                if (historyData.length > 20) historyData.pop();
+                localStorage.setItem('vf_laundry_history', JSON.stringify(historyData));
+                renderHistory();
+            }
+        }
+
+        function renderHistory() {
+            const tbody = document.getElementById('history-tbody');
+            tbody.innerHTML = '';
+            if (historyData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-slate-400">計算履歴はまだありません</td></tr>`;
+                return;
+            }
+            historyData.forEach(h => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-2.5 text-slate-500">${escapeHtml(h.date)}</td>
+                    <td class="p-2.5 font-medium text-slate-900">${escapeHtml(h.groupName)}</td>
+                    <td class="p-2.5 text-slate-600">${Number(h.totalBill).toLocaleString()} 円</td>
+                    <td class="p-2.5 text-right font-bold text-indigo-600">${Number(h.allocatedAmount).toLocaleString()} 円</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // CSV出力（BOM付きUTF-8）
+        document.getElementById('export-csv-btn').addEventListener('click', () => {
+            const totalBill = parseFloat(document.getElementById('input-total-bill').value) || 0;
+            const groupName = document.getElementById('input-group-name').value || '未設定グループ';
+            const result = calculateApportionment(totalBill, machines);
+
+            let csv = '\uFEFF'; // BOM
+            csv += 'テナント名,総電気代(円),按分結果金額(円),総電力量(kWh)\n';
+            csv += `"${groupName}",${totalBill},${result.allocatedAmount},${result.totalKwh}\n\n`;
+            csv += '機器名,定格ワット数(W),稼働時間(h),電力量(kWh)\n';
+            result.breakdown.forEach(item => {
+                csv += `"${item.name}",${item.w},${item.h},${(item.w * item.h)/1000}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `laundry_apportionment_${new Date().toISOString().slice(0,10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // URLコピー機能
+        document.getElementById('copy-url-btn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('専用URLをコピーしました。お気に入りに登録して次回もご利用ください。');
+            });
+        });
+
+        document.getElementById('add-machine-btn').addEventListener('click', () => {
+            machines.push({ name: '新規乾燥機', w: 2000, h: 100 });
+            renderMachineInputs();
+        });
+
+        document.getElementById('calc-execute-btn').addEventListener('click', () => {
+            executeCalculation(true);
+        });
+
+        document.getElementById('clear-history-btn').addEventListener('click', () => {
+            if (confirm('計算履歴をすべて削除しますか？')) {
+                historyData = [];
+                localStorage.removeItem('vf_laundry_history');
+                renderHistory();
+            }
+        });
+
+        // 初期描画
+        renderMachineInputs();
+        executeCalculation(false);
+        renderHistory();
+    </script>
+</body>
+</html>
