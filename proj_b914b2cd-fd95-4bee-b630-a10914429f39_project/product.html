@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"proj_b914b2cd-fd95-4bee-b630-a10914429f39_project",value:1480,currency:"JPY"});}});</script><script>(function(){var p=new URLSearchParams(window.location.search),k=p.get("key"),s="vf_unlocked_proj_b914b2cd-fd95-4bee-b630-a10914429f39_project";if(k==="9ddisc857o4tc8sbj0b6t"){var f=localStorage.getItem(s)!=="true";localStorage.setItem(s,"true");if(f&&typeof gtag==="function"){gtag("event","first_product_access",{item_name:"proj_b914b2cd-fd95-4bee-b630-a10914429f39_project"});}}else if(localStorage.getItem(s)!=="true"){document.documentElement.innerHTML="<body style=\"background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\"><div style=\"text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px\"><h2>購入者専用ページ</h2><p style=\"color:#94a3b8;font-size:.9rem\">購入完了後の正規リダイレクトからのみアクセス可能です。</p><a href=\"https://deguchry112445-cell.github.io/ai-venture-factory/proj_b914b2cd-fd95-4bee-b630-a10914429f39_project/\" style=\"display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:.5rem\">販売ページへ戻る</a></div></body>";window.stop();}})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】ボドゲカフェ専用 貸出備品・破損時ペナルティ請求書ビルダー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+    <!-- ブックマーク警告バー -->
+    <div class="bg-amber-500 text-slate-950 px-4 py-3 text-xs md:text-sm font-bold shadow-md">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div class="flex items-center gap-2 text-center sm:text-left">
+                <i class="fa-solid fa-triangle-exclamation text-base"></i>
+                <span>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください。</span>
+            </div>
+            <button type="button" id="copy-url-btn" class="bg-slate-950 text-white px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-slate-800 transition whitespace-nowrap">
+                <i class="fa-solid fa-copy mr-1"></i> 現在の専用URLをコピー
+            </button>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="bg-slate-900 text-white py-6 px-4 border-b border-slate-800">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="bg-indigo-600 text-white text-xs font-bold px-2.5 py-1 rounded-md">完全版</span>
+                <h1 class="text-lg md:text-xl font-bold tracking-tight">貸出備品・破損時ペナルティ請求書自動ビルダー</h1>
+            </div>
+            <span class="text-xs text-slate-400 hidden sm:inline">Venture Factory</span>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-6xl mx-auto p-4 md:p-6 grid lg:grid-cols-12 gap-6">
+        <!-- 入力フォームエリア (7col) -->
+        <section class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <h2 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-pen-to-square text-indigo-600"></i> 破損・紛失データの入力
+            </h2>
+            <form id="builder-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">ゲームタイトル</label>
+                    <input type="text" id="game-title" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm" placeholder="例：カタン スタンダード版">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">本体購入価格（円）</label>
+                        <input type="number" id="game-price" required min="0" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm" value="5500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">店舗導入からの経過月数</label>
+                        <input type="number" id="game-months" required min="0" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm" value="6">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">破損・紛失パーツの割合</label>
+                        <select id="game-ratio" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                            <option value="0.1">軽微なパーツ紛失 (10%)</option>
+                            <option value="0.3" selected>一部コマ・カード紛失 (30%)</option>
+                            <option value="0.6">主要ボード・タイル破損 (60%)</option>
+                            <option value="1.0">完全プレイ不能 (100%)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">営業損害・事務手数料（円）</label>
+                        <input type="number" id="game-penalty" required min="0" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm" value="1000">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">お客様お名前（任意）</label>
+                    <input type="text" id="customer-name" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm" placeholder="例：山田 太郎 様">
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-4 rounded-xl shadow transition">
+                        <i class="fa-solid fa-calculator mr-2"></i> 計算して請求書を生成する
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- 結果・請求書出力エリア (5col) -->
+        <section class="lg:col-span-5 space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-file-invoice-dollar text-indigo-600"></i> 計算結果プレビュー
+                </h2>
+                
+                <div class="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-200 mb-4">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-600">減価償却後評価額:</span>
+                        <span id="res-valuation" class="font-bold text-slate-800">0 円</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-600">パーツ破損請求額:</span>
+                        <span id="res-part" class="font-bold text-slate-800">0 円</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-600">営業損害・事務手数料:</span>
+                        <span id="res-penalty" class="font-bold text-slate-800">0 円</span>
+                    </div>
+                    <div class="border-t border-slate-200 pt-2 flex justify-between items-center">
+                        <span class="font-bold text-slate-800">ご請求総額（税込）:</span>
+                        <span id="res-total" class="text-xl font-extrabold text-indigo-600">0 円</span>
+                    </div>
+                </div>
+
+                <p class="text-xs text-slate-500 mb-4">
+                    ※本ツールは耐用年数3年（36ヶ月）を基準とした減価償却ロジックに基づき算出します。個別形状や流通プレ値の過度な上乗せは考慮していません。
+                </p>
+
+                <div class="space-y-2">
+                    <button type="button" id="copy-invoice-btn" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-2.5 px-4 rounded-xl text-sm transition">
+                        <i class="fa-solid fa-copy mr-2"></i> 請求書テキストをコピー
+                    </button>
+                    <button type="button" id="save-history-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 px-4 rounded-xl text-sm transition">
+                        <i class="fa-solid fa-floppy-disk mr-2"></i> 履歴に保存する
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 履歴・一括管理エリア -->
+    <section class="max-w-6xl mx-auto px-4 md:px-6 mb-12">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+                <div>
+                    <h2 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-clock-rotate-left text-indigo-600"></i> 発行・計算履歴一覧
+                    </h2>
+                    <p class="text-xs text-slate-500">ブラウザのLocalStorageに自動保存されています。</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button type="button" id="export-csv-btn" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-3 rounded-lg text-xs border border-indigo-200 transition">
+                        <i class="fa-solid fa-file-csv mr-1"></i> CSVダウンロード
+                    </button>
+                    <button type="button" id="clear-history-btn" class="bg-rose-50 hover:bg-rose-100 text-rose-700 font-semibold py-2 px-3 rounded-lg text-xs border border-rose-200 transition">
+                        <i class="fa-solid fa-trash mr-1"></i> 履歴クリア
+                    </button>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 text-xs uppercase">
+                            <th class="p-3 rounded-l-lg">日時</th>
+                            <th class="p-3">顧客名</th>
+                            <th class="p-3">ゲームタイトル</th>
+                            <th class="p-3 text-right">購入価格</th>
+                            <th class="p-3 text-right">請求総額</th>
+                            <th class="p-3 rounded-r-lg text-center">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-tbody">
+                        <!-- 動的生成 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-slate-900 text-slate-400 py-6 px-4 text-xs text-center border-t border-slate-800">
+        <div class="max-w-6xl mx-auto">
+            <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- スクリプト -->
+    <script>
+        // URLコピー機能
+        document.getElementById('copy-url-btn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('現在の専用URLをクリップボードにコピーしました！');
+            }).catch(err => {
+                alert('コピーに失敗しました。アドレスバーより手動でコピーしてください。');
+            });
+        });
+
+        // 計算純粋関数
+        function calculatePenalty(price, months, ratio, penaltyFee) {
+            const p = Math.max(0, parseFloat(price) || 0);
+            const m = Math.max(0, parseInt(months) || 0);
+            const r = Math.max(0, Math.min(1, parseFloat(ratio) || 0));
+            const pf = Math.max(0, parseFloat(penaltyFee) || 0);
+
+            const depreciationRate = Math.min(1, m / 36);
+            const currentValuation = Math.round(p * (1 - depreciationRate));
+            const partClaim = Math.round(currentValuation * r);
+            const total = partClaim + pf;
+
+            return {
+                currentValuation,
+                partClaim,
+                total,
+                penaltyFee: pf
+            };
+        }
+
+        let currentResult = null;
+
+        // フォーム送信時計算
+        document.getElementById('builder-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('game-title').value;
+            const price = document.getElementById('game-price').value;
+            const months = document.getElementById('game-months').value;
+            const ratio = document.getElementById('game-ratio').value;
+            const penalty = document.getElementById('game-penalty').value;
+            const customer = document.getElementById('customer-name').value || 'お客様';
+
+            const res = calculatePenalty(price, months, ratio, penalty);
+            currentResult = {
+                title,
+                price: parseFloat(price),
+                months: parseInt(months),
+                ratio: parseFloat(ratio),
+                penaltyFee: parseFloat(penalty),
+                customer,
+                ...res,
+                date: new Date().toLocaleDateString('ja-JP') + ' ' + new Date().toLocaleTimeString('ja-JP', {hour: '2-digit', minute:'2-digit'})
+            };
+
+            document.getElementById('res-valuation').textContent = res.currentValuation.toLocaleString() + ' 円';
+            document.getElementById('res-part').textContent = res.partClaim.toLocaleString() + ' 円';
+            document.getElementById('res-penalty').textContent = res.penaltyFee.toLocaleString() + ' 円';
+            document.getElementById('res-total').textContent = res.total.toLocaleString() + ' 円';
+        });
+
+        // 請求書テキスト生成
+        function generateInvoiceText(data) {
+            return `【備品破損・紛失に関する請求書】
+
+${data.customer}
+
+平素より当店をご利用いただき誠にありがとうございます。
+先日ご利用いただきましたボードゲームにおける備品の破損・紛失につきまして、以下の通りご請求申し上げます。
+
+----------------------------------
+■ 対象ゲーム: ${data.title}
+■ 本体購入価格: ${data.price.toLocaleString()}円
+■ 経過月数: ${data.months}ヶ月
+■ 現状評価額（減価償却後）: ${data.currentValuation.toLocaleString()}円
+■ パーツ破損損害額: ${data.partClaim.toLocaleString()}円
+■ 手続・営業損害費: ${data.penaltyFee.toLocaleString()}円
+----------------------------------
+■ ご請求総額（税込）: ${data.total.toLocaleString()}円
+
+上記金額につきまして、ご確認のほどよろしくお願い申し上げます。
+発行日時: ${data.date}
+`;
+        }
+
+        document.getElementById('copy-invoice-btn').addEventListener('click', () => {
+            if (!currentResult) {
+                alert('先に計算を実行してください。');
+                return;
+            }
+            const text = generateInvoiceText(currentResult);
+            navigator.clipboard.writeText(text).then(() => {
+                alert('請求書テキストをクリップボードにコピーしました！');
+            });
+        });
+
+        // 履歴管理 (LocalStorage)
+        function getHistory() {
+            try {
+                return JSON.parse(localStorage.getItem('bg_penalty_history') || '[]');
+            } catch(e) {
+                return [];
+            }
+        }
+
+        function saveHistory(item) {
+            const history = getHistory();
+            history.unshift(item);
+            localStorage.setItem('bg_penalty_history', JSON.stringify(history));
+            renderHistory();
+        }
+
+        document.getElementById('save-history-btn').addEventListener('click', () => {
+            if (!currentResult) {
+                alert('先に計算を実行してください。');
+                return;
+            }
+            saveHistory(currentResult);
+            alert('計算結果を履歴に保存しました。');
+        });
+
+        function renderHistory() {
+            const tbody = document.getElementById('history-tbody');
+            const history = getHistory();
+            tbody.innerHTML = '';
+
+            if (history.length === 0) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = '<td colspan="6" class="p-4 text-center text-slate-400">履歴はまだありません</td>';
+                tbody.appendChild(tr);
+                return;
+            }
+
+            history.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-slate-100 hover:bg-slate-50';
+                
+                const tdDate = document.createElement('td');
+                tdDate.className = 'p-3 text-xs text-slate-500';
+                tdDate.textContent = item.date;
+
+                const tdCust = document.createElement('td');
+                tdCust.className = 'p-3 font-medium';
+                tdCust.textContent = item.customer;
+
+                const tdTitle = document.createElement('td');
+                tdTitle.className = 'p-3';
+                tdTitle.textContent = item.title;
+
+                const tdPrice = document.createElement('td');
+                tdPrice.className = 'p-3 text-right text-slate-600';
+                tdPrice.textContent = item.price.toLocaleString() + '円';
+
+                const tdTotal = document.createElement('td');
+                tdTotal.className = 'p-3 text-right font-bold text-indigo-600';
+                tdTotal.textContent = item.total.toLocaleString() + '円';
+
+                const tdOp = document.createElement('td');
+                tdOp.className = 'p-3 text-center';
+                const delBtn = document.createElement('button');
+                delBtn.className = 'text-rose-500 hover:text-rose-700 text-xs p-1';
+                delBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                delBtn.addEventListener('click', () => {
+                    if (confirm('この履歴を削除しますか？')) {
+                        const h = getHistory();
+                        h.splice(index, 1);
+                        localStorage.setItem('bg_penalty_history', JSON.stringify(h));
+                        renderHistory();
+                    }
+                });
+                tdOp.appendChild(delBtn);
+
+                tr.appendChild(tdDate);
+                tr.appendChild(tdCust);
+                tr.appendChild(tdTitle);
+                tr.appendChild(tdPrice);
+                tr.appendChild(tdTotal);
+                tr.appendChild(tdOp);
+                tbody.appendChild(tr);
+            });
+        }
+
+        document.getElementById('clear-history-btn').addEventListener('click', () => {
+            if (confirm('すべての履歴を削除しますか？')) {
+                localStorage.removeItem('bg_penalty_history');
+                renderHistory();
+            }
+        });
+
+        // CSVダウンロード (BOM付きUTF-8)
+        document.getElementById('export-csv-btn').addEventListener('click', () => {
+            const history = getHistory();
+            if (history.length === 0) {
+                alert('エクスポートする履歴がありません。');
+                return;
+            }
+
+            let csv = '\uFEFF"日時","顧客名","ゲームタイトル","本体購入価格","経過月数","減価償却後評価額","パーツ破損請求額","営業損害費","請求総額"\r\n';
+            history.forEach(item => {
+                csv += `"${item.date}","${item.customer}","${item.title}",${item.price},${item.months},${item.currentValuation},${item.partClaim},${item.penaltyFee},${item.total}\r\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'boardgame_penalty_history_' + new Date().toISOString().slice(0,10) + '.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // 初期描画
+        renderHistory();
+    </script>
+</body>
+</html>
