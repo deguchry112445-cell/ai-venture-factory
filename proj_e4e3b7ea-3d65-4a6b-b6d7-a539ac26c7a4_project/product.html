@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"proj_e4e3b7ea-3d65-4a6b-b6d7-a539ac26c7a4_project",value:1480,currency:"JPY"});}});</script><script>(function(){var p=new URLSearchParams(window.location.search),k=p.get("key"),s="vf_unlocked_proj_e4e3b7ea-3d65-4a6b-b6d7-a539ac26c7a4_project";if(k==="depvlhxthih7gdoptdfs2x"){var f=localStorage.getItem(s)!=="true";localStorage.setItem(s,"true");if(f&&typeof gtag==="function"){gtag("event","first_product_access",{item_name:"proj_e4e3b7ea-3d65-4a6b-b6d7-a539ac26c7a4_project"});}}else if(localStorage.getItem(s)!=="true"){document.documentElement.innerHTML="<body style=\"background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\"><div style=\"text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px\"><h2>購入者専用ページ</h2><p style=\"color:#94a3b8;font-size:.9rem\">購入完了後の正規リダイレクトからのみアクセス可能です。</p><a href=\"https://deguchry112445-cell.github.io/ai-venture-factory/proj_e4e3b7ea-3d65-4a6b-b6d7-a539ac26c7a4_project/\" style=\"display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:.5rem\">販売ページへ戻る</a></div></body>";window.stop();}})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】個人サウナ専用 貸切枠別・時間延長ペナルティ自動計算機</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+        body { font-family: 'Noto Sans JP', 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-amber-500 selection:text-black">
+
+    <!-- 重要注意バー -->
+    <div class="bg-amber-500 text-black px-4 py-3 text-xs sm:text-sm font-bold text-center">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2">
+            <span>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください。</span>
+            <button id="copy-url-btn" class="bg-black text-white px-3 py-1 rounded text-xs hover:bg-slate-800 transition">
+                現在の専用URLをコピー
+            </button>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">完全版アプリケーション</span>
+                <h1 class="text-sm sm:text-base font-bold text-white">個人サウナ専用 超過ペナルティ自動計算機</h1>
+            </div>
+            <div class="text-xs text-slate-400">Venture Factory</div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-8">
+
+        <!-- 入力フォームカード -->
+        <div class="p-6 lg:p-8 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl">
+            <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-calculator text-amber-400"></i> 新規計算・記録作成
+            </h2>
+            <form id="calc-form" class="grid md:grid-cols-3 gap-6 mb-6">
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-2">顧客名 / ルーム名</label>
+                    <input type="text" id="input-name" required placeholder="例: Aルーム 田中様" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-2">基本利用料金（円）</label>
+                    <input type="number" id="input-base" required value="5000" min="0" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-2">予定利用時間（分）</label>
+                    <input type="number" id="input-planned" required value="90" min="1" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-2">実際の退出時間（分）</label>
+                    <input type="number" id="input-actual" required value="120" min="1" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-2">超過単価（分あたり / 円）</label>
+                    <input type="number" id="input-unit" required value="100" min="0" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500">
+                </div>
+                <div class="flex items-end">
+                    <button type="submit" class="w-full py-3 bg-amber-500 hover:bg-amber-400 text-black font-bold rounded-lg transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-plus"></i> 計算して履歴に追加
+                    </button>
+                </div>
+            </form>
+
+            <!-- リアルタイム計算プレビュー -->
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-xs text-slate-400">現在の入力値によるプレビュー:</div>
+                <div class="flex items-center gap-6">
+                    <div class="text-xs text-slate-300">超過: <span id="live-overtime" class="font-bold text-white">0</span> 分</div>
+                    <div class="text-xs text-slate-300">ペナルティ: <span id="live-penalty" class="text-lg font-extrabold text-amber-400">0</span> 円</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 履歴一覧とアクション -->
+        <div class="p-6 lg:p-8 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="text-lg font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-clock-rotate-left text-amber-400"></i> 計算履歴一覧
+                    </h2>
+                    <p class="text-xs text-slate-400">※データはブラウザのlocalStorageに自動保存されます。</p>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button id="export-csv" class="flex-1 sm:flex-none px-4 py-2 bg-slate-800 hover:bg-slate-700 text-xs font-medium rounded-lg text-slate-200 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-file-csv text-emerald-400"></i> CSVエクスポート
+                    </button>
+                    <button id="clear-history" class="px-4 py-2 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-xs font-medium rounded-lg text-red-400 transition">
+                        履歴全削除
+                    </button>
+                </div>
+            </div>
+
+            <!-- テーブル -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs sm:text-sm">
+                    <thead class="border-b border-slate-800 text-slate-400">
+                        <tr>
+                            <th class="py-3 px-4">日時</th>
+                            <th class="py-3 px-4">顧客/ルーム名</th>
+                            <th class="py-3 px-4">基本料金</th>
+                            <th class="py-3 px-4">予定/実時間</th>
+                            <th class="py-3 px-4">超過時間</th>
+                            <th class="py-3 px-4">追加請求額</th>
+                            <th class="py-3 px-4 text-right">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-tbody" class="divide-y divide-slate-800/60">
+                        <!-- JavaScriptで動的生成 -->
+                    </tbody>
+                </table>
+                <div id="empty-message" class="text-center py-12 text-slate-500 text-xs hidden">
+                    計算履歴はまだありません。上のフォームから追加してください。
+                </div>
+            </div>
+        </div>
+
+        <!-- 前提条件・制限事項 -->
+        <div class="p-6 rounded-xl bg-slate-900/50 border border-slate-900 text-xs text-slate-400 space-y-2">
+            <div class="font-bold text-slate-300">【本ツールの前提条件・制限事項】</div>
+            <p>※本ツールは利用者側の超過時間に応じた追加ペナルティ料金の算出を補助するものであり、法的紛争における請求の正当性を100%保証するものではありません。</p>
+            <p>※データはご利用中のブラウザ（localStorage）にのみ保存されます。デバイスを変更される場合やブラウザデータを消去した場合は引き継がれませんので定期的なCSVバックアップをお勧めします。</p>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="border-t border-slate-900 py-8 bg-slate-950 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center text-xs text-slate-500 space-y-2">
+            <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 純粋計算関数（ゼロ除算・負数・NaNガード）
+        function calculatePenalty(basePrice, plannedMin, actualMin, unitPrice) {
+            const base = Math.max(0, Number(basePrice) || 0);
+            const planned = Math.max(1, Number(plannedMin) || 1);
+            const actual = Math.max(0, Number(actualMin) || 0);
+            const unit = Math.max(0, Number(unitPrice) || 0);
+            const overtime = Math.max(0, actual - planned);
+            const penalty = overtime * unit;
+            return { base, planned, actual, unit, overtime, penalty };
+        }
+
+        // URLコピー機能
+        document.getElementById('copy-url-btn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('現在の専用URLをコピーしました。お気に入りに登録してください。');
+            }).catch(() => {
+                alert('コピーに失敗しました。ブラウザのアドレスバーからコピーしてください。');
+            });
+        });
+
+        // ローカルストレージ管理
+        const STORAGE_KEY = 'sauna_penalty_history_v1';
+
+        function getHistory() {
+            try {
+                const data = localStorage.getItem(STORAGE_KEY);
+                return data ? JSON.parse(data) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveHistory(history) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+            } catch (e) {}
+        }
+
+        // ライブプレビュー更新
+        function updateLivePreview() {
+            const base = document.getElementById('input-base').value;
+            const planned = document.getElementById('input-planned').value;
+            const actual = document.getElementById('input-actual').value;
+            const unit = document.getElementById('input-unit').value;
+            const res = calculatePenalty(base, planned, actual, unit);
+            document.getElementById('live-overtime').textContent = res.overtime.toLocaleString();
+            document.getElementById('live-penalty').textContent = res.penalty.toLocaleString();
+        }
+
+        ['input-base', 'input-planned', 'input-actual', 'input-unit'].forEach(id => {
+            document.getElementById(id).addEventListener('input', updateLivePreview);
+        });
+
+        // 履歴描画（XSS防止のためtextContent使用）
+        function renderHistory() {
+            const history = getHistory();
+            const tbody = document.getElementById('history-tbody');
+            const emptyMsg = document.getElementById('empty-message');
+            tbody.textContent = '';
+
+            if (history.length === 0) {
+                emptyMsg.classList.remove('hidden');
+                return;
+            }
+            emptyMsg.classList.add('hidden');
+
+            history.forEach((item, index) => {
+                const tr = document.createElement('tr');
+
+                const tdDate = document.createElement('td');
+                tdDate.className = 'py-3 px-4 text-slate-400';
+                tdDate.textContent = item.date;
+                tr.appendChild(tdDate);
+
+                const tdName = document.createElement('td');
+                tdName.className = 'py-3 px-4 font-medium text-white';
+                tdName.textContent = item.name;
+                tr.appendChild(tdName);
+
+                const tdBase = document.createElement('td');
+                tdBase.className = 'py-3 px-4 text-slate-300';
+                tdBase.textContent = Number(item.base).toLocaleString() + '円';
+                tr.appendChild(tdBase);
+
+                const tdTime = document.createElement('td');
+                tdTime.className = 'py-3 px-4 text-slate-300';
+                tdTime.textContent = item.planned + '分 / ' + item.actual + '分';
+                tr.appendChild(tdTime);
+
+                const tdOver = document.createElement('td');
+                tdOver.className = 'py-3 px-4 text-slate-300';
+                tdOver.textContent = item.overtime + '分';
+                tr.appendChild(tdOver);
+
+                const tdPenalty = document.createElement('td');
+                tdPenalty.className = 'py-3 px-4 font-bold text-amber-400';
+                tdPenalty.textContent = Number(item.penalty).toLocaleString() + '円';
+                tr.appendChild(tdPenalty);
+
+                const tdAction = document.createElement('td');
+                tdAction.className = 'py-3 px-4 text-right';
+                const delBtn = document.createElement('button');
+                delBtn.className = 'px-2 py-1 bg-red-500/10 text-red-400 hover:bg-red-500/20 rounded text-xs transition';
+                delBtn.textContent = '削除';
+                delBtn.onclick = () => deleteItem(index);
+                tdAction.appendChild(delBtn);
+                tr.appendChild(tdAction);
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        function deleteItem(index) {
+            const history = getHistory();
+            history.splice(index, 1);
+            saveHistory(history);
+            renderHistory();
+        }
+
+        // フォーム送信時
+        document.getElementById('calc-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('input-name').value;
+            const base = document.getElementById('input-base').value;
+            const planned = document.getElementById('input-planned').value;
+            const actual = document.getElementById('input-actual').value;
+            const unit = document.getElementById('input-unit').value;
+
+            const res = calculatePenalty(base, planned, actual, unit);
+            const now = new Date();
+            const dateStr = now.getFullYear() + '/' + 
+                String(now.getMonth() + 1).padStart(2, '0') + '/' + 
+                String(now.getDate()).padStart(2, '0') + ' ' + 
+                String(now.getHours()).padStart(2, '0') + ':' + 
+                String(now.getMinutes()).padStart(2, '0');
+
+            const newItem = {
+                date: dateStr,
+                name: name,
+                base: res.base,
+                planned: res.planned,
+                actual: res.actual,
+                overtime: res.overtime,
+                penalty: res.penalty
+            };
+
+            const history = getHistory();
+            history.unshift(newItem);
+            saveHistory(history);
+            renderHistory();
+
+            document.getElementById('input-name').value = '';
+            updateLivePreview();
+        });
+
+        // CSVエクスポート (BOM付きUTF-8)
+        document.getElementById('export-csv').addEventListener('click', () => {
+            const history = getHistory();
+            if (history.length === 0) {
+                alert('エクスポートする履歴がありません。');
+                return;
+            }
+
+            let csv = '\uFEFF'; // BOM
+            csv += '日時,顧客/ルーム名,基本料金(円),予定時間(分),実際時間(分),超過時間(分),追加請求額(円)\n';
+            history.forEach(item => {
+                csv += `"${item.date}","${item.name}",${item.base},${item.planned},${item.actual},${item.overtime},${item.penalty}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'sauna_penalty_history_' + new Date().toISOString().slice(0, 10) + '.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // 履歴全削除
+        document.getElementById('clear-history').addEventListener('click', () => {
+            if (confirm('計算履歴をすべて削除してもよろしいですか？')) {
+                saveHistory([]);
+                renderHistory();
+            }
+        });
+
+        updateLivePreview();
+        renderHistory();
+    </script>
+</body>
+</html>
