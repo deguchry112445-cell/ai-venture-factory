@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"20261122080104_project",value:1480,currency:"JPY"});}});</script><script>(function(){var p=new URLSearchParams(window.location.search),k=p.get("key"),s="vf_unlocked_20261122080104_project";if(k==="fbo7sbapz18x2b19"){var f=localStorage.getItem(s)!=="true";localStorage.setItem(s,"true");if(f&&typeof gtag==="function"){gtag("event","first_product_access",{item_name:"20261122080104_project"});}}else if(localStorage.getItem(s)!=="true"){document.documentElement.innerHTML="<body style=\"background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\"><div style=\"text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px\"><h2>購入者専用ページ</h2><p style=\"color:#94a3b8;font-size:.9rem\">購入完了後の正規リダイレクトからのみアクセス可能です。</p><a href=\"https://deguchry112445-cell.github.io/ai-venture-factory/20261122080104_project/\" style=\"display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:.5rem\">販売ページへ戻る</a></div></body>";window.stop();}})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】個人コインランドリー専用 洗剤・電気代動費按分計算機 | Venture Factory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- 警告・保存バー -->
+    <div class="bg-amber-500 text-slate-900 px-4 py-3 text-xs sm:text-sm font-bold shadow-inner">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2 text-center sm:text-left">
+                <i class="fa-solid fa-triangle-exclamation text-base"></i>
+                <span>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください</span>
+            </div>
+            <button id="copy-url-btn" class="bg-slate-900 text-white px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-slate-800 transition shadow">
+                <i class="fa-solid fa-copy mr-1"></i> 現在の専用URLをコピー
+            </button>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200 py-4 px-4 sm:px-8">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="bg-blue-600 text-white p-2 rounded-lg"><i class="fa-solid fa-calculator"></i></span>
+                <div>
+                    <h1 class="font-bold text-base sm:text-lg text-slate-900 leading-tight">コインランドリー費用按分計算機 <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded ml-1">完全版</span></h1>
+                    <p class="text-xs text-slate-500">Venture Factory プレミアムツール</p>
+                </div>
+            </div>
+            <button id="reset-data-btn" class="text-xs text-red-600 hover:text-red-800 border border-red-200 px-3 py-1.5 rounded-lg transition">
+                <i class="fa-solid fa-rotate-right mr-1"></i> 入力データをリセット
+            </button>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-6xl mx-auto p-4 sm:p-8 space-y-8">
+
+        <!-- 入力および計算セクション -->
+        <div class="grid lg:grid-cols-3 gap-8">
+            
+            <!-- 左側：コスト・オーナー設定 -->
+            <div class="lg:col-span-2 space-y-6">
+                
+                <!-- 1. 月次全体コスト -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h2 class="font-bold text-base text-slate-900 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-file-invoice-dollar text-blue-600"></i> 1. 当月の全体コスト入力
+                    </h2>
+                    <div class="grid sm:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">電気代総額 (円)</label>
+                            <input type="number" id="input-elec" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">水道代総額 (円)</label>
+                            <input type="number" id="input-water" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">洗剤・消耗品費総額 (円)</label>
+                            <input type="number" id="input-supply" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. オーナー別稼働回数設定 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="font-bold text-base text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-users text-blue-600"></i> 2. 利用オーナー別 稼働回数設定
+                        </h2>
+                        <button id="add-owner-btn" class="bg-blue-50 text-blue-600 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-xs font-semibold transition">
+                            <i class="fa-solid fa-plus mr-1"></i> オーナーを追加
+                        </button>
+                    </div>
+                    <div id="owners-container" class="space-y-3">
+                        <!-- 動的生成 -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 右側：結果・出力セクション -->
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 sticky top-6">
+                    <h2 class="font-bold text-base text-slate-900 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-square-poll-vertical text-blue-600"></i> 3. 按分計算結果
+                    </h2>
+                    
+                    <div id="calculation-results" class="space-y-3 text-sm mb-6">
+                        <!-- 動的生成 -->
+                    </div>
+
+                    <div class="space-y-3 pt-4 border-t border-slate-200">
+                        <button id="download-csv-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow transition flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-download"></i> 計算結果CSVをダウンロード
+                        </button>
+                        <button id="copy-text-btn" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-4 rounded-xl transition flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-clipboard"></i> 清算書テキストをコピー
+                        </button>
+                    </div>
+
+                    <div class="mt-4 text-xs text-slate-400 leading-relaxed">
+                        ※本ツールは総容積ベースの概算であり個別形状の配置は考慮しません。最大剰余法により1円のズレもなく配分されます。
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-white border-t border-slate-200 py-6 px-4 mt-16 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <!-- アプリケーションロジック -->
+    <script>
+        let appState = {
+            elec: 120000,
+            water: 45000,
+            supply: 15000,
+            owners: [
+                { id: 1, name: 'オーナーA', count: 300 },
+                { id: 2, name: 'オーナーB', count: 200 }
+            ]
+        };
+
+        function saveState() {
+            try {
+                localStorage.setItem('vf_laundry_calc_state', JSON.stringify(appState));
+            } catch (e) {
+                console.error('Storage save failed', e);
+            }
+        }
+
+        function loadState() {
+            try {
+                const saved = localStorage.getItem('vf_laundry_calc_state');
+                if (saved) {
+                    appState = JSON.parse(saved);
+                }
+            } catch (e) {
+                console.error('Storage load failed', e);
+            }
+        }
+
+        function safeNum(val) {
+            const n = Number(val);
+            return (isNaN(n) || n < 0) ? 0 : n;
+        }
+
+        function calculateShare(total, ratios) {
+            const totalRatio = ratios.reduce((a, b) => a + b, 0);
+            if (totalRatio === 0) return ratios.map(() => 0);
+            
+            let result = ratios.map((r, i) => {
+                let val = Math.floor((total * r) / totalRatio);
+                return {
+                    val,
+                    rem: ((total * r) / totalRatio) - val,
+                    index: i
+                };
+            });
+
+            result.sort((a, b) => b.rem - a.rem);
+            let currentSum = result.reduce((sum, item) => sum + item.val, 0);
+            let remainderDiff = total - currentSum;
+
+            for (let i = 0; i < Math.abs(remainderDiff); i++) {
+                result[i % result.length].val += Math.sign(remainderDiff);
+            }
+
+            const sortedOriginalOrder = [];
+            result.forEach(item => {
+                sortedOriginalOrder[item.index] = item.val;
+            });
+            return sortedOriginalOrder;
+        }
+
+        function render() {
+            // 入力値の反映
+            document.getElementById('input-elec').value = appState.elec;
+            document.getElementById('input-water').value = appState.water;
+            document.getElementById('input-supply').value = appState.supply;
+
+            // オーナー入力リストの構築
+            const ownersContainer = document.getElementById('owners-container');
+            ownersContainer.innerHTML = '';
+
+            appState.owners.forEach((owner, idx) => {
+                const row = document.createElement('div');
+                row.className = 'flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200';
+                
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.value = owner.name;
+                nameInput.className = 'w-1/2 border border-slate-300 rounded-lg p-2 text-sm bg-white';
+                nameInput.addEventListener('input', (e) => {
+                    appState.owners[idx].name = e.target.value;
+                    saveState();
+                });
+
+                const countInput = document.createElement('input');
+                countInput.type = 'number';
+                countInput.value = owner.count;
+                countInput.className = 'w-1/3 border border-slate-300 rounded-lg p-2 text-sm bg-white';
+                countInput.addEventListener('input', (e) => {
+                    appState.owners[idx].count = safeNum(e.target.value);
+                    saveState();
+                    renderResults();
+                });
+
+                const delBtn = document.createElement('button');
+                delBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                delBtn.className = 'text-slate-400 hover:text-red-600 p-2 transition';
+                delBtn.addEventListener('click', () => {
+                    if (appState.owners.length <= 1) {
+                        alert('最低1名のオーナーが必要となります。');
+                        return;
+                    }
+                    appState.owners.splice(idx, 1);
+                    saveState();
+                    render();
+                });
+
+                row.appendChild(nameInput);
+                row.appendChild(countInput);
+                row.appendChild(delBtn);
+                ownersContainer.appendChild(row);
+            });
+
+            renderResults();
+        }
+
+        function renderResults() {
+            const totalCost = safeNum(appState.elec) + safeNum(appState.water) + safeNum(appState.supply);
+            const ratios = appState.owners.map(o => safeNum(o.count));
+            const shares = calculateShare(totalCost, ratios);
+
+            const resultsContainer = document.getElementById('calculation-results');
+            resultsContainer.innerHTML = '';
+
+            // 総費用項目
+            const totalDiv = document.createElement('div');
+            totalDiv.className = 'flex justify-between items-center font-bold pb-3 border-b border-slate-200 text-slate-900';
+            totalDiv.innerHTML = `<span>当月費用総額</span><span>${totalCost.toLocaleString()} 円</span>`;
+            resultsContainer.appendChild(totalDiv);
+
+            appState.owners.forEach((owner, idx) => {
+                const shareVal = shares[idx] || 0;
+                const ratioTotal = ratios.reduce((a, b) => a + b, 0);
+                const percentage = ratioTotal > 0 ? ((safeNum(owner.count) / ratioTotal) * 100).toFixed(1) : 0;
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'flex justify-between items-center text-slate-700';
+                itemDiv.innerHTML = `
+                    <div>
+                        <div class="font-semibold text-slate-800">${owner.name}</div>
+                        <div class="text-xs text-slate-400">稼働: ${owner.count}回 (${percentage}%)</div>
+                    </div>
+                    <div class="font-bold text-slate-900">${shareVal.toLocaleString()} 円</div>
+                `;
+                resultsContainer.appendChild(itemDiv);
+            });
+        }
+
+        // イベントリスナー
+        document.getElementById('input-elec').addEventListener('input', (e) => { appState.elec = safeNum(e.target.value); saveState(); renderResults(); });
+        document.getElementById('input-water').addEventListener('input', (e) => { appState.water = safeNum(e.target.value); saveState(); renderResults(); });
+        document.getElementById('input-supply').addEventListener('input', (e) => { appState.supply = safeNum(e.target.value); saveState(); renderResults(); });
+
+        document.getElementById('add-owner-btn').addEventListener('click', () => {
+            const newId = appState.owners.length > 0 ? Math.max(...appState.owners.map(o => o.id)) + 1 : 1;
+            appState.owners.push({ id: newId, name: `オーナー${String.fromCharCode(65 + appState.owners.length)}`, count: 100 });
+            saveState();
+            render();
+        });
+
+        document.getElementById('reset-data-btn').addEventListener('click', () => {
+            if (confirm('入力データを初期状態に戻しますか？')) {
+                localStorage.removeItem('vf_laundry_calc_state');
+                location.reload();
+            }
+        });
+
+        document.getElementById('copy-url-btn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('専用URLをクリップボードにコピーしました！');
+            });
+        });
+
+        document.getElementById('copy-text-btn').addEventListener('click', () => {
+            const totalCost = safeNum(appState.elec) + safeNum(appState.water) + safeNum(appState.supply);
+            const ratios = appState.owners.map(o => safeNum(o.count));
+            const shares = calculateShare(totalCost, ratios);
+
+            let text = `【コインランドリー費用清算明細】\n総費用: ${totalCost.toLocaleString()}円\n------------------\n`;
+            appState.owners.forEach((o, i) => {
+                text += `${o.name}: ${shares[i].toLocaleString()}円 (稼働回数: ${o.count})\n`;
+            });
+
+            navigator.clipboard.writeText(text).then(() => {
+                alert('清算書テキストをコピーしました！');
+            });
+        });
+
+        document.getElementById('download-csv-btn').addEventListener('click', () => {
+            const totalCost = safeNum(appState.elec) + safeNum(appState.water) + safeNum(appState.supply);
+            const ratios = appState.owners.map(o => safeNum(o.count));
+            const shares = calculateShare(totalCost, ratios);
+
+            let csv = '\uFEFF'; // BOM
+            csv += 'オーナー名,稼働回数,負担金額(円)\n';
+            appState.owners.forEach((o, i) => {
+                csv += `"${o.name}",${o.count},${shares[i]}\n`;
+            });
+            csv += `"合計",${ratios.reduce((a,b)=>a+b,0)},${totalCost}\n`;
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `laundry_share_${new Date().toISOString().slice(0,7)}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+
+        // 初期化実行
+        loadState();
+        render();
+    </script>
+</body>
+</html>
