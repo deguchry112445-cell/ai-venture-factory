@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"20261121134538_project",value:1480,currency:"JPY"});}});</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人サウナ専用 予約枠別・電気代動 | Venture Factory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="../" class="text-sm text-slate-500 hover:text-slate-800 transition flex items-center gap-1">
+                <i class="fas fa-arrow-left"></i> ツール一覧へ戻る
+            </a>
+            <span class="font-bold text-slate-700 tracking-tight">Venture Factory</span>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="py-16 sm:py-24 bg-gradient-to-b from-amber-50/60 to-slate-50">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <span class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6">
+                個人サウナ・貸切サウナオーナー専用ツール
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 leading-tight mb-6">
+                サウナの電気代按分ミスで<br class="hidden sm:inline">テナント間トラブルになっていませんか？
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
+                予約枠・利用人数を入力するだけで30秒で公平な按分明細を自動算出。複雑な計算作業からオーナーを解放します。
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="https://buy.stripe.com/8x28wPfMH7Ty9CC0h7eQM0k" class="w-full sm:w-auto bg-amber-600 hover:bg-amber-700 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <i class="fas fa-bolt"></i> 今すぐ導入する（1,480円）
+                </a>
+                <span class="text-xs text-slate-500">買い切り型 / 追加費用なし</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 無料ライブ体験デモ枠 -->
+    <section class="py-16 bg-white border-y border-slate-200" id="demo">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">無料ライブ体験デモ</h2>
+                <p class="text-slate-600">実際に数値を入力して、按分計算ロジックをお試しください。</p>
+                <button onclick="fillSampleData()" class="mt-4 inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold px-4 py-2 rounded-lg transition">
+                    <i class="fas fa-wand-magic-sparkles text-amber-600"></i> サンプルデータを自動入力して試す
+                </button>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-inner">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">今月の電気代総額 (円)</label>
+                        <input type="number" id="demoTotalBill" value="85000" class="w-full bg-white border border-slate-300 rounded-lg px-4 py-2.5 text-slate-800 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">想定稼働時間ベース配分比率 (%)</label>
+                        <input type="number" id="demoHoursRatio" value="60" class="w-full bg-white border border-slate-300 rounded-lg px-4 py-2.5 text-slate-800 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-slate-700 mb-2">予約枠別データ (JSON/カンマ区切り簡易入力: [枠名, 利用時間(h), 利用人数])</label>
+                    <textarea id="demoSlotsInput" rows="4" class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm text-slate-800 focus:ring-2 focus:ring-amber-500 focus:outline-none font-mono">A枠 (早朝ソロ): 2, 1
+B枠 (日中貸切): 4, 3
+C枠 (夜間グループ): 3, 4</textarea>
+                </div>
+
+                <button onclick="runDemoCalc()" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-semibold py-3 rounded-lg transition mb-8">
+                    デモ計算を実行する
+                </button>
+
+                <div class="bg-white border border-slate-200 rounded-xl p-5">
+                    <h3 class="text-sm font-bold text-slate-700 mb-3 uppercase tracking-wider">按分計算結果プレビュー</h3>
+                    <div id="demoResultArea" class="space-y-2 text-sm text-slate-600">
+                        <p class="text-slate-400 italic">「デモ計算を実行する」を押すと結果が表示されます。</p>
+                    </div>
+                </div>
+
+                <!-- ロックされた高度機能 -->
+                <div class="mt-8 pt-6 border-t border-slate-200">
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3"><i class="fas fa-lock text-amber-600 mr-1"></i> 完全版で解放される機能</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <a href="https://buy.stripe.com/8x28wPfMH7Ty9CC0h7eQM0k" class="bg-white border border-slate-200 p-3 rounded-xl text-center text-xs font-medium text-slate-500 hover:border-amber-500 hover:text-amber-600 transition block">
+                            <i class="fas fa-file-csv block text-base mb-1 text-slate-400"></i> CSV出力機能
+                        </a>
+                        <a href="https://buy.stripe.com/8x28wPfMH7Ty9CC0h7eQM0k" class="bg-white border border-slate-200 p-3 rounded-xl text-center text-xs font-medium text-slate-500 hover:border-amber-500 hover:text-amber-600 transition block">
+                            <i class="fas fa-history block text-base mb-1 text-slate-400"></i> 履歴自動保存
+                        </a>
+                        <a href="https://buy.stripe.com/8x28wPfMH7Ty9CC0h7eQM0k" class="bg-white border border-slate-200 p-3 rounded-xl text-center text-xs font-medium text-slate-500 hover:border-amber-500 hover:text-amber-600 transition block">
+                            <i class="fas fa-layer-group block text-base mb-1 text-slate-400"></i> 一括処理管理
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特徴セクション -->
+    <section class="py-16 max-w-5xl mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">なぜ個人サウナオーナーに選ばれているのか</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl mb-4">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 mb-2">端数ズレ完全ゼロ配分</h3>
+                <p class="text-sm text-slate-600">最大剰余法アルゴリズムを採用し、総額と各枠の合計が1円もズレない完璧な按分を実現。</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl mb-4">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 mb-2">テナント・利用者間の不信感ゼロ</h3>
+                <p class="text-sm text-slate-600">公平なロジックに基づく計算根拠をそのまま明細として出力できるため、無用なトラブルを防ぎます。</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl mb-4">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 mb-2">インストール不要・即座に動作</h3>
+                <p class="text-sm text-slate-600">ブラウザ完結型のWebツール。決済後すぐにアクセスでき、面倒な初期設定は一切ありません。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-slate-900 text-white text-center">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-4">電気代計算のストレスから、今すぐ解放されよう</h2>
+            <p class="text-slate-400 mb-8">買い切り1回のみ。追加の月額費用等は一切発生しません。</p>
+            <a href="https://buy.stripe.com/8x28wPfMH7Ty9CC0h7eQM0k" class="inline-block bg-amber-600 hover:bg-amber-700 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg transition">
+                今すぐ完全版を入手する（1,480円）
+            </a>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="py-8 bg-slate-950 text-slate-500 text-xs text-center border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p>特定商取引法に基づく表記は決済画面（Stripe）にてご確認いただけます。</p>
+            <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function fillSampleData() {
+            document.getElementById('demoTotalBill').value = 92000;
+            document.getElementById('demoHoursRatio').value = 65;
+            document.getElementById('demoSlotsInput').value = "朝ウナ枠: 2, 2\n昼ウナ枠: 4, 3\n夜ウナ枠: 3, 5";
+        }
+
+        function runDemoCalc() {
+            const totalBill = parseFloat(document.getElementById('demoTotalBill').value) || 0;
+            const lines = document.getElementById('demoSlotsInput').value.split('\n');
+            const slots = [];
+            
+            let totalScore = 0;
+            lines.forEach(line => {
+                const parts = line.split(':');
+                if (parts.length === 2) {
+                    const name = parts[0].trim();
+                    const vals = parts[1].split(',').map(v => parseFloat(v.trim()) || 0);
+                    const score = (vals[0] || 1) * (vals[1] || 1);
+                    slots.push({ name, score });
+                    totalScore += score;
+                }
+            });
+
+            const area = document.getElementById('demoResultArea');
+            area.innerHTML = '';
+
+            if (slots.length === 0 || totalScore === 0) {
+                area.textContent = '有効な枠データが入力されていません。';
+                return;
+            }
+
+            let allocatedSum = 0;
+            slots.forEach((s, idx) => {
+                let amount = 0;
+                if (idx === slots.length - 1) {
+                    amount = totalBill - allocatedSum;
+                } else {
+                    amount = Math.floor(totalBill * (s.score / totalScore));
+                    allocatedSum += amount;
+                }
+                const p = document.createElement('p');
+                p.textContent = `${s.name}: ${amount.toLocaleString()}円 (配分スコア: ${s.score})`;
+                area.appendChild(p);
+            });
+        }
+    </script>
+</body>
+</html>
