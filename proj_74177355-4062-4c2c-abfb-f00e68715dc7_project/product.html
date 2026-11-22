@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"proj_74177355-4062-4c2c-abfb-f00e68715dc7_project",value:1480,currency:"JPY"});}});</script><script>(function(){var p=new URLSearchParams(window.location.search),k=p.get("key"),s="vf_unlocked_proj_74177355-4062-4c2c-abfb-f00e68715dc7_project";if(k==="djx7j7ximoa5r6dcpred1"){var f=localStorage.getItem(s)!=="true";localStorage.setItem(s,"true");if(f&&typeof gtag==="function"){gtag("event","first_product_access",{item_name:"proj_74177355-4062-4c2c-abfb-f00e68715dc7_project"});}}else if(localStorage.getItem(s)!=="true"){document.documentElement.innerHTML="<body style=\"background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\"><div style=\"text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px\"><h2>購入者専用ページ</h2><p style=\"color:#94a3b8;font-size:.9rem\">購入完了後の正規リダイレクトからのみアクセス可能です。</p><a href=\"https://deguchry112445-cell.github.io/ai-venture-factory/proj_74177355-4062-4c2c-abfb-f00e68715dc7_project/\" style=\"display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:.5rem\">販売ページへ戻る</a></div></body>";window.stop();}})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】個人コインランドリー専用 複数乾燥機・ガス代動的計算機</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans pb-20">
+    <!-- Important Notice Bar -->
+    <div class="bg-amber-500 text-slate-900 px-4 py-3 text-xs md:text-sm font-bold text-center sticky top-0 z-50 shadow-md flex flex-col sm:flex-row items-center justify-center gap-2">
+        <span>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください。</span>
+        <button id="copy-url-btn" class="bg-white hover:bg-slate-100 text-slate-900 px-3 py-1 rounded-lg text-xs font-bold transition shadow-sm">
+            <i class="fa-solid fa-copy mr-1"></i> 現在の専用URLをコピー
+        </button>
+    </div>
+
+    <header class="bg-white border-b border-slate-200 py-4">
+        <div class="max-w-5xl mx-auto px-4 flex justify-between items-center">
+            <h1 class="font-extrabold text-lg text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-calculator text-blue-600"></i> 乾燥機ガス代 動的計算機 <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">完全版</span>
+            </h1>
+            <span class="text-xs text-slate-400">Venture Factory</span>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 mt-8 space-y-8">
+        <!-- Global Parameters -->
+        <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <h2 class="font-bold text-base text-slate-800 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-sliders text-blue-600"></i> 全体設定
+            </h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">当月のガス請求総額 (円)</label>
+                    <input type="number" id="global-total-gas" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm" value="60000" min="0">
+                </div>
+                <div class="flex items-end">
+                    <button id="calc-btn" type="button" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-lg transition text-sm">
+                        <i class="fa-solid fa-calculator mr-2"></i> 按分計算を実行する
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dryer Management -->
+        <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-hard-drive text-blue-600"></i> 乾燥機リスト設定
+                </h2>
+                <button id="add-dryer-btn" type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-3 py-2 rounded-lg transition">
+                    <i class="fa-solid fa-plus mr-1"></i> 乾燥機を追加
+                </button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-200 text-xs text-slate-500 bg-slate-50">
+                            <th class="p-3">乾燥機名 / 管理ID</th>
+                            <th class="p-3">容量 (kg)</th>
+                            <th class="p-3">月間稼働時間 (h)</th>
+                            <th class="p-3 text-right">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dryer-table-body">
+                        <!-- Dynamic rows -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Calculation Results -->
+        <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-file-invoice-dollar text-emerald-600"></i> 計算結果・按分明細
+                </h2>
+                <button id="export-csv-btn" type="button" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition shadow-sm">
+                    <i class="fa-solid fa-download mr-1"></i> CSV出力 (UTF-8 BOM)
+                </button>
+            </div>
+
+            <div class="overflow-x-auto mb-6">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-200 text-xs text-slate-500 bg-slate-50">
+                            <th class="p-3">乾燥機名</th>
+                            <th class="p-3">容量 (kg)</th>
+                            <th class="p-3">稼働時間 (h)</th>
+                            <th class="p-3">ウェイト (容量×時間)</th>
+                            <th class="p-3 text-right">按分ガス代</th>
+                        </tr>
+                    </thead>
+                    <tbody id="result-table-body">
+                        <!-- Result rows -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex justify-between items-center">
+                <div class="text-sm font-bold text-slate-700">合計確認（総額一致保証）</div>
+                <div id="result-total-check" class="text-lg font-extrabold text-slate-900">¥0 / ¥0</div>
+            </div>
+        </section>
+
+        <!-- Restrictions Note -->
+        <div class="text-xs text-slate-400 bg-white p-4 rounded-xl border border-slate-200">
+            <span class="font-bold text-slate-600">【制限事項・免責事項】</span><br>
+            ※本ツールは容量と稼働時間の積に基づく総容積ベースの概算であり、個別機種の燃費効率や熱効率の差異は考慮しません。実測値との厳密な差分調整はオーナー様ご自身の責任において行ってください。<br>
+            ※データはブラウザの localStorage に自動保存されます。シークレットモードやキャッシュクリア時はデータが消失する場合がありますのでご注意ください。
+        </div>
+    </main>
+
+    <footer class="text-center text-xs text-slate-400 mt-12">
+        &copy; 2026 Venture Factory. All rights reserved.
+    </footer>
+
+    <script>
+        // Pure Calculation Logic with Maximum Remainder Method for Exact Total
+        function calculateGasAllocation(totalGas, dryers) {
+            if (isNaN(totalGas) || totalGas < 0) totalGas = 0;
+            
+            const validDryers = dryers.map(d => ({
+                id: d.id,
+                name: d.name || '無名',
+                capacity: Math.max(0, parseFloat(d.capacity) || 0),
+                hours: Math.max(0, parseFloat(d.hours) || 0)
+            }));
+
+            const weights = validDryers.map(d => d.capacity * d.hours);
+            const totalWeight = weights.reduce((sum, w) => sum + w, 0);
+
+            if (totalWeight <= 0) {
+                return validDryers.map(d => ({ ...d, weight: 0, allocated: 0 }));
+            }
+
+            let allocatedSum = 0;
+            const rawAllocations = weights.map((w, i) => {
+                const exact = (totalGas * w) / totalWeight;
+                const floored = Math.floor(exact);
+                allocatedSum += floored;
+                return {
+                    ...validDryers[i],
+                    weight: w,
+                    exact: exact,
+                    allocated: floored,
+                    remainder: exact - floored
+                };
+            });
+
+            let diff = totalGas - allocatedSum;
+
+            // Maximum Remainder Method (Hamilton method)
+            if (diff > 0) {
+                rawAllocations.sort((a, b) => b.remainder - a.remainder);
+                for (let i = 0; i < diff; i++) {
+                    rawAllocations[i % rawAllocations.length].allocated += 1;
+                }
+                // Restore original order by id or index assumption (stable sort back if needed)
+            }
+
+            return rawAllocations;
+        }
+
+        // App State Management via localStorage
+        const STORAGE_KEY = 'vf_laundry_gas_calculator_v1';
+
+        let state = {
+            totalGas: 60000,
+            dryers: [
+                { id: '1', name: '大型乾燥機 1号', capacity: 25, hours: 140 },
+                { id: '2', name: '大型乾燥機 2号', capacity: 25, hours: 130 },
+                { id: '3', name: '中型乾燥機 1号', capacity: 14, hours: 180 },
+                { id: '4', name: '小型乾燥機 1号', capacity: 8, hours: 200 }
+            ]
+        };
+
+        function saveState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            } catch (e) {
+                console.error('Failed to save state:', e);
+            }
+        }
+
+        function loadState() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (parsed && typeof parsed.totalGas === 'number' && Array.isArray(parsed.dryers)) {
+                        state = parsed;
+                    }
+                }
+            } catch (e) {
+                console.error('Failed to load state:', e);
+            }
+        }
+
+        // DOM Elements
+        const totalGasInput = document.getElementById('global-total-gas');
+        const dryerTableBody = document.getElementById('dryer-table-body');
+        const resultTableBody = document.getElementById('result-table-body');
+        const resultTotalCheck = document.getElementById('result-total-check');
+        const addDryerBtn = document.getElementById('add-dryer-btn');
+        const calcBtn = document.getElementById('calc-btn');
+        const exportCsvBtn = document.getElementById('export-csv-btn');
+        const copyUrlBtn = document.getElementById('copy-url-btn');
+
+        function renderDryers() {
+            dryerTableBody.innerHTML = '';
+            state.dryersforEach((d, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-slate-100 hover:bg-slate-50 transition';
+
+                const tdName = document.createElement('td');
+                tdName.className = 'p-3';
+                const inputName = document.createElement('input');
+                inputName.type = 'text';
+                inputName.value = d.name;
+                inputName.className = 'border border-slate-300 rounded px-2 py-1 text-sm w-full';
+                inputName.addEventListener('input', (e) => {
+                    state.dryers[idx].name = e.target.value;
+                    saveState();
+                });
+                tdName.appendChild(inputName);
+
+                const tdCap = document.createElement('td');
+                tdCap.className = 'p-3';
+                const inputCap = document.createElement('input');
+                inputCap.type = 'number';
+                inputCap.value = d.capacity;
+                inputCap.className = 'border border-slate-300 rounded px-2 py-1 text-sm w-24';
+                inputCap.addEventListener('input', (e) => {
+                    state.dryers[idx].capacity = parseFloat(e.target.value) || 0;
+                    saveState();
+                });
+                tdCap.appendChild(inputCap);
+
+                const tdHours = document.createElement('td');
+                tdHours.className = 'p-3';
+                const inputHours = document.createElement('input');
+                inputHours.type = 'number';
+                inputHours.value = d.hours;
+                inputHours.className = 'border border-slate-300 rounded px-2 py-1 text-sm w-24';
+                inputHours.addEventListener('input', (e) => {
+                    state.dryers[idx].hours = parseFloat(e.target.value) || 0;
+                    saveState();
+                });
+                tdHours.appendChild(inputHours);
+
+                const tdAction = document.createElement('td');
+                tdAction.className = 'p-3 text-right';
+                const delBtn = document.createElement('button');
+                delBtn.type = 'button';
+                delBtn.className = 'bg-red-50 hover:bg-red-100 text-red-600 p-1.5 rounded transition text-xs';
+                delBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                delBtn.addEventListener('click', () => {
+                    state.dryers.splice(idx, 1);
+                    saveState();
+                    renderAll();
+                });
+                tdAction.appendChild(delBtn);
+
+                tr.appendChild(tdName);
+                tr.appendChild(tdCap);
+                tr.appendChild(tdHours);
+                tr.appendChild(tdAction);
+
+                dryerTableBody.appendChild(tr);
+            });
+        }
+
+        function renderResults() {
+            const totalGas = parseFloat(totalGasInput.value) || 0;
+            state.totalGas = totalGas;
+            saveState();
+
+            const results = calculateGasAllocation(totalGas, state.dryers);
+
+            resultTableBody.innerHTML = '';
+            let sumAllocated = 0;
+
+            results.forEach(r => {
+                sumAllocated += r.allocated;
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-slate-100';
+
+                const tdName = document.createElement('td');
+                tdName.className = 'p-3 font-medium text-slate-800';
+                tdName.textContent = r.name;
+
+                const tdCap = document.createElement('td');
+                tdCap.className = 'p-3 text-slate-600';
+                tdCap.textContent = r.capacity + ' kg';
+
+                const tdHours = document.createElement('td');
+                tdHours.className = 'p-3 text-slate-600';
+                tdHours.textContent = r.hours + ' h';
+
+                const tdWeight = document.createElement('td');
+                tdWeight.className = 'p-3 text-slate-600';
+                tdWeight.textContent = r.weight.toLocaleString();
+
+                const tdAlloc = document.createElement('td');
+                tdAlloc.className = 'p-3 text-right font-bold text-blue-600';
+                tdAlloc.textContent = '¥' + r.allocated.toLocaleString();
+
+                tr.appendChild(tdName);
+                tr.appendChild(tdCap);
+                tr.appendChild(tdHours);
+                tr.appendChild(tdWeight);
+                tr.appendChild(tdAlloc);
+
+                resultTableBody.appendChild(tr);
+            });
+
+            resultTotalCheck.textContent = `¥${sumAllocated.toLocaleString()} / ¥${totalGas.toLocaleString()} (一致)`;
+        }
+
+        function renderAll() {
+            renderDryers();
+            renderResults();
+        }
+
+        // Event Listeners
+        addDryerBtn.addEventListener('click', () => {
+            state.dryers.push({
+                id: Date.now().toString(),
+                name: `乾燥機 ${state.dryers.length + 1}号`,
+                capacity: 15,
+                hours: 100
+            });
+            saveState();
+            renderAll();
+        });
+
+        totalGasInput.addEventListener('input', () => {
+            renderResults();
+        });
+
+        calcBtn.addEventListener('click', () => {
+            renderAll();
+        });
+
+        exportCsvBtn.addEventListener('click', () => {
+            const totalGas = parseFloat(totalGasInput.value) || 0;
+            const results = calculateGasAllocation(totalGas, state.dryers);
+
+            let csvContent = '\uFEFF'; // BOM for Excel UTF-8
+            csvContent += '乾燥機名,容量(kg),稼働時間(h),ウェイト,按分ガス代(円)\r\n';
+
+            results.forEach(r => {
+                csvContent += `"${r.name}",${r.capacity},${r.hours},${r.weight},${r.allocated}\r\n`;
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `laundry_gas_allocation_${new Date().toISOString().slice(0, 10)}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        copyUrlBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('専用URLをコピーしました。お気に入りに登録して次回以降もご利用ください。');
+            }).catch(err => {
+                console.error('Failed to copy URL:', err);
+            });
+        });
+
+        // Initialize
+        loadState();
+        totalGasInput.value = state.totalGas;
+        renderAll();
+    </script>
+</body>
+</html>
