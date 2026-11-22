@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"proj_9bb7bb00-e6a8-486e-97b8-beba31d92284_project",value:1480,currency:"JPY"});}});</script><script>(function(){var p=new URLSearchParams(window.location.search),k=p.get("key"),s="vf_unlocked_proj_9bb7bb00-e6a8-486e-97b8-beba31d92284_project";if(k==="z4kb3er7zplpdhaarnapn"){var f=localStorage.getItem(s)!=="true";localStorage.setItem(s,"true");if(f&&typeof gtag==="function"){gtag("event","first_product_access",{item_name:"proj_9bb7bb00-e6a8-486e-97b8-beba31d92284_project"});}}else if(localStorage.getItem(s)!=="true"){document.documentElement.innerHTML="<body style=\"background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\"><div style=\"text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px\"><h2>購入者専用ページ</h2><p style=\"color:#94a3b8;font-size:.9rem\">購入完了後の正規リダイレクトからのみアクセス可能です。</p><a href=\"https://deguchry112445-cell.github.io/ai-venture-factory/proj_9bb7bb00-e6a8-486e-97b8-beba31d92284_project/\" style=\"display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:.5rem\">販売ページへ戻る</a></div></body>";window.stop();}})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人サウナ専用 予約枠別・タオルリネン洗濯費按分計算機 (完全版) | Venture Factory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-amber-500 selection:text-slate-900">
+
+    <!-- Important Notice Bar -->
+    <div class="bg-amber-500 text-slate-950 px-4 py-3 text-xs md:text-sm font-bold text-center relative z-50">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-center items-center gap-2">
+            <span>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください。</span>
+            <button id="copy-url-btn" class="bg-slate-950 text-amber-400 hover:bg-slate-900 px-3 py-1 rounded text-xs transition">
+                <i class="fa-solid fa-copy mr-1"></i> 現在の専用URLをコピー
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="bg-amber-500/20 text-amber-400 text-xs px-2.5 py-1 rounded font-bold border border-amber-500/30">完全版</span>
+                <h1 class="text-sm md:text-base font-bold">リネン洗濯費按分計算機</h1>
+            </div>
+            <div class="text-xs text-slate-400">Venture Factory</div>
+        </div>
+    </header>
+
+    <!-- Main Tool Container -->
+    <main class="max-w-5xl mx-auto px-4 py-8 space-y-8">
+
+        <!-- Control Panel Card -->
+        <div class="bg-slate-800/60 border border-slate-700 p-6 rounded-2xl shadow-xl">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 pb-4 border-b border-slate-700">
+                <div>
+                    <h2 class="text-lg font-bold text-amber-300">月次・期間別 洗濯費按分データ入力</h2>
+                    <p class="text-xs text-slate-400 mt-1">※本ツールは総枚数ベースの按分計算であり、端数は最大剰余法により合計一致を100%保証します。</p>
+                </div>
+                <div class="flex gap-2">
+                    <button id="add-slot-btn" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-lg text-xs transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i> 予約枠を追加
+                    </button>
+                    <button id="reset-btn" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-3 py-2 rounded-lg text-xs transition">
+                        <i class="fa-solid fa-rotate-right"></i> リセット
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">洗濯費総額 (請求書金額など)</label>
+                    <div class="relative">
+                        <input type="number" id="total-cost-input" value="25000" min="0" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white font-mono text-lg focus:outline-none focus:border-amber-500">
+                        <span class="absolute right-4 top-3.5 text-slate-400 text-sm">円</span>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">集計対象メモ / 月度</label>
+                    <input type="text" id="memo-input" value="2026年3月分 リネン費用" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500">
+                </div>
+            </div>
+
+            <!-- Slots Table / List -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead>
+                        <tr class="border-b border-slate-700 text-slate-400 text-xs">
+                            <th class="py-3 px-4 font-semibold">予約枠名 / 担当者</th>
+                            <th class="py-3 px-4 font-semibold">利用人数</th>
+                            <th class="py-3 px-4 font-semibold">使用タオル・リネン枚数</th>
+                            <th class="py-3 px-4 font-semibold text-right">按分負担額</th>
+                            <th class="py-3 px-2 text-center w-12">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="slots-table-body" class="divide-y divide-slate-800">
+                        <!-- Rows populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Result Summary & Export Card -->
+        <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-2xl shadow-xl">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="space-y-1 w-full md:w-auto">
+                    <div class="text-xs text-slate-400">按分計算結果サマリー</div>
+                    <div class="text-2xl font-bold text-amber-400 font-mono" id="summary-total-display">合計: 0円</div>
+                    <div class="text-xs text-emerald-400" id="summary-status-display"><i class="fa-solid fa-circle-check mr-1"></i> 誤差なし・合計一致保証</div>
+                </div>
+                <div class="flex flex-wrap gap-3 w-full md:w-auto justify-end">
+                    <button id="export-csv-btn" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-3 rounded-xl text-xs transition flex items-center gap-2 shadow-lg">
+                        <i class="fa-solid fa-file-csv"></i> CSVダウンロード (BOM付)
+                    </button>
+                    <button id="save-history-btn" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-5 py-3 rounded-xl text-xs transition flex items-center gap-2 shadow-lg">
+                        <i class="fa-solid fa-floppy-disk"></i> 計算履歴に保存
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Section -->
+        <div class="bg-slate-800/40 border border-slate-700 p-6 rounded-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold text-sm text-slate-300">保存済み計算履歴 (LocalStorage)</h3>
+                <button id="clear-history-btn" class="text-xs text-red-400 hover:underline">履歴をすべて削除</button>
+            </div>
+            <div id="history-container" class="space-y-3">
+                <!-- History items -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-8 px-4 text-center text-xs text-slate-500 mt-16">
+        <div class="max-w-4xl mx-auto space-y-2">
+            <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Application Logic -->
+    <script>
+        // Copy URL functionality
+        document.getElementById('copy-url-btn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('専用URLをコピーしました！ブックマーク等に保存してください。');
+            }).catch(err => {
+                alert('コピーに失敗しました。ブラウザのアドレスバーから手動でコピーしてください。');
+            });
+        });
+
+        // Pure calculation function with Maximum Remainder Method for exact sum matching
+        function calculateAllocation(totalCost, slots) {
+            const validTotal = Math.max(0, Number(totalCost) || 0);
+            const validSlots = slots.map(s => ({
+                id: s.id,
+                name: s.name,
+                people: Math.max(0, Number(s.people) || 0),
+                count: Math.max(0, Number(s.count) || 0)
+            }));
+
+            const totalCount = validSlots.reduce((sum, s) => sum + s.count, 0);
+
+            if (totalCount === 0 || validTotal === 0) {
+                return validSlots.map(s => ({ ...s, cost: 0 }));
+            }
+
+            let allocatedSum = 0;
+            const baseAllocated = validSlots.map(s => {
+                const rawShare = (validTotal * s.count) / totalCount;
+                const floored = Math.floor(rawShare);
+                allocatedSum += floored;
+                return {
+                    ...s,
+                    cost: floored,
+                    remainder: rawShare - floored
+                };
+            });
+
+            let diff = validTotal - allocatedSum;
+            baseAllocated.sort((a, b) => b.remainder - a.remainder);
+
+            for (let i = 0; i < diff; i++) {
+                baseAllocated[i % baseAllocated.length].cost += 1;
+            }
+
+            // Restore original order by id
+            baseAllocated.sort((a, b) => a.id - b.id);
+
+            return baseAllocated.map(s => ({
+                id: s.id,
+                name: s.name,
+                people: s.people,
+                count: s.count,
+                cost: s.cost
+            }));
+        }
+
+        // State management
+        let state = {
+            totalCost: 25000,
+            memo: '2026年3月分 リネン費用',
+            slots: [
+                { id: 1, name: '予約枠A (会員貸切)', people: 4, count: 15 },
+                { id: 2, name: '予約枠B (一般利用)', people: 6, count: 25 },
+                { id: 3, name: '予約枠C (VIPプラン)', people: 2, count: 10 }
+            ]
+        };
+
+        const STORAGE_KEY = 'venture_factory_sauna_linen_state_v1';
+        const HISTORY_KEY = 'venture_factory_sauna_linen_history_v1';
+
+        function loadState() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    state = parsed;
+                } catch(e) {}
+            }
+        }
+
+        function saveState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        const totalCostInput = document.getElementById('total-cost-input');
+        const memoInput = document.getElementById('memo-input');
+        const slotsTableBody = document.getElementById('slots-table-body');
+        const summaryTotalDisplay = document.getElementById('summary-total-display');
+        const addSlotBtn = document.getElementById('add-slot-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const exportCsvBtn = document.getElementById('export-csv-btn');
+        const saveHistoryBtn = document.getElementById('save-history-btn');
+        const clearHistoryBtn = document.getElementById('clear-history-btn');
+        const historyContainer = document.getElementById('history-container');
+
+        function render() {
+            totalCostInput.value = state.totalCost;
+            memoInput.value = state.memo;
+
+            const calculated = calculateAllocation(state.totalCost, state.slots);
+
+            slotsTableBody.innerHTML = '';
+            let sumCost = 0;
+
+            calculated.forEach((slot, index) => {
+                sumCost += slot.cost;
+
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-800/40 transition';
+
+                // Name td
+                const tdName = document.createElement('td');
+                tdName.className = 'py-3 px-4';
+                const inputName = document.createElement('input');
+                inputName.type = 'text';
+                inputName.value = slot.name;
+                inputName.className = 'w-full bg-slate-900 border border-slate-700 rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500';
+                inputName.addEventListener('input', (e) => {
+                    state.slots[index].name = e.target.value;
+                    saveState();
+                });
+                tdName.appendChild(inputName);
+
+                // People td
+                const tdPeople = document.createElement('td');
+                tdPeople.className = 'py-3 px-4';
+                const inputPeople = document.createElement('input');
+                inputPeople.type = 'number';
+                inputPeople.value = slot.people;
+                inputPeople.min = '0';
+                inputPeople.className = 'w-24 bg-slate-900 border border-slate-700 rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-mono';
+                inputPeople.addEventListener('input', (e) => {
+                    state.slots[index].people = Number(e.target.value);
+                    saveState();
+                });
+                tdPeople.appendChild(inputPeople);
+
+                // Count td
+                const tdCount = document.createElement('td');
+                tdCount.className = 'py-3 px-4';
+                const inputCount = document.createElement('input');
+                inputCount.type = 'number';
+                inputCount.value = slot.count;
+                inputCount.min = '0';
+                inputCount.className = 'w-24 bg-slate-900 border border-slate-700 rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-mono';
+                inputCount.addEventListener('input', (e) => {
+                    state.slots[index].count = Number(e.target.value);
+                    saveState();
+                    render();
+                });
+                tdCount.appendChild(inputCount);
+
+                // Cost td
+                const tdCost = document.createElement('td');
+                tdCost.className = 'py-3 px-4 text-right font-mono font-bold text-amber-400';
+                tdCost.textContent = slot.cost.toLocaleString() + ' 円';
+
+                // Action td
+                const tdAction = document.createElement('td');
+                tdAction.className = 'py-3 px-2 text-center';
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'text-slate-500 hover:text-red-400 p-1.5 transition';
+                deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+                deleteBtn.addEventListener('click', () => {
+                    if (state.slots.length <= 1) {
+                        alert('最低1つの予約枠が必要です。');
+                        return;
+                    }
+                    state.slots.splice(index, 1);
+                    saveState();
+                    render();
+                });
+                tdAction.appendChild(deleteBtn);
+
+                tr.appendChild(tdName);
+                tr.appendChild(tdPeople);
+                tr.appendChild(tdCount);
+                tr.appendChild(tdCost);
+                tr.appendChild(tdAction);
+
+                slotsTableBody.appendChild(tr);
+            });
+
+            summaryTotalDisplay.textContent = `合計: ${sumCost.toLocaleString()}円 (総額一致)`;
+            renderHistory();
+        }
+
+        totalCostInput.addEventListener('input', (e) => {
+            state.totalCost = Number(e.target.value);
+            saveState();
+            render();
+        });
+
+        memoInput.addEventListener('input', (e) => {
+            state.memo = e.target.value;
+            saveState();
+        });
+
+        addSlotBtn.addEventListener('click', () => {
+            const newId = state.slots.length > 0 ? Math.max(...state.slots.map(s => s.id)) + 1 : 1;
+            state.slots.push({ id: newId, name: `予約枠 ${String.fromCharCode(65 + state.slots.length)}`, people: 2, count: 10 });
+            saveState();
+            render();
+        });
+
+        resetBtn.addEventListener('click', () => {
+            if (confirm('入力内容を初期状態に戻しますか？')) {
+                localStorage.removeItem(STORAGE_KEY);
+                state = {
+                    totalCost: 25000,
+                    memo: '2026年3月分 リネン費用',
+                    slots: [
+                        { id: 1, name: '予約枠A (会員貸切)', people: 4, count: 15 },
+                        { id: 2, name: '予約枠B (一般利用)', people: 6, count: 25 },
+                        { id: 3, name: '予約枠C (VIPプラン)', people: 2, count: 10 }
+                    ]
+                };
+                render();
+            }
+        });
+
+        // CSV Export with UTF-8 BOM
+        exportCsvBtn.addEventListener('click', () => {
+            const calculated = calculateAllocation(state.totalCost, state.slots);
+            let csv = '\uFEFF'; // BOM
+            csv += 'メモ,予約枠名,利用人数,使用リネン枚数,按分負担額(円)\r\n';
+            calculated.forEach(slot => {
+                csv += `"${state.memo}","${slot.name}",${slot.people},${slot.count},${slot.cost}\r\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `linen_allocation_${new Date().toISOString().slice(0, 10)}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // History Management
+        function getHistory() {
+            const saved = localStorage.getItem(HISTORY_KEY);
+            if (saved) {
+                try { return JSON.parse(saved); } catch(e) {}
+            }
+            return [];
+        }
+
+        saveHistoryBtn.addEventListener('click', () => {
+            const history = getHistory();
+            const calculated = calculateAllocation(state.totalCost, state.slots);
+            const record = {
+                date: new Date().toLocaleString(),
+                memo: state.memo,
+                totalCost: state.totalCost,
+                slots: calculated
+            };
+            history.unshift(record);
+            if (history.length > 10) history.pop(); // keep last 10
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+            renderHistory();
+            alert('現在の計算結果を履歴に保存しました。');
+        });
+
+        clearHistoryBtn.addEventListener('click', () => {
+            if (confirm('保存された履歴をすべて削除しますか？')) {
+                localStorage.removeItem(HISTORY_KEY);
+                renderHistory();
+            }
+        });
+
+        function renderHistory() {
+            const history = getHistory();
+            historyContainer.innerHTML = '';
+            if (history.length === 0) {
+                historyContainer.innerHTML = '<p class="text-xs text-slate-500">保存された履歴はありません。</p>';
+                return;
+            }
+            history.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'bg-slate-900/60 border border-slate-700/60 p-3 rounded-lg text-xs flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2';
+                
+                const info = document.createElement('div');
+                info.innerHTML = `<span class="text-amber-400 font-bold">${item.date}</span> - ${item.memo} (総額: ${item.totalCost.toLocaleString()}円)`;
+                
+                div.appendChild(info);
+                historyContainer.appendChild(div);
+            });
+        }
+
+        // Init
+        loadState();
+        render();
+    </script>
+</body>
+</html>
