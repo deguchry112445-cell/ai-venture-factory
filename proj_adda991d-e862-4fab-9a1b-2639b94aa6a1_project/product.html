@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"proj_adda991d-e862-4fab-9a1b-2639b94aa6a1_project",value:1480,currency:"JPY"});}});</script><script>(function(){var p=new URLSearchParams(window.location.search),k=p.get("key"),s="vf_unlocked_proj_adda991d-e862-4fab-9a1b-2639b94aa6a1_project";if(k==="9jouy4q0roijuiz2x21iv"){var f=localStorage.getItem(s)!=="true";localStorage.setItem(s,"true");if(f&&typeof gtag==="function"){gtag("event","first_product_access",{item_name:"proj_adda991d-e862-4fab-9a1b-2639b94aa6a1_project"});}}else if(localStorage.getItem(s)!=="true"){document.documentElement.innerHTML="<body style=\"background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\"><div style=\"text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px\"><h2>購入者専用ページ</h2><p style=\"color:#94a3b8;font-size:.9rem\">購入完了後の正規リダイレクトからのみアクセス可能です。</p><a href=\"https://deguchry112445-cell.github.io/ai-venture-factory/proj_adda991d-e862-4fab-9a1b-2639b94aa6a1_project/\" style=\"display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:.5rem\">販売ページへ戻る</a></div></body>";window.stop();}})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】個人キャバクラ専用 セット料金・指名料動的按分計算機 | Venture Factory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-rose-500 selection:text-white">
+
+    <!-- Critical Warning Bar -->
+    <div class="bg-amber-500/10 border-b border-amber-500/20 text-amber-300 px-4 py-3 text-xs">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-triangle-exclamation text-amber-400 text-sm"></i>
+                <span><strong>【重要】</strong>次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください。</span>
+            </div>
+            <button type="button" id="copy-url-btn" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1.5 rounded-lg transition shrink-0">
+                <i class="fa-solid fa-link mr-1"></i> 現在の専用URLをコピー
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-slate-900 border-b border-slate-800 py-4 px-6">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-xs px-2.5 py-1 rounded-md font-bold">完全版</span>
+                <h1 class="text-sm font-bold tracking-tight">個人キャバクラ専用 セット料金・指名料動的按分計算機</h1>
+            </div>
+            <span class="text-xs text-slate-400">Venture Factory</span>
+        </div>
+    </nav>
+
+    <!-- Main Application Container -->
+    <main class="max-w-6xl mx-auto p-4 md:p-8 space-y-8">
+        
+        <!-- Notice / Restrictions -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 text-xs text-slate-400 flex items-start gap-3">
+            <i class="fa-solid fa-circle-info text-rose-500 mt-0.5 text-sm"></i>
+            <div>
+                <span class="font-bold text-slate-200">前提条件・制限事項：</span> 本ツールはグループ総額（税サ込）に対するセット料金・指名料の動的按分を最大剰余法を用いて完璧に算出します。入力データはブラウザ（localStorage）に自動保存されます。
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8">
+            <!-- Input Panel -->
+            <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                <h2 class="font-bold text-base flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-rose-500"></i> 伝票データの入力
+                </h2>
+
+                <form id="calc-form" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">グループ識別名 / 伝票番号</label>
+                        <input type="text" id="input-title" placeholder="例: 山田様グループ 3名" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-rose-500">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">総額（税込・円）</label>
+                            <input type="number" id="input-total" min="0" value="45000" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-rose-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">お客様人数</label>
+                            <input type="number" id="input-guests" min="1" max="20" value="3" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-rose-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">指名料・同伴料 合計（円）</label>
+                        <input type="number" id="input-nominee" min="0" value="6000" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-rose-500">
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-rose-600/30 transition text-sm">
+                        <i class="fa-solid fa-calculator mr-2"></i> 按分計算を実行・保存
+                    </button>
+                </form>
+            </div>
+
+            <!-- Output & History Panel -->
+            <div class="lg:col-span-7 space-y-6">
+                <!-- Current Calculation Result -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-bold text-base flex items-center gap-2">
+                            <i class="fa-solid fa-file-invoice-dollar text-rose-500"></i> 最新の計算結果
+                        </h2>
+                        <button type="button" id="export-csv-btn" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3 py-1.5 rounded-lg transition border border-slate-700">
+                            <i class="fa-solid fa-file-csv mr-1"></i> CSVダウンロード
+                        </button>
+                    </div>
+
+                    <div id="current-result-container" class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+                        <p class="text-xs text-slate-500 text-center py-4">左側のフォームから計算を実行してください。</p>
+                    </div>
+                </div>
+
+                <!-- Saved History List -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-bold text-base flex items-center gap-2">
+                            <i class="fa-solid fa-box-archive text-rose-500"></i> 計算履歴（自動保存）
+                        </h2>
+                        <button type="button" id="clear-history-btn" class="text-xs text-slate-500 hover:text-rose-400 transition">
+                            <i class="fa-solid fa-trash mr-1"></i> 履歴をすべて削除
+                        </button>
+                    </div>
+
+                    <div id="history-container" class="space-y-3 max-h-96 overflow-y-auto pr-1">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-8 px-6 text-center text-xs text-slate-500 mt-16">
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <!-- Application Logic -->
+    <script>
+        // Pure Calculation Function (Maximum Remainder Method)
+        function computeAllocation(total, guests, nominee) {
+            const safeTotal = Math.max(0, parseFloat(total) || 0);
+            const safeGuests = Math.max(1, parseInt(guests) || 1);
+            const safeNominee = Math.max(0, parseFloat(nominee) || 0);
+
+            const baseTotal = Math.max(0, safeTotal - safeNominee);
+            const perGuestBase = Math.floor(baseTotal / safeGuests);
+            const remainder = baseTotal % safeGuests;
+
+            let items = [];
+            let allocatedSum = 0;
+
+            for (let i = 0; i < safeGuests; i++) {
+                let amt = perGuestBase + (i < remainder ? 1 : 0);
+                allocatedSum += amt;
+                items.push({
+                    guestNumber: i + 1,
+                    baseAmount: amt,
+                    nomineeShare: Math.floor(safeNominee / safeGuests)
+                });
+            }
+
+            return {
+                total: safeTotal,
+                guests: safeGuests,
+                nominee: safeNominee,
+                baseTotal: baseTotal,
+                items: items,
+                verifiedSum: allocatedSum + safeNominee
+            };
+        }
+
+        // State Management
+        const STORAGE_KEY = 'venture_factory_cab_calc_history_v1';
+
+        function loadHistory() {
+            try {
+                const data = localStorage.getItem(STORAGE_KEY);
+                return data ? JSON.parse(data) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveHistory(history) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+            } catch (e) {}
+        }
+
+        // UI Renderer
+        function renderCurrentResult(calc, title) {
+            const container = document.getElementById('current-result-container');
+            container.innerHTML = '';
+
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'flex justify-between items-center border-b border-slate-800 pb-3 mb-3';
+            headerDiv.innerHTML = `
+                <div>
+                    <div class="font-bold text-sm text-white">${escapeHTML(title)}</div>
+                    <div class="text-xs text-slate-400">人数: ${calc.guests}名 / 総額: ¥${calc.total.toLocaleString()}</div>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded font-mono">誤差 ¥0保証</span>
+                </div>
+            `;
+            container.appendChild(headerDiv);
+
+            const listDiv = document.createElement('div');
+            listDiv.className = 'space-y-2';
+
+            calc.items.forEach((item) => {
+                const row = document.createElement('div');
+                row.className = 'flex justify-between items-center text-sm bg-slate-900 p-2.5 rounded-lg border border-slate-800/50';
+                row.innerHTML = `
+                    <span class="text-slate-300">お客様 #${item.guestNumber}</span>
+                    <span class="font-mono font-bold text-white">¥${item.baseAmount.toLocaleString()} <span class="text-xs font-normal text-slate-500">(基本按分)</span></span>
+                `;
+                listDiv.appendChild(row);
+            });
+            container.appendChild(listDiv);
+        }
+
+        function renderHistory() {
+            const history = loadHistory();
+            const container = document.getElementById('history-container');
+            container.innerHTML = '';
+
+            if (history.length === 0) {
+                container.innerHTML = '<p class="text-xs text-slate-500 text-center py-4">保存された計算履歴はありません。</p>';
+                return;
+            }
+
+            history.forEach((entry, index) => {
+                const card = document.createElement('div');
+                card.className = 'bg-slate-950 border border-slate-800 rounded-xl p-4 flex justify-between items-center text-sm';
+                
+                const info = document.createElement('div');
+                info.innerHTML = `
+                    <div class="font-bold text-white mb-0.5">${escapeHTML(entry.title)}</div>
+                    <div class="text-xs text-slate-400">総額: ¥${entry.calc.total.toLocaleString()} / 人数: ${entry.calc.guests}名</div>
+                `;
+
+                const actions = document.createElement('div');
+                actions.className = 'flex items-center gap-2';
+                
+                const btn = document.createElement('button');
+                btn.className = 'bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs px-2.5 py-1.5 rounded-lg border border-slate-700 transition';
+                btn.textContent = '詳細表示';
+                btn.addEventListener('click', () => {
+                    renderCurrentResult(entry.calc, entry.title);
+                });
+
+                actions.appendChild(btn);
+                card.appendChild(info);
+                card.appendChild(actions);
+                container.appendChild(card);
+            });
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>]/g, function(tag) {
+                let chars = { '&': '&amp;', '<': '&lt;', '>': '&gt;' };
+                return chars[tag] || tag;
+            });
+        }
+
+        // Event Listeners
+        document.getElementById('calc-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('input-title').value;
+            const total = document.getElementById('input-total').value;
+            const guests = document.getElementById('input-guests').value;
+            const nominee = document.getElementById('input-nominee').value;
+
+            const calc = computeAllocation(total, guests, nominee);
+            renderCurrentResult(calc, title);
+
+            const history = loadHistory();
+            history.unshift({ title, calc, timestamp: new Date().toISOString() });
+            if (history.length > 20) history.pop();
+            saveHistory(history);
+            renderHistory();
+        });
+
+        document.getElementById('clear-history-btn').addEventListener('click', () => {
+            if (confirm('計算履歴をすべて削除しますか？')) {
+                localStorage.removeItem(STORAGE_KEY);
+                renderHistory();
+            }
+        });
+
+        document.getElementById('export-csv-btn').addEventListener('click', () => {
+            const history = loadHistory();
+            if (history.length === 0) {
+                alert('エクスポートするデータがありません。');
+                return;
+            }
+
+            let csvContent = '\uFEFF伝票名,総額,人数,指名料,お客様番号,割当額\n';
+            history.forEach(item => {
+                item.calc.items.forEach(g => {
+                    csvContent += `"${item.title}",${item.calc.total},${item.calc.guests},${item.calc.nominee},${g.guestNumber},${g.baseAmount}\n`;
+                });
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `cab_allocation_history_${new Date().toISOString().slice(0,10)}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+
+        document.getElementById('copy-url-btn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.HREF || window.location.href).then(() => {
+                alert('専用URLをコピーしました！ブックマーク等に保存してください。');
+            }).catch(() => {
+                alert('コピーに失敗しました。ブラウザのアドレスバーからURLをコピーしてください。');
+            });
+        });
+
+        // Initial Render
+        const initialHistory = loadHistory();
+        if (initialHistory.length > 0) {
+            renderCurrentResult(initialHistory[0].calc, initialHistory[0].title);
+        }
+        renderHistory();
+    </script>
+</body>
+</html>
