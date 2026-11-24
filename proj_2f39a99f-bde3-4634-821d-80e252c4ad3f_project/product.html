@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"proj_2f39a99f-bde3-4634-821d-80e252c4ad3f_project",value:1480,currency:"JPY"});}});</script><script>(function(){var p=new URLSearchParams(window.location.search),k=p.get("key"),s="vf_unlocked_proj_2f39a99f-bde3-4634-821d-80e252c4ad3f_project";if(k==="mzbl3l52ep8t0uyoulks7"){var f=localStorage.getItem(s)!=="true";localStorage.setItem(s,"true");if(f&&typeof gtag==="function"){gtag("event","first_product_access",{item_name:"proj_2f39a99f-bde3-4634-821d-80e252c4ad3f_project"});}}else if(localStorage.getItem(s)!=="true"){document.documentElement.innerHTML="<body style=\"background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\"><div style=\"text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px\"><h2>購入者専用ページ</h2><p style=\"color:#94a3b8;font-size:.9rem\">購入完了後の正規リダイレクトからのみアクセス可能です。</p><a href=\"https://deguchry112445-cell.github.io/ai-venture-factory/proj_2f39a99f-bde3-4634-821d-80e252c4ad3f_project/\" style=\"display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:.5rem\">販売ページへ戻る</a></div></body>";window.stop();}})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】個人シーシャ店専用按分計算機 - Venture Factory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        shisha: {
+                            50: '#fdf4f0',
+                            100: '#fbe8e1',
+                            500: '#d97757',
+                            600: '#c25e3c',
+                            700: '#a14a2d',
+                            900: '#78351e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- 重要注意バー -->
+    <div class="bg-amber-500/10 border-b border-amber-500/30 text-amber-200 px-4 py-3 text-xs md:text-sm">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-center sm:text-left">
+                <i class="fa-solid fa-triangle-exclamation text-amber-400 shrink-0 text-base"></i>
+                <span><strong>【重要】</strong>次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください。</span>
+            </div>
+            <button id="copy-url-btn" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-4 py-2 rounded-lg transition shrink-0 flex items-center gap-1.5">
+                <i class="fa-solid fa-copy"></i> 現在の専用URLをコピー
+            </button>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="border-b border-slate-800 bg-slate-900 px-4 py-4">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-shisha-500 text-white flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-base md:text-lg">個人シーシャ店専用按分計算機</h1>
+                    <p class="text-xs text-slate-400">完全版 Webアプリケーション</p>
+                </div>
+            </div>
+            <div class="text-xs font-semibold uppercase tracking-wider bg-shisha-500/10 text-shisha-500 px-3 py-1 rounded-full border border-shisha-500/20">
+                Venture Factory PRO
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full grid lg:grid-cols-3 gap-8">
+        
+        <!-- 入力フォームエリア (左2カラム) -->
+        <div class="lg:col-span-2 space-y-6">
+            <div class="bg-slate-950 border border-slate-800 p-6 rounded-3xl shadow-xl">
+                <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-shisha-500"></i> 月次コスト・スタッフ配分入力
+                </h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">総炭代（円）</label>
+                        <input type="number" id="total-charcoal" value="40000" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-shisha-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">総フレーバー代（円）</label>
+                        <input type="number" id="total-flavor" value="100000" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-shisha-500 transition">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="text-xs font-semibold text-slate-400 uppercase">スタッフ別シフト・提供データ</label>
+                        <button id="add-staff-btn" class="text-xs text-shisha-500 hover:text-shisha-400 font-bold flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> スタッフ追加
+                        </button>
+                    </div>
+                    <div id="staff-list" class="space-y-3">
+                        <!-- 動的に追加 -->
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <button id="calc-btn" class="flex-1 bg-shisha-500 hover:bg-shisha-600 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-shisha-500/20">
+                        計算を実行する
+                    </button>
+                    <button id="save-history-btn" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-6 py-4 rounded-xl font-bold transition flex items-center gap-2">
+                        <i class="fa-solid fa-floppy-disk text-shisha-500"></i> 履歴に保存
+                    </button>
+                </div>
+            </div>
+
+            <!-- 注意事項・制限事項 -->
+            <div class="bg-slate-950/50 border border-slate-800/60 p-5 rounded-2xl text-xs text-slate-400 space-y-2">
+                <p class="font-semibold text-slate-300"><i class="fa-solid fa-circle-info text-shisha-500 mr-1"></i> 計算の前提条件・制限事項</p>
+                <p>※本ツールは最大剰余法（Largest Remainder Method）を採用しており、配分後の合計金額は必ず入力された総額と一致します。</p>
+                <p>※ブラウザのローカルストレージ（localStorage）に計算結果が自動保存されますが、ブラウザデータクリア等で消失する恐れがあるため重要なデータはCSV出力を行ってください。</p>
+            </div>
+        </div>
+
+        <!-- 結果・履歴エリア (右1カラム) -->
+        <div class="space-y-6">
+            <!-- 結果表示 -->
+            <div class="bg-slate-950 border border-slate-800 p-6 rounded-3xl shadow-xl">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-file-invoice-dollar text-shisha-500"></i> 計算結果明細
+                    </h2>
+                    <button id="csv-download-btn" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs text-slate-300 px-3 py-2 rounded-lg font-medium transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-download text-shisha-500"></i> CSV出力
+                    </button>
+                </div>
+                <div id="result-area" class="space-y-4 text-sm">
+                    <p class="text-slate-500 text-center py-8">左側のフォームから「計算を実行する」を押してください。</p>
+                </div>
+            </div>
+
+            <!-- 保存履歴 -->
+            <div class="bg-slate-950 border border-slate-800 p-6 rounded-3xl shadow-xl">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-clock-rotate-left text-shisha-500"></i> 保存済み履歴
+                    </h2>
+                    <button id="clear-history-btn" class="text-xs text-red-400 hover:text-red-300 font-medium">
+                        履歴全削除
+                    </button>
+                </div>
+                <div id="history-list" class="space-y-3 max-h-60 overflow-y-auto pr-1">
+                    <p class="text-slate-500 text-center py-6 text-xs">保存された履歴はありません。</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-8 px-4 text-center text-xs text-slate-500 mt-12">
+        <div class="max-w-6xl mx-auto">
+            <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- アプリケーションロジック -->
+    <script>
+        let staffData = [
+            { name: 'スタッフA', weight: 90 },
+            { name: 'スタッフB', weight: 120 },
+            { name: 'スタッフC', weight: 70 }
+        ];
+
+        let currentResult = null;
+
+        // 最大剰余法による按分計算関数
+        function calculateAllocation(totalAmount, weights) {
+            if (isNaN(totalAmount) || totalAmount < 0) totalAmount = 0;
+            const validWeights = weights.map(w => isNaN(w) || w < 0 ? 0 : w);
+            const totalWeight = validWeights.reduce((a, b) => a + b, 0);
+            
+            if (totalWeight === 0) {
+                return validWeights.map(() => 0);
+            }
+
+            let allocated = validWeights.map(w => {
+                return {
+                    exact: (totalAmount * w) / totalWeight,
+                    floor: Math.floor((totalAmount * w) / totalWeight)
+                };
+            });
+
+            let currentSum = allocated.reduce((a, c) => a + c.floor, 0);
+            let remainder = totalAmount - currentSum;
+
+            let sortedIndices = allocated
+                .map((item, index) => ({ index, remainderPart: item.exact - item.floor }))
+                .sort((a, b) => b.remainderPart - a.remainderPart);
+
+            let result = allocated.map(item => item.floor);
+            for (let i = 0; i < remainder; i++) {
+                result[sortedIndices[i % sortedIndices.length].index] += 1;
+            }
+
+            return result;
+        }
+
+        // スタッフ入力欄の描画
+        function renderStaffInputs() {
+            const container = document.getElementById('staff-list');
+            container.innerHTML = '';
+            staffData.forEach((staff, index) => {
+                const div = document.createElement('div');
+                div.className = 'flex gap-3 items-center';
+                
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.value = staff.name;
+                nameInput.className = 'w-1/2 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-shisha-500';
+                nameInput.placeholder = 'スタッフ名';
+                nameInput.addEventListener('input', (e) => {
+                    staffData[index].name = e.target.value;
+                });
+
+                const weightInput = document.createElement('input');
+                weightInput.type = 'number';
+                weightInput.value = staff.weight;
+                weightInput.className = 'w-1/3 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-shisha-500';
+                weightInput.placeholder = '提供数/時間';
+                weightInput.addEventListener('input', (e) => {
+                    staffData[index].weight = parseFloat(e.target.value) || 0;
+                });
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'w-10 h-10 bg-slate-900 hover:bg-red-500/20 text-slate-400 hover:text-red-400 border border-slate-800 rounded-xl flex items-center justify-center transition shrink-0';
+                deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                deleteBtn.addEventListener('click', () => {
+                    if (staffData.length <= 1) {
+                        alert('最低1名のスタッフが必要です');
+                        return;
+                    }
+                    staffData.splice(index, 1);
+                    renderStaffInputs();
+                });
+
+                div.appendChild(nameInput);
+                div.appendChild(weightInput);
+                div.appendChild(deleteBtn);
+                container.appendChild(div);
+            });
+        }
+
+        // スタッフ追加ボタン
+        document.getElementById('add-staff-btn').addEventListener('click', () => {
+            staffData.push({ name: `スタッフ${String.fromCharCode(65 + staffData.length)}`, weight: 50 });
+            renderStaffInputs();
+        });
+
+        // 計算実行ボタン
+        document.getElementById('calc-btn').addEventListener('click', () => {
+            const charcoal = parseFloat(document.getElementById('total-charcoal').value) || 0;
+            const flavor = parseFloat(document.getElementById('total-flavor').value) || 0;
+            const weights = staffData.map(s => s.weight);
+            const names = staffData.map(s => s.name || '未設定');
+
+            const charcoalAllocated = calculateAllocation(charcoal, weights);
+            const flavorAllocated = calculateAllocation(flavor, weights);
+
+            currentResult = {
+                date: new Date().toLocaleDateString(),
+                charcoal,
+                flavor,
+                details: names.map((name, i) => ({
+                    name,
+                    weight: weights[i],
+                    charcoal: charcoalAllocated[i],
+                    flavor: flavorAllocated[i]
+                }))
+            };
+
+            renderResult(currentResult);
+        });
+
+        // 結果表示描画
+        function renderResult(res) {
+            const area = document.getElementById('result-area');
+            area.innerHTML = '';
+
+            let totalC = 0;
+            let totalF = 0;
+
+            res.details.forEach(item => {
+                totalC += item.charcoal;
+                totalF += item.flavor;
+
+                const card = document.createElement('div');
+                card.className = 'bg-slate-900 border border-slate-800/80 p-4 rounded-2xl';
+                
+                const title = document.createElement('div');
+                title.className = 'font-bold text-slate-200 mb-2 flex justify-between items-center';
+                title.textContent = item.name;
+                
+                const weightSpan = document.createElement('span');
+                weightSpan.className = 'text-xs text-slate-400 font-normal';
+                weightSpan.textContent = `ウエイト: ${item.weight}`;
+                title.appendChild(weightSpan);
+
+                const body = document.createElement('div');
+                body.className = 'grid grid-cols-2 gap-2 text-xs text-slate-300';
+                
+                const cDiv = document.createElement('div');
+                cDiv.textContent = `炭代: ¥${item.charcoal.toLocaleString()}`;
+                
+                const fDiv = document.createElement('div');
+                fDiv.textContent = `フレーバー代: ¥${item.flavor.toLocaleString()}`;
+
+                body.appendChild(cDiv);
+                body.appendChild(fDiv);
+
+                card.appendChild(title);
+                card.appendChild(body);
+                area.appendChild(card);
+            });
+
+            const sumCard = document.createElement('div');
+            sumCard.className = 'bg-shisha-500/10 border border-shisha-500/20 p-4 rounded-2xl font-bold text-shisha-500 text-xs flex justify-between items-center';
+            sumCard.textContent = `合計金額一致確認: 炭代 ¥${totalC.toLocaleString()} / フレーバー ¥${totalF.toLocaleString()}`;
+            area.appendChild(sumCard);
+        }
+
+        // 履歴保存機能（localStorage）
+        document.getElementById('save-history-btn').addEventListener('click', () => {
+            if (!currentResult) {
+                alert('先に計算を実行してください。');
+                return;
+            }
+            let history = JSON.parse(localStorage.getItem('shisha_calc_history') || '[]');
+            history.unshift(currentResult);
+            if (history.length > 20) history.pop();
+            localStorage.setItem('shisha_calc_history', JSON.stringify(history));
+            loadHistory();
+            alert('計算結果を履歴に保存しました。');
+        });
+
+        // 履歴読み込み
+        function loadHistory() {
+            const container = document.getElementById('history-list');
+            const history = JSON.parse(localStorage.getItem('shisha_calc_history') || '[]');
+            container.innerHTML = '';
+
+            if (history.length === 0) {
+                container.innerHTML = '<p class="text-slate-500 text-center py-6 text-xs">保存された履歴はありません。</p>';
+                return;
+            }
+
+            history.forEach((item, idx) => {
+                const div = document.createElement('div');
+                div.className = 'bg-slate-900 border border-slate-800 p-3 rounded-xl text-xs flex justify-between items-center';
+                
+                const info = document.createElement('div');
+                info.textContent = `${item.date} - 炭:¥${item.charcoal.toLocaleString()} / フラ:¥${item.flavor.toLocaleString()}`;
+                
+                const loadBtn = document.createElement('button');
+                loadBtn.className = 'text-shisha-500 hover:text-shisha-400 font-bold';
+                loadBtn.textContent = '読込';
+                loadBtn.addEventListener('click', () => {
+                    currentResult = item;
+                    renderResult(item);
+                });
+
+                div.appendChild(info);
+                div.appendChild(loadBtn);
+                container.appendChild(div);
+            });
+        }
+
+        // 履歴全削除
+        document.getElementById('clear-history-btn').addEventListener('click', () => {
+            if (confirm('保存された履歴をすべて削除しますか？')) {
+                localStorage.removeItem('shisha_calc_history');
+                loadHistory();
+            }
+        });
+
+        // CSV出力機能（BOM付きUTF-8）
+        document.getElementById('csv-download-btn').addEventListener('click', () => {
+            if (!currentResult) {
+                alert('出力する計算結果がありません。');
+                return;
+            }
+
+            let csv = '\uFEFFスタッフ名,ウエイト,炭代(円),フレーバー代(円)\n';
+            currentResult.details.forEach(item => {
+                csv += `"${item.name}",${item.weight},${item.charcoal},${item.flavor}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `shisha_allocation_${new Date().toISOString().slice(0,10)}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // 専用URLコピーボタン
+        document.getElementById('copy-url-btn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('現在の専用URLをクリップボードにコピーしました！');
+            }).catch(err => {
+                alert('コピーに失敗しました。アドレスバーから手動でコピーしてください。');
+            });
+        });
+
+        // 初期化実行
+        renderStaffInputs();
+        loadHistory();
+    </script>
+</body>
+</html>
