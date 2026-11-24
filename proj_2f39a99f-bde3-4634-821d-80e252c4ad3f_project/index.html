@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"proj_2f39a99f-bde3-4634-821d-80e252c4ad3f_project",value:1480,currency:"JPY"});}});</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人シーシャ店専用 シーシャ台・炭代動費按分計算機</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        shisha: {
+                            50: '#fdf4f0',
+                            100: '#fbe8e1',
+                            500: '#d97757',
+                            600: '#c25e3c',
+                            700: '#a14a2d',
+                            900: '#78351e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-shisha-500 selection:text-white">
+    <!-- ヘッダー -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="../" class="text-sm text-slate-400 hover:text-shisha-500 transition flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> ツール一覧へ戻る
+            </a>
+            <div class="text-xs font-semibold uppercase tracking-wider bg-shisha-500/10 text-shisha-500 px-3 py-1 rounded-full border border-shisha-500/20">
+                Venture Factory
+            </div>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="py-16 md:py-24 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(217,119,87,0.15),transparent_50%)]"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 bg-slate-800 border border-slate-700 px-4 py-2 rounded-full text-xs md:text-sm text-shisha-500 font-medium mb-6">
+                <i class="fa-solid fa-fire"></i> 開業1〜3年目の個人シーシャ店主の「毎月の計算地獄」をゼロに
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight mb-6">
+                毎月の炭代・フレーバーの按分計算、<br class="hidden md:block">
+                もうスプレッドシートで悩まない。
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+                シフト別・スタッフ別の消耗品コストを30秒で自動算出＆明細書一発生成ツール。ブラウザ上で即座に使える買い切りWebツール。
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://buy.stripe.com/aFa14ngQLehW9CC0h7eQM0y" class="w-full sm:w-auto bg-shisha-500 hover:bg-shisha-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-shisha-500/30 transition transform hover:-translate-y-0.5 text-center text-lg flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-cart-shopping"></i> 今すぐ導入する (1,480円)
+                </a>
+                <a href="#demo" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold px-6 py-4 rounded-xl transition text-center">
+                    無料デモを試す <i class="fa-solid fa-arrow-down ml-1"></i>
+                </a>
+            </div>
+            <p class="text-xs text-slate-500 mt-4">※買い切り型（月額なし） / データ自動保存・CSV出力機能付き</p>
+        </div>
+    </section>
+
+    <!-- 課題セクション -->
+    <section class="py-16 bg-slate-950/50 border-y border-slate-800/80 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">
+                こんな「毎月の面倒な作業」に疲れていませんか？
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">毎月数時間の疲弊</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        手計算や複雑なエクセル関数と格闘し、月末の忙しい時期に何時間も時間を奪われている。
+                    </p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">計算ミスとトラブル</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        シフトごとの使用量や按分率のズレから、スタッフ間の不信感や計算ミスのリスクを抱えている。
+                    </p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-shisha-500/10 text-shisha-500 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-file-excel"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">既存ツールの限界</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        一般的な会計ソフトでは、シーシャ特有の炭代・フレーバーの細かいシフト別按分に対応できない。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 無料ライブ体験デモ枠 -->
+    <section id="demo" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-shisha-500 text-sm font-semibold uppercase tracking-wider bg-shisha-500/10 px-3 py-1 rounded-full">Interactive Demo</span>
+                <h2 class="text-2xl md:text-3xl font-bold mt-3 mb-2">無料ライブ体験デモ</h2>
+                <p class="text-slate-400">実際の計算ロジックをブラウザ上で今すぐお試しいただけます。</p>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-lg text-slate-200"><i class="fa-solid fa-calculator text-shisha-500 mr-2"></i>按分計算シミュレーター</h3>
+                    <button id="sample-btn" class="bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 font-medium px-4 py-2 rounded-lg transition border border-slate-700">
+                        <i class="fa-solid fa-wand-magic-sparkles text-shisha-500 mr-1.5"></i>サンプルデータを自動入力
+                    </button>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">総炭代（円）</label>
+                        <input type="number" id="demo-charcoal" value="35000" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-shisha-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">総フレーバー代（円）</label>
+                        <input type="number" id="demo-flavor" value="85000" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-shisha-500 transition">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">スタッフ別提供数 / シフト時間など（カンマ区切りで入力）</label>
+                    <div class="space-y-3" id="demo-staff-container">
+                        <div class="flex gap-3">
+                            <input type="text" value="スタッフA (シフト20h, 提供80台)" class="w-2/3 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-slate-300 text-sm" readonly>
+                            <input type="number" value="80" class="demo-weight w-1/3 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-slate-100 text-sm" placeholder="重み">
+                        </div>
+                        <div class="flex gap-3">
+                            <input type="text" value="スタッフB (シフト30h, 提供120台)" class="w-2/3 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-slate-300 text-sm" readonly>
+                            <input type="number" value="120" class="demo-weight w-1/3 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-slate-100 text-sm" placeholder="重み">
+                        </div>
+                        <div class="flex gap-3">
+                            <input type="text" value="スタッフC (シフト15h, 提供50台)" class="w-2/3 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-slate-300 text-sm" readonly>
+                            <input type="number" value="50" class="demo-weight w-1/3 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-slate-100 text-sm" placeholder="重み">
+                        </div>
+                    </div>
+                </div>
+
+                <button id="demo-calc-btn" class="w-full bg-shisha-500 hover:bg-shisha-600 text-white font-bold py-3.5 rounded-xl transition mb-6 shadow-md">
+                    試算を実行する
+                </button>
+
+                <!-- 結果表示エリア -->
+                <div id="demo-result" class="bg-slate-950 border border-slate-800 rounded-2xl p-5 mb-6 hidden">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">試算結果プレビュー</h4>
+                    <div id="demo-result-content" class="space-y-2 text-sm text-slate-200">
+                        <!-- JSで動的挿入 -->
+                    </div>
+                </div>
+
+                <!-- ロックされた機能群 -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-slate-800">
+                    <button class="locked-btn bg-slate-950 border border-slate-800/80 text-slate-500 py-3 px-4 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 hover:border-shisha-500/50 transition">
+                        <i class="fa-solid fa-lock text-shisha-500"></i> CSV出力機能
+                    </button>
+                    <button class="locked-btn bg-slate-950 border border-slate-800/80 text-slate-500 py-3 px-4 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 hover:border-shisha-500/50 transition">
+                        <i class="fa-solid fa-lock text-shisha-500"></i> 履歴自動保存
+                    </button>
+                    <button class="locked-btn bg-slate-950 border border-slate-800/80 text-slate-500 py-3 px-4 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 hover:border-shisha-500/50 transition">
+                        <i class="fa-solid fa-lock text-shisha-500"></i> 一括処理モード
+                    </button>
+                </div>
+                <p class="text-center text-xs text-slate-500 mt-3">※ロックされた機能をご利用いただくには、完全版をお求めください。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特徴・メリット -->
+    <section class="py-16 bg-slate-950/50 border-y border-slate-800/80 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">
+                このツールが選ばれる3つの理由
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                    <div class="text-shisha-500 font-bold text-xl mb-3">01</div>
+                    <h3 class="font-bold text-lg mb-2">端数完全一致アルゴリズム</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        按分計算でありがちな「合計金額の1円ズレ」を最大剰余法により完璧に解消。監査や精算もスムーズです。
+                    </p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                    <div class="text-shisha-500 font-bold text-xl mb-3">02</div>
+                    <h3 class="font-bold text-lg mb-2">インストール不要・即利用</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        ブラウザだけで動作するため、面倒な初期設定や専用アプリのインストールは一切不要。スマホ・PC対応。
+                    </p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                    <div class="text-shisha-500 font-bold text-xl mb-3">03</div>
+                    <h3 class="font-bold text-lg mb-2">安心の買い切り型</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        月額費用は一切かかりません。一度購入すれば、アップデートも含めて永続的にご利用いただけます。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTAセクション -->
+    <section class="py-20 px-4 text-center">
+        <div class="max-w-3xl mx-auto bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 p-8 md:p-12 rounded-3xl shadow-2xl">
+            <h2 class="text-2xl md:text-4xl font-extrabold mb-4">
+                毎月の計算ストレスから、今すぐ解放されよう。
+            </h2>
+            <p class="text-slate-300 mb-8 max-w-xl mx-auto text-sm md:text-base">
+                わずか1,480円の投資で、毎月の数時間の作業と計算ミスを完全に防止します。
+            </p>
+            <a href="https://buy.stripe.com/aFa14ngQLehW9CC0h7eQM0y" class="inline-flex items-center justify-center gap-3 bg-shisha-500 hover:bg-shisha-600 text-white font-bold px-10 py-5 rounded-2xl shadow-xl shadow-shisha-500/30 transition transform hover:-translate-y-0.5 text-lg">
+                <i class="fa-solid fa-cart-shopping"></i> 完全版を購入する（1,480円・買い切り）
+            </a>
+            <p class="text-xs text-slate-500 mt-4">※決済完了後、すぐに専用Webツールをご利用いただけます。</p>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-12 px-4 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <p>特定商取引法に基づく表記は決済画面（Stripe）にてご確認いただけます。</p>
+            <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // デモ計算ロジック（最大剰余法による端数調整）
+        function calculateAllocation(totalAmount, weights) {
+            if (isNaN(totalAmount) || totalAmount < 0) totalAmount = 0;
+            const validWeights = weights.map(w => isNaN(w) || w < 0 ? 0 : w);
+            const totalWeight = validWeights.reduce((a, b) => a + b, 0);
+            
+            if (totalWeight === 0) {
+                return validWeights.map(() => 0);
+            }
+
+            let allocated = validWeights.map(w => {
+                return {
+                    exact: (totalAmount * w) / totalWeight,
+                    floor: Math.floor((totalAmount * w) / totalWeight)
+                };
+            });
+
+            let currentSum = allocated.reduce((a, c) => a + c.floor, 0);
+            let remainder = totalAmount - currentSum;
+
+            // 余りを小数部分が大きい順に配分
+            let sortedIndices = allocated
+                .map((item, index) => ({ index, remainderPart: item.exact - item.floor }))
+                .sort((a, b) => b.remainderPart - a.remainderPart);
+
+            let result = allocated.map(item => item.floor);
+            for (let i = 0; i < remainder; i++) {
+                result[sortedIndices[i % sortedIndices.length].index] += 1;
+            }
+
+            return result;
+        }
+
+        document.getElementById('demo-calc-btn').addEventListener('click', function() {
+            const charcoal = parseFloat(document.getElementById('demo-charcoal').value) || 0;
+            const flavor = parseFloat(document.getElementById('demo-flavor').value) || 0;
+            const weightInputs = document.querySelectorAll('.demo-weight');
+            const weights = Array.from(weightInputs).map(input => parseFloat(input.value) || 0);
+
+            const charcoalAllocated = calculateAllocation(charcoal, weights);
+            const flavorAllocated = calculateAllocation(flavor, weights);
+
+            const staffNames = ['スタッフA', 'スタッフB', 'スタッフC'];
+            const container = document.getElementById('demo-result-content');
+            container.innerHTML = '';
+
+            let totalC = 0;
+            let totalF = 0;
+
+            staffNames.forEach((name, i) => {
+                const cAmount = charcoalAllocated[i];
+                const fAmount = flavorAllocated[i];
+                totalC += cAmount;
+                totalF += fAmount;
+
+                const div = document.createElement('div');
+                div.className = 'flex justify-between items-center py-1.5 border-b border-slate-800/50 text-xs md:text-sm';
+                div.textContent = `${name}: 炭代 ¥${cAmount.toLocaleString()} / フレーバー代 ¥${fAmount.toLocaleString()}`;
+                container.appendChild(div);
+            });
+
+            const summaryDiv = document.createElement('div');
+            summaryDiv.className = 'flex justify-between items-center pt-2 font-bold text-shisha-500 text-xs md:text-sm';
+            summaryDiv.textContent = `合計: 炭代 ¥${totalC.toLocaleString()} / フレーバー代 ¥${totalF.toLocaleString()} (一致確認OK)`;
+            container.appendChild(summaryDiv);
+
+            document.getElementById('demo-result').classList.remove('hidden');
+        });
+
+        document.getElementById('sample-btn').addEventListener('click', function() {
+            document.getElementById('demo-charcoal').value = '40000';
+            document.getElementById('demo-flavor').value = '90000';
+            const weights = document.querySelectorAll('.demo-weight');
+            if(weights.length >= 3) {
+                weights[0].value = '90';
+                weights[1].value = '110';
+                weights[2].value = '60';
+            }
+            document.getElementById('demo-calc-btn').click();
+        });
+
+        // ロックボタンクリック時のスムーズスクロール
+        document.querySelectorAll('.locked-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const el = document.querySelector('section:nth-last-of-type(2)');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
