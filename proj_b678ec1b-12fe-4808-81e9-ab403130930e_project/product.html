@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"proj_b678ec1b-12fe-4808-81e9-ab403130930e_project",value:1480,currency:"JPY"});}});</script><script>(function(){var p=new URLSearchParams(window.location.search),k=p.get("key"),s="vf_unlocked_proj_b678ec1b-12fe-4808-81e9-ab403130930e_project";if(k==="r3oe5qg7cetmhna21i488"){var f=localStorage.getItem(s)!=="true";localStorage.setItem(s,"true");if(f&&typeof gtag==="function"){gtag("event","first_product_access",{item_name:"proj_b678ec1b-12fe-4808-81e9-ab403130930e_project"});}}else if(localStorage.getItem(s)!=="true"){document.documentElement.innerHTML="<body style=\"background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\"><div style=\"text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px\"><h2>購入者専用ページ</h2><p style=\"color:#94a3b8;font-size:.9rem\">購入完了後の正規リダイレクトからのみアクセス可能です。</p><a href=\"https://deguchry112445-cell.github.io/ai-venture-factory/proj_b678ec1b-12fe-4808-81e9-ab403130930e_project/\" style=\"display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:.5rem\">販売ページへ戻る</a></div></body>";window.stop();}})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人インドアゴルフ練習場専用 打席・電気代動的按分計算機 - 完全版</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+    <!-- ブックマーク警告バー -->
+    <div class="bg-amber-500 text-slate-950 px-4 py-3 text-xs sm:text-sm font-bold text-center sticky top-0 z-50 shadow-md flex flex-col sm:flex-row items-center justify-center gap-3">
+        <span>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください</span>
+        <button type="button" id="copy-url-btn" class="bg-slate-950 text-white px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-slate-800 transition flex items-center gap-1.5">
+            <i class="fa-solid fa-copy"></i> 現在の専用URLをコピー
+        </button>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-emerald-600 bg-emerald-50 p-2 rounded-xl"><i class="fa-solid fa-calculator"></i></span>
+                <h1 class="font-bold text-sm sm:text-base">インドアゴルフ按分計算機 <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded ml-2">完全版</span></h1>
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Venture Factory</span>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-5xl mx-auto px-4 py-8 space-y-8">
+        <!-- 入力パネル -->
+        <section class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-emerald-600"></i> 月次データ入力
+                </h2>
+                <button type="button" id="sample-fill-btn" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-1.5 rounded-lg transition">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> サンプル値を入力
+                </button>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">電気代総額（円）</label>
+                    <input type="number" id="input-elec" value="48000" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">共通固定費総額（家賃・ネット等・円）</label>
+                    <input type="number" id="input-fixed" value="150000" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-2">
+                    <label class="text-xs font-bold text-slate-700">打席別稼働時間（時間）</label>
+                    <button type="button" id="add-booth-btn" class="text-xs text-emerald-600 hover:text-emerald-700 font-bold">
+                        <i class="fa-solid fa-plus mr-1"></i> 打席を追加
+                    </button>
+                </div>
+                <div id="booths-container" class="space-y-3">
+                    <!-- JSで動的生成 -->
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-3 pt-4 border-t border-slate-200">
+                <button type="button" id="save-history-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition flex items-center gap-2">
+                    <i class="fa-solid fa-floppy-disk"></i> 計算結果を履歴に保存
+                </button>
+                <button type="button" id="export-csv-btn" class="bg-slate-800 hover:bg-slate-900 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition flex items-center gap-2">
+                    <i class="fa-solid fa-file-csv"></i> CSV出力 (UTF-8 BOM)
+                </button>
+            </div>
+        </section>
+
+        <!-- 計算結果パネル -->
+        <section class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+            <h2 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-file-invoice-dollar text-emerald-600"></i> 按分計算結果明細
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr class="border-b border-slate-200 text-slate-500">
+                            <th class="pb-3 font-bold">打席名</th>
+                            <th class="pb-3 font-bold">稼働時間</th>
+                            <th class="pb-3 font-bold">按分比率</th>
+                            <th class="pb-3 font-bold">電気代按分</th>
+                            <th class="pb-3 font-bold">固定費按分</th>
+                            <th class="pb-3 font-bold text-right">合計請求額</th>
+                        </tr>
+                    </thead>
+                    <tbody id="result-table-body" class="divide-y divide-slate-100">
+                        <!-- JSで動的生成 -->
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-4">※本ツールは総稼働時間ベースの按分計算であり、最大剰余法を用いて合計金額のズレ（1円未満の端数）を自動調整しています。</p>
+        </section>
+
+        <!-- 保存履歴パネル -->
+        <section class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-clock-rotate-left text-emerald-600"></i> 保存された履歴一覧
+                </h2>
+                <button type="button" id="clear-history-btn" class="text-xs text-rose-500 hover:text-rose-600 font-semibold">
+                    履歴をすべて削除
+                </button>
+            </div>
+            <div id="history-container" class="space-y-3">
+                <p class="text-xs text-slate-400">保存された履歴はありません。</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-white border-t border-slate-200 py-6 text-xs text-center text-slate-400 mt-12">
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 状態管理
+        let booths = [
+            { name: "打席A", hours: 120 },
+            { name: "打席B", hours: 90 },
+            { name: "打席C", hours: 150 },
+            { name: "打席D", hours: 60 }
+        ];
+
+        // URLコピー機能
+        document.getElementById('copy-url-btn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('専用URLをコピーしました！次回以降もこのURLからアクセスしてください。');
+            }).catch(err => {
+                alert('コピーに失敗しました。ブラウザのアドレスバーからURLを手動でコピーしてください。');
+            });
+        });
+
+        // 独立した純粋計算関数（ゼロ除算・負数・NaNガード、最大剰余法）
+        function calculateAllocation(totalElec, totalFixed, boothsData) {
+            const sanitizedElec = Math.max(0, Number(totalElec) || 0);
+            const sanitizedFixed = Math.max(0, Number(totalFixed) || 0);
+            const hoursArray = boothsData.map(b => Math.max(0, Number(b.hours) || 0));
+            
+            const totalHours = hoursArray.reduce((sum, h) => sum + h, 0);
+            
+            let results = [];
+            if (totalHours === 0) {
+                const equalShareElec = Math.floor(sanitizedElec / boothsData.length);
+                const equalShareFixed = Math.floor(sanitizedFixed / boothsData.length);
+                results = boothsData.map((b, idx) => ({
+                    name: b.name,
+                    hours: 0,
+                    ratio: 0,
+                    elec: equalShareElec,
+                    fixed: equalShareFixed,
+                    total: equalShareElec + equalShareFixed
+                }));
+            } else {
+                // 電気代の配分（最大剰余法）
+                let elecRemain = sanitizedElec;
+                let rawElecs = hoursArray.map(h => {
+                    const exact = (sanitizedElec * h) / totalHours;
+                    const floorVal = Math.floor(exact);
+                    elecRemain -= floorVal;
+                    return { floorVal, remainder: exact - floorVal };
+                });
+                rawElecs.sort((a, b) => b.remainder - a.remainder);
+                for (let i = 0; i < elecRemain; i++) {
+                    rawElecs[i].floorVal += 1;
+                }
+
+                // 固定費の配分（最大剰余法）
+                let fixedRemain = sanitizedFixed;
+                let rawFixeds = hoursArray.map(h => {
+                    const exact = (sanitizedFixed * h) / totalHours;
+                    const floorVal = Math.floor(exact);
+                    fixedRemain -= floorVal;
+                    return { floorVal, remainder: exact - floorVal };
+                });
+                rawFixeds.sort((a, b) => b.remainder - a.remainder);
+                for (let i = 0; i < fixedRemain; i++) {
+                    rawFixeds[i].floorVal += 1;
+                }
+
+                results = boothsData.map((b, idx) => {
+                    const ratio = (b.hours / totalHours) * 100;
+                    return {
+                        name: b.name,
+                        hours: b.hours,
+                        ratio,
+                        elec: rawElecs[idx].floorVal,
+                        fixed: rawFixeds[idx].floorVal,
+                        total: rawElecs[idx].floorVal + rawFixeds[idx].floorVal
+                    };
+                });
+            }
+            return results;
+        }
+
+        // 画面描画
+        function renderBoothsInputs() {
+            const container = document.getElementById('booths-container');
+            container.innerHTML = '';
+            booths.forEach((booth, idx) => {
+                const row = document.createElement('div');
+                row.className = 'flex items-center gap-3';
+
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.value = booth.name;
+                nameInput.className = 'w-1/3 border border-slate-300 rounded-lg px-3 py-2 text-sm';
+                nameInput.addEventListener('input', (e) => {
+                    booths[idx].name = e.target.value;
+                    updateApp();
+                });
+
+                const hoursInput = document.createElement('input');
+                hoursInput.type = 'number';
+                hoursInput.value = booth.hours;
+                hoursInput.className = 'w-1/3 border border-slate-300 rounded-lg px-3 py-2 text-sm';
+                hoursInput.addEventListener('input', (e) => {
+                    booths[idx].hours = Number(e.target.value);
+                    updateApp();
+                });
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.type = 'button';
+                deleteBtn.className = 'text-slate-400 hover:text-rose-500 px-2 py-1';
+                deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                deleteBtn.addEventListener('click', () => {
+                    if (booths.length <= 1) {
+                        alert('最低1つの打席が必要です。');
+                        return;
+                    }
+                    booths.splice(idx, 1);
+                    renderBoothsInputs();
+                    updateApp();
+                });
+
+                row.appendChild(nameInput);
+                row.appendChild(hoursInput);
+                row.appendChild(deleteBtn);
+                container.appendChild(row);
+            });
+        }
+
+        function updateApp() {
+            const totalElec = document.getElementById('input-elec').value;
+            const totalFixed = document.getElementById('input-fixed').value;
+            const results = calculateAllocation(totalElec, totalFixed, booths);
+
+            const tbody = document.getElementById('result-table-body');
+            tbody.innerHTML = '';
+
+            results.forEach(res => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50';
+
+                const tdName = document.createElement('td');
+                tdName.className = 'py-3 font-bold text-slate-700';
+                tdName.textContent = res.name;
+
+                const tdHours = document.createElement('td');
+                tdHours.className = 'py-3 text-slate-600';
+                tdHours.textContent = `${res.hours}時間`;
+
+                const tdRatio = document.createElement('td');
+                tdRatio.className = 'py-3 text-slate-600';
+                tdRatio.textContent = `${res.ratio.toFixed(1)}%`;
+
+                const tdElec = document.createElement('td');
+                tdElec.className = 'py-3 text-slate-600';
+                tdElec.textContent = `¥${res.elec.toLocaleString()}`;
+
+                const tdFixed = document.createElement('td');
+                tdFixed.className = 'py-3 text-slate-600';
+                tdFixed.textContent = `¥${res.fixed.toLocaleString()}`;
+
+                const tdTotal = document.createElement('td');
+                tdTotal.className = 'py-3 font-bold text-slate-900 text-right';
+                tdTotal.textContent = `¥${res.total.toLocaleString()}`;
+
+                tr.appendChild(tdName);
+                tr.appendChild(tdHours);
+                tr.appendChild(tdRatio);
+                tr.appendChild(tdElec);
+                tr.appendChild(tdFixed);
+                tr.appendChild(tdTotal);
+                tbody.appendChild(tr);
+            });
+        }
+
+        // イベントリスナー
+        document.getElementById('input-elec').addEventListener('input', updateApp);
+        document.getElementById('input-fixed').addEventListener('input', updateApp);
+        document.getElementById('add-booth-btn').addEventListener('click', () => {
+            booths.push({ name: `打席${String.fromCharCode(65 + booths.length)}`, hours: 100 });
+            renderBoothsInputs();
+            updateApp();
+        });
+
+        document.getElementById('sample-fill-btn').addEventListener('click', () => {
+            document.getElementById('input-elec').value = 55000;
+            document.getElementById('input-fixed').value = 160000;
+            booths = [
+                { name: "VIP打席", hours: 160 },
+                { name: "スタンダード1", hours: 120 },
+                { name: "スタンダード2", hours: 90 }
+            ];
+            renderBoothsInputs();
+            updateApp();
+        });
+
+        // 履歴保存機能 (localStorage)
+        document.getElementById('save-history-btn').addEventListener('click', () => {
+            const totalElec = document.getElementById('input-elec').value;
+            const totalFixed = document.getElementById('input-fixed').value;
+            const results = calculateAllocation(totalElec, totalFixed, booths);
+            
+            const historyItem = {
+                id: Date.now(),
+                date: new Date().toLocaleDateString('ja-JP'),
+                totalElec,
+                totalFixed,
+                results
+            };
+
+            let history = JSON.parse(localStorage.getItem('golf_allocation_history') || '[]');
+            history.unshift(historyItem);
+            localStorage.setItem('golf_allocation_history', JSON.stringify(history));
+            loadHistory();
+            alert('計算結果を履歴に保存しました。');
+        });
+
+        function loadHistory() {
+            const container = document.getElementById('history-container');
+            const history = JSON.parse(localStorage.getItem('golf_allocation_history') || '[]');
+            
+            if (history.length === 0) {
+                container.innerHTML = '<p class="text-xs text-slate-400">保存された履歴はありません。</p>';
+                return;
+            }
+
+            container.innerHTML = '';
+            history.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3';
+                
+                const info = document.createElement('div');
+                info.innerHTML = `<strong class="text-slate-700">保存日時: ${item.date}</strong><br><span class="text-slate-500">電気代総額: ¥${Number(item.totalElec).toLocaleString()} / 固定費総額: ¥${Number(item.totalFixed).toLocaleString()}</span>`;
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.type = 'button';
+                deleteBtn.className = 'text-rose-500 hover:text-rose-600 font-semibold';
+                deleteBtn.textContent = '削除';
+                deleteBtn.addEventListener('click', () => {
+                    let hist = JSON.parse(localStorage.getItem('golf_allocation_history') || '[]');
+                    hist = hist.filter(h => h.id !== item.id);
+                    localStorage.setItem('golf_allocation_history', JSON.stringify(hist));
+                    loadHistory();
+                });
+
+                div.appendChild(info);
+                div.appendChild(deleteBtn);
+                container.appendChild(div);
+            });
+        }
+
+        document.getElementById('clear-history-btn').addEventListener('click', () => {
+            if (confirm('すべての履歴を削除してもよろしいですか？')) {
+                localStorage.removeItem('golf_allocation_history');
+                loadHistory();
+            }
+        });
+
+        // CSV出力機能 (BOM付きUTF-8)
+        document.getElementById('export-csv-btn').addEventListener('click', () => {
+            const totalElec = document.getElementById('input-elec').value;
+            const totalFixed = document.getElementById('input-fixed').value;
+            const results = calculateAllocation(totalElec, totalFixed, booths);
+
+            let csvContent = "\uFEFF打席名,稼働時間(h),按分比率(%),電気代按分(円),固定費按分(円),合計請求額(円)\n";
+            results.forEach(res => {
+                csvContent += `"${res.name}",${res.hours},${res.ratio.toFixed(2)},${res.elec},${res.fixed},${res.total}\n`;
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `golf_allocation_${new Date().toISOString().slice(0,10)}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // 初期化実行
+        renderBoothsInputs();
+        updateApp();
+        loadHistory();
+    </script>
+</body>
+</html>
