@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"proj_e37ad3b7-6d33-4c70-9892-314490c91181_project",value:1480,currency:"JPY"});}});</script><script>(function(){var p=new URLSearchParams(window.location.search),k=p.get("key"),s="vf_unlocked_proj_e37ad3b7-6d33-4c70-9892-314490c91181_project";if(k==="fk9bbdglugjx1c68napon"){var f=localStorage.getItem(s)!=="true";localStorage.setItem(s,"true");if(f&&typeof gtag==="function"){gtag("event","first_product_access",{item_name:"proj_e37ad3b7-6d33-4c70-9892-314490c91181_project"});}}else if(localStorage.getItem(s)!=="true"){document.documentElement.innerHTML="<body style=\"background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\"><div style=\"text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px\"><h2>購入者専用ページ</h2><p style=\"color:#94a3b8;font-size:.9rem\">購入完了後の正規リダイレクトからのみアクセス可能です。</p><a href=\"https://deguchry112445-cell.github.io/ai-venture-factory/proj_e37ad3b7-6d33-4c70-9892-314490c91181_project/\" style=\"display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:.5rem\">販売ページへ戻る</a></div></body>";window.stop();}})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】個人サウナ専用 薪・電気・水道動的按分計算機</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-amber-500 selection:text-slate-950">
+    <!-- ブックマーク・URL保管警告バー -->
+    <div class="bg-amber-500 text-slate-950 px-4 py-3 text-xs md:text-sm font-bold">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div class="flex items-center gap-2 text-center sm:text-left">
+                <i class="fa-solid fa-triangle-exclamation text-base"></i>
+                <span>【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください。</span>
+            </div>
+            <button id="copy-url-btn" class="bg-slate-950 text-amber-400 hover:bg-slate-900 px-4 py-1.5 rounded-lg text-xs font-semibold transition shrink-0">
+                <i class="fa-solid fa-copy mr-1"></i> 現在の専用URLをコピー
+            </button>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-xs font-mono text-amber-500 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">完全版アプリケーション</span>
+                <h1 class="text-sm md:text-base font-bold hidden sm:inline">個人サウナ専用 薪・電気・水道動的按分計算機</h1>
+            </div>
+            <span class="text-xs text-slate-400">Venture Factory</span>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- 入力フォームセクション -->
+        <div class="lg:col-span-1 space-y-6">
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+                <h2 class="text-base font-bold mb-4 flex items-center gap-2 text-amber-400">
+                    <i class="fa-solid fa-sliders"></i> 計算パラメータ入力
+                </h2>
+                <form id="calc-form" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">対象月</label>
+                        <input type="month" id="target-month" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 text-sm focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">総燃料費（電気代・薪代合算：円）</label>
+                        <input type="number" id="total-fuel" value="60000" min="0" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 text-sm focus:outline-none focus:border-amber-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">経営者A 稼働時間（時間）</label>
+                        <input type="number" id="hours-a" value="35" min="0" step="0.1" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 text-sm focus:outline-none focus:border-amber-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">経営者B 稼働時間（時間）</label>
+                        <input type="number" id="hours-b" value="25" min="0" step="0.1" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 text-sm focus:outline-none focus:border-amber-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">水道代・その他共通固定費（円）</label>
+                        <input type="number" id="total-utility" value="16000" min="0" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 text-sm focus:outline-none focus:border-amber-500" required>
+                    </div>
+                    <button type="button" id="calc-btn" class="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-bold rounded-xl shadow-lg transition text-sm">
+                        <i class="fa-solid fa-calculator mr-1"></i> 計算して履歴に保存する
+                    </button>
+                </form>
+            </div>
+
+            <!-- 制限事項の明記 -->
+            <div class="bg-slate-900/50 border border-slate-800 p-4 rounded-xl text-xs text-slate-400 space-y-2">
+                <p class="font-bold text-slate-300"><i class="fa-solid fa-circle-info mr-1 text-amber-400"></i> 前提条件・制限事項</p>
+                <p>※本ツールは稼働時間ベースの動的按分計算機であり、個別機器の効率差や特殊気候条件は考慮しません。</p>
+                <p>※最大剰余法アルゴリズムにより、配分後の合計金額と元の総額の誤差（1円未満）を完全になくしています。</p>
+            </div>
+        </div>
+
+        <!-- 結果および履歴セクション -->
+        <div class="lg:col-span-2 space-y-6">
+            <!-- 今回の計算結果 -->
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+                <h2 class="text-base font-bold mb-4 flex items-center gap-2 text-amber-400">
+                    <i class="fa-solid fa-square-poll-vertical"></i> 按分計算明細結果
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400">経営者A 最終負担合計</span>
+                        <div id="res-total-a" class="text-3xl font-black text-amber-400 mt-1">0円</div>
+                        <div class="text-[11px] text-slate-500 mt-2" id="res-breakdown-a">燃料費: 0円 / 水道費: 0円</div>
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400">経営者B 最終負担合計</span>
+                        <div id="res-total-b" class="text-3xl font-black text-orange-400 mt-1">0円</div>
+                        <div class="text-[11px] text-slate-500 mt-2" id="res-breakdown-b">燃料費: 0円 / 水道費: 0円</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 保存された履歴一覧 -->
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                    <h2 class="text-base font-bold flex items-center gap-2 text-amber-400">
+                        <i class="fa-solid fa-clock-rotate-left"></i> 計算履歴一覧（LocalStorage自動保存）
+                    </h2>
+                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                        <button id="export-csv-btn" class="flex-1 sm:flex-none px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg border border-slate-700 transition">
+                            <i class="fa-solid fa-download text-amber-400 mr-1"></i> CSVダウンロード
+                        </button>
+                        <button id="clear-history-btn" class="px-3 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-semibold rounded-lg border border-red-500/20 transition" title="履歴を全削除">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-950 text-slate-400 border-b border-slate-800">
+                            <tr>
+                                <th class="p-3">対象月</th>
+                                <th class="p-3">総燃料費</th>
+                                <th class="p-3">A時間(比率)</th>
+                                <th class="p-3">B時間(比率)</th>
+                                <th class="p-3">A負担額</th>
+                                <th class="p-3">B負担額</th>
+                                <th class="p-3 text-right">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body" class="divide-y divide-slate-800 text-slate-300">
+                            <!-- 動的挿入 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="border-t border-slate-900 py-8 px-4 text-center text-xs text-slate-500 mt-12">
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 初期年月設定
+        const dateObj = new Date();
+        const currentYearMonth = dateObj.getFullYear() + '-' + String(dateObj.getMonth() + 1).padStart(2, '0');
+        document.getElementById('target-month').value = currentYearMonth;
+
+        // URLコピー機能
+        document.getElementById('copy-url-btn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('専用URLをコピーしました。お気に入りに登録して保管してください。');
+            });
+        });
+
+        // 最大剰余法による按分計算純粋関数
+        function calculateAllocation(totalFuel, hoursA, hoursB, totalUtility) {
+            const totalHours = hoursA + hoursB;
+            let fuelA = 0, fuelB = 0;
+
+            if (totalHours > 0) {
+                const exactA = totalFuel * (hoursA / totalHours);
+                fuelA = Math.floor(exactA);
+                fuelB = totalFuel - fuelA;
+                // 端数調整（最大剰余法簡易版：余りを調整）
+                const remainder = totalFuel - (fuelA + fuelB);
+                if (remainder !== 0) {
+                    if (hoursA >= hoursB) fuelA += remainder;
+                    else fuelB += remainder;
+                }
+            } else {
+                fuelA = Math.round(totalFuel / 2);
+                fuelB = totalFuel - fuelA;
+            }
+
+            const utilityA = Math.round(totalUtility / 2);
+            const utilityB = totalUtility - utilityA;
+
+            return {
+                fuelA,
+                fuelB,
+                utilityA,
+                utilityB,
+                totalA: fuelA + utilityA,
+                totalB: fuelB + utilityB,
+                ratioA: totalHours > 0 ? ((hoursA / totalHours) * 100).toFixed(1) : '50.0',
+                ratioB: totalHours > 0 ? ((hoursB / totalHours) * 100).toFixed(1) : '50.0'
+            };
+        }
+
+        // ローカルストレージ管理
+        const STORAGE_KEY = 'sauna_allocation_history_v1';
+
+        function getHistory() {
+            try {
+                const data = localStorage.getItem(STORAGE_KEY);
+                return data ? JSON.parse(data) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveHistory(item) {
+            const history = getHistory();
+            history.unshift(item);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+        }
+
+        function renderHistory() {
+            const history = getHistory();
+            const tbody = document.getElementById('history-table-body');
+            tbody.innerHTML = '';
+
+            if (history.length === 0) {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.colSpan = 7;
+                td.className = 'p-4 text-center text-slate-500';
+                td.textContent = '計算履歴はまだありません。左側のフォームから計算を実行してください。';
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+                return;
+            }
+
+            history.forEach((h, index) => {
+                const tr = document.createElement('tr');
+                
+                const tdMonth = document.createElement('td');
+                tdMonth.className = 'p-3 font-mono';
+                tdMonth.textContent = h.month;
+                tr.appendChild(tdMonth);
+
+                const tdFuel = document.createElement('td');
+                tdFuel.className = 'p-3 font-mono';
+                tdFuel.textContent = Number(h.totalFuel).toLocaleString() + '円';
+                tr.appendChild(tdFuel);
+
+                const tdHoursA = document.createElement('td');
+                tdHoursA.className = 'p-3 font-mono';
+                tdHoursA.textContent = h.hoursA + 'h (' + h.ratioA + '%)';
+                tr.appendChild(tdHoursA);
+
+                const tdHoursB = document.createElement('td');
+                tdHoursB.className = 'p-3 font-mono';
+                tdHoursB.textContent = h.hoursB + 'h (' + h.ratioB + '%)';
+                tr.appendChild(tdHoursB);
+
+                const tdTotalA = document.createElement('td');
+                tdTotalA.className = 'p-3 font-mono font-bold text-amber-400';
+                tdTotalA.textContent = Number(h.totalA).toLocaleString() + '円';
+                tr.appendChild(tdTotalA);
+
+                const tdTotalB = document.createElement('td');
+                tdTotalB.className = 'p-3 font-mono font-bold text-orange-400';
+                tdTotalB.textContent = Number(h.totalB).toLocaleString() + '円';
+                tr.appendChild(tdTotalB);
+
+                const tdAction = document.createElement('td');
+                tdAction.className = 'p-3 text-right';
+                const delBtn = document.createElement('button');
+                delBtn.className = 'text-slate-500 hover:text-red-400 p-1';
+                delBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                delBtn.onclick = () => {
+                    const current = getHistory();
+                    current.splice(index, 1);
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
+                    renderHistory();
+                };
+                tdAction.appendChild(delBtn);
+                tr.appendChild(tdAction);
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        // 計算実行処理
+        function executeCalculation() {
+            const month = document.getElementById('target-month').value || '未設定';
+            const totalFuel = parseFloat(document.getElementById('total-fuel').value) || 0;
+            const hoursA = parseFloat(document.getElementById('hours-a').value) || 0;
+            const hoursB = parseFloat(document.getElementById('hours-b').value) || 0;
+            const totalUtility = parseFloat(document.getElementById('total-utility').value) || 0;
+
+            const result = calculateAllocation(totalFuel, hoursA, hoursB, totalUtility);
+
+            // 結果表示の更新
+            document.getElementById('res-total-a').textContent = result.totalA.toLocaleString() + '円';
+            document.getElementById('res-breakdown-a').textContent = '燃料費: ' + result.fuelA.toLocaleString() + '円 / 水道共通費: ' + result.utilityA.toLocaleString() + '円';
+
+            document.getElementById('res-total-b').textContent = result.totalB.toLocaleString() + '円';
+            document.getElementById('res-breakdown-b').textContent = '燃料費: ' + result.fuelB.toLocaleString() + '円 / 水道共通費: ' + result.utilityB.toLocaleString() + '円';
+
+            // 履歴保存用オブジェクト
+            const historyItem = {
+                month,
+                totalFuel,
+                hoursA,
+                hoursB,
+                totalUtility,
+                fuelA: result.fuelA,
+                fuelB: result.fuelB,
+                utilityA: result.utilityA,
+                utilityB: result.utilityB,
+                totalA: result.totalA,
+                totalB: result.totalB,
+                ratioA: result.ratioA,
+                ratioB: result.ratioB,
+                timestamp: new Date().toISOString()
+            };
+
+            saveHistory(historyItem);
+            renderHistory();
+        }
+
+        document.getElementById('calc-btn').addEventListener('click', executeCalculation);
+
+        // CSVエクスポート（BOM付きUTF-8）
+        document.getElementById('export-csv-btn').addEventListener('click', () => {
+            const history = getHistory();
+            if (history.length === 0) {
+                alert('エクスポートする履歴がありません。');
+                return;
+            }
+
+            let csv = '\uFEFF対象月,総燃料費,A稼働時間,B稼働時間,水道共通費,A燃料費,B燃料費,A水道費,B水道費,A負担合計,B負担合計,A比率(%),B比率(%)\n';
+            history.forEach(h => {
+                csv += `"${h.month}",${h.totalFuel},${h.hoursA},${h.hoursB},${h.totalUtility},${h.fuelA},${h.fuelB},${h.utilityA},${h.utilityB},${h.totalA},${h.totalB},${h.ratioA},${h.ratioB}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'sauna_expense_allocation_' + new Date().toISOString().slice(0, 10) + '.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // 履歴全削除
+        document.getElementById('clear-history-btn').addEventListener('click', () => {
+            if (confirm('すべての計算履歴を削除してもよろしいですか？')) {
+                localStorage.removeItem(STORAGE_KEY);
+                renderHistory();
+            }
+        });
+
+        // 初回ロード時実行
+        executeCalculation();
+    </script>
+</body>
+</html>
