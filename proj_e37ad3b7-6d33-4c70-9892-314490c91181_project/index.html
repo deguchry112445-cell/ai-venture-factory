@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"proj_e37ad3b7-6d33-4c70-9892-314490c91181_project",value:1480,currency:"JPY"});}});</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人サウナ専用 薪・電気・水道動的按分計算機</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-amber-500 selection:text-slate-950">
+    <!-- ヘッダー -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="../" class="text-xs text-slate-400 hover:text-amber-400 transition flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> ツール一覧へ戻る
+            </a>
+            <span class="text-xs font-mono text-amber-500 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Venture Factory</span>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="py-16 md:py-24 px-4 max-w-5xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-semibold mb-6">
+            <i class="fa-solid fa-triangle-exclamation"></i> 共同経営の金銭トラブルを完全防止
+        </div>
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+            サウナの電気代・薪代の按分を<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">3秒で完璧に自動計算</span>
+        </h1>
+        <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto mb-10">
+            稼働時間と予約枠を入力するだけで、共同経営者間やシフト別の経費負担額を1円のズレもなく算出。Excel破綻を防ぐ専用ブラウザ計算機。
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="https://buy.stripe.com/7sYbJ19oj7Tyg10gg5eQM0A" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 text-center">
+                <i class="fa-solid fa-bolt mr-2"></i> 完全版を手に入れる (1,480円)
+            </a>
+            <a href="#demo" class="w-full sm:w-auto px-8 py-4 bg-slate-900 hover:bg-slate-800 text-slate-300 font-semibold rounded-xl border border-slate-700 transition text-center">
+                無料デモを試す <i class="fa-solid fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 無料ライブ体験デモ枠 -->
+    <section id="demo" class="py-16 px-4 max-w-4xl mx-auto">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
+                <div>
+                    <span class="text-xs font-bold text-amber-500 uppercase tracking-wider">Interactive Demo</span>
+                    <h2 class="text-xl font-bold mt-1">無料ライブ体験デモ</h2>
+                </div>
+                <button type="button" id="demo-fill-btn" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg border border-slate-700 transition">
+                    <i class="fa-solid fa-wand-magic-sparkles text-amber-400 mr-1"></i> サンプルデータを自動入力
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-2">総電気代・薪代（円）</label>
+                    <input type="number" id="demo-total-cost" value="50000" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-2">経営者A 稼働時間（時間）</label>
+                    <input type="number" id="demo-hours-a" value="30" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-2">経営者B 稼働時間（時間）</label>
+                    <input type="number" id="demo-hours-b" value="20" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-2">水道・その他共通費（円）</label>
+                    <input type="number" id="demo-utility" value="15000" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500">
+                </div>
+            </div>
+
+            <!-- デモ結果表示 -->
+            <div class="bg-slate-950 border border-slate-800 rounded-xl p-6 mb-8">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">リアルタイム計算結果（デモ）</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                        <span class="text-xs text-slate-400">経営者A 負担額</span>
+                        <div id="demo-res-a" class="text-2xl font-black text-amber-400 mt-1">0円</div>
+                    </div>
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                        <span class="text-xs text-slate-400">経営者B 負担額</span>
+                        <div id="demo-res-b" class="text-2xl font-black text-orange-400 mt-1">0円</div>
+                    </div>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-4">※最大剰余法アルゴリズムにより、合計金額との誤差（1円未満）を完全になくして配分しています。</p>
+            </div>
+
+            <!-- ロックされた機能 -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <a href="https://buy.stripe.com/7sYbJ19oj7Tyg10gg5eQM0A" class="p-3 bg-slate-950 hover:bg-slate-900 border border-slate-800 rounded-xl text-center text-xs text-slate-400 hover:text-amber-400 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-lock text-amber-500"></i> CSV出力機能 (完全版で解放)
+                </a>
+                <a href="https://buy.stripe.com/7sYbJ19oj7Tyg10gg5eQM0A" class="p-3 bg-slate-950 hover:bg-slate-900 border border-slate-800 rounded-xl text-center text-xs text-slate-400 hover:text-amber-400 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-lock text-amber-500"></i> 履歴自動保存 (完全版で解放)
+                </a>
+                <a href="https://buy.stripe.com/7sYbJ19oj7Tyg10gg5eQM0A" class="p-3 bg-slate-950 hover:bg-slate-900 border border-slate-800 rounded-xl text-center text-xs text-slate-400 hover:text-amber-400 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-lock text-amber-500"></i> 一括処理機能 (完全版で解放)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特徴セクション -->
+    <section class="py-16 px-4 max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold">なぜ共同経営サウナに専用計算機が必要なのか？</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-400 text-xl mb-4 border border-amber-500/20">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">Excel破綻をゼロに</h3>
+                <p class="text-slate-400 text-sm">複雑な関数は不要。ブラウザ上で直感的に数値を入力するだけで、誰でも一瞬で正確な按分明細を作成できます。</p>
+            </div>
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-400 text-xl mb-4 border border-amber-500/20">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">1円のズレも出さない</h3>
+                <p class="text-slate-400 text-sm">端数処理でパートナー間での不信感を生みません。最大剰余法により総額と配分額の完全一致を保証します。</p>
+            </div>
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-400 text-xl mb-4 border border-amber-500/20">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">30秒で即完了</h3>
+                <p class="text-slate-400 text-sm">毎月の面倒な経費精算作業を自動化。自動データ保存とCSV出力で経理作業も圧倒的に効率化されます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTAセクション -->
+    <section class="py-20 px-4 max-w-4xl mx-auto text-center">
+        <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 p-8 md:p-12 rounded-3xl shadow-2xl">
+            <h2 class="text-3xl font-extrabold mb-4">経費トラブルの不安から、今すぐ解放されよう。</h2>
+            <p class="text-slate-400 mb-8 max-w-xl mx-auto text-sm">
+                買い切り型Webツール。追加費用なしでずっとお使いいただけます。<br>外部スプレッドシートの配布ではありません。ブラウザ完結の専用アプリです。
+            </p>
+            <a href="https://buy.stripe.com/7sYbJ19oj7Tyg10gg5eQM0A" class="inline-block px-10 py-5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-extrabold rounded-xl shadow-xl shadow-amber-500/20 transition transform hover:-translate-y-0.5 text-lg">
+                <i class="fa-solid fa-cart-shopping mr-2"></i> 完全版を購入する (1,480円)
+            </a>
+            <p class="text-xs text-slate-500 mt-4">※即座に専用URLが発行され、すぐにご利用いただけます。</p>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="border-t border-slate-900 py-8 px-4 text-center text-xs text-slate-500">
+        <p class="mb-2">特定商取引法に基づく表記は決済画面（Stripe）にてご確認いただけます。</p>
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function calculateDemo() {
+            const totalCost = parseFloat(document.getElementById('demo-total-cost').value) || 0;
+            const hoursA = parseFloat(document.getElementById('demo-hours-a').value) || 0;
+            const hoursB = parseFloat(document.getElementById('demo-hours-b').value) || 0;
+            const utility = parseFloat(document.getElementById('demo-utility').value) || 0;
+
+            const totalHours = hoursA + hoursB;
+            let costA = 0, costB = 0;
+            let utilityA = 0, utilityB = 0;
+
+            if (totalHours > 0) {
+                costA = Math.round(totalCost * (hoursA / totalHours));
+                costB = totalCost - costA; // 最大剰余法簡易版
+            } else {
+                costA = Math.round(totalCost / 2);
+                costB = totalCost - costA;
+            }
+
+            utilityA = Math.round(utility / 2);
+            utilityB = utility - utilityA;
+
+            const finalA = costA + utilityA;
+            const finalB = costB + utilityB;
+
+            document.getElementById('demo-res-a').textContent = finalA.toLocaleString() + '円';
+            document.getElementById('demo-res-b').textContent = finalB.toLocaleString() + '円';
+        }
+
+        document.getElementById('demo-total-cost').addEventListener('input', calculateDemo);
+        document.getElementById('demo-hours-a').addEventListener('input', calculateDemo);
+        document.getElementById('demo-hours-b').addEventListener('input', calculateDemo);
+        document.getElementById('demo-utility').addEventListener('input', calculateDemo);
+
+        document.getElementById('demo-fill-btn').addEventListener('click', () => {
+            document.getElementById('demo-total-cost').value = '68000';
+            document.getElementById('demo-hours-a').value = '45';
+            document.getElementById('demo-hours-b').value = '35';
+            document.getElementById('demo-utility').value = '18000';
+            calculateDemo();
+        });
+
+        calculateDemo();
+    </script>
+</body>
+</html>
