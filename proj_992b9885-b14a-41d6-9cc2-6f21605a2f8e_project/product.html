@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-5CN8X87Q8W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5CN8X87Q8W");document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.href&&a.href.indexOf("stripe.com")!==-1){gtag("event","begin_checkout",{item_name:"proj_992b9885-b14a-41d6-9cc2-6f21605a2f8e_project",value:1480,currency:"JPY"});}});</script><script>(function(){var p=new URLSearchParams(window.location.search),k=p.get("key"),s="vf_unlocked_proj_992b9885-b14a-41d6-9cc2-6f21605a2f8e_project";if(k==="it1xg0uds3pakw7p1u2g4c"){var f=localStorage.getItem(s)!=="true";localStorage.setItem(s,"true");if(f&&typeof gtag==="function"){gtag("event","first_product_access",{item_name:"proj_992b9885-b14a-41d6-9cc2-6f21605a2f8e_project"});}}else if(localStorage.getItem(s)!=="true"){document.documentElement.innerHTML="<body style=\"background:#0f172a;color:#f8fafc;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\"><div style=\"text-align:center;padding:2rem;border:1px solid #334155;border-radius:1rem;max-width:420px\"><h2>購入者専用ページ</h2><p style=\"color:#94a3b8;font-size:.9rem\">購入完了後の正規リダイレクトからのみアクセス可能です。</p><a href=\"https://deguchry112445-cell.github.io/ai-venture-factory/proj_992b9885-b14a-41d6-9cc2-6f21605a2f8e_project/\" style=\"display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#3b82f6;color:#fff;text-decoration:none;border-radius:.5rem\">販売ページへ戻る</a></div></body>";window.stop();}})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】貸切サウナ専門・電気代動的按分計算機</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- 注意バー -->
+    <div class="bg-cyan-500 text-slate-950 px-4 py-3 text-xs md:text-sm font-bold text-center flex flex-col sm:flex-row items-center justify-center gap-3 shadow-md">
+        <span><i class="fa-solid fa-triangle-exclamation"></i> 【重要】次回以降もこの完全版を利用するため、必ずこのページをブックマークするか専用URLをコピーして保管してください</span>
+        <button id="copy-url-btn" class="bg-slate-950 text-cyan-400 hover:bg-slate-900 px-3 py-1.5 rounded-lg text-xs font-mono transition">
+            現在の専用URLをコピー
+        </button>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="bg-slate-900 border-b border-slate-800 py-4 px-6">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="bg-cyan-500 text-slate-950 text-xs px-2.5 py-1 rounded font-bold font-mono">PRO</span>
+                <h1 class="text-base md:text-lg font-bold">貸切サウナ専用 予約枠別・電気代動的按分計算機</h1>
+            </div>
+            <span class="text-xs text-slate-400 font-mono">Venture Factory</span>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="flex-1 max-w-6xl w-full mx-auto p-4 md:p-8 grid lg:grid-cols-3 gap-8">
+        
+        <!-- 入力フォームエリア -->
+        <div class="lg:col-span-1 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6 h-fit">
+            <h2 class="text-lg font-bold flex items-center gap-2"><i class="fa-solid fa-calculator text-cyan-400"></i> パラメータ設定</h2>
+            
+            <div>
+                <label class="block text-xs font-medium text-slate-400 mb-2">当月電気代総額 (円)</label>
+                <input type="number" id="input-total-bill" value="50000" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-cyan-500">
+            </div>
+
+            <div>
+                <label class="block text-xs font-medium text-slate-400 mb-2">チラー定格電力 (kW)</label>
+                <input type="number" id="input-chiller-kw" value="2.5" step="0.1" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-cyan-500">
+            </div>
+
+            <div>
+                <div class="flex justify-between items-center mb-2">
+                    <label class="text-xs font-medium text-slate-400">予約枠データ管理</label>
+                    <button type="button" id="add-slot-btn" class="text-xs text-cyan-400 hover:underline"><i class="fa-solid fa-plus"></i> 枠を追加</button>
+                </div>
+                <div id="slots-container" class="space-y-3">
+                    <!-- JS動的生成 -->
+                </div>
+            </div>
+
+            <button type="button" id="calc-btn" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3.5 rounded-xl transition shadow-lg shadow-cyan-500/20">
+                按分計算を実行する
+            </button>
+        </div>
+
+        <!-- 結果・履歴エリア -->
+        <div class="lg:col-span-2 space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold flex items-center gap-2"><i class="fa-solid fa-file-invoice-dollar text-cyan-400"></i> 計算結果・按分明細</h2>
+                    <button type="button" id="csv-export-btn" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 border border-slate-700 text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-download"></i> CSV出力
+                    </button>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-950 text-slate-400 uppercase text-xs">
+                            <tr>
+                                <th class="p-3 rounded-l-lg">予約枠名</th>
+                                <th class="p-3">稼働時間 (h)</th>
+                                <th class="p-3">按分比率 (%)</th>
+                                <th class="p-3 rounded-r-lg text-right">配分金額 (円)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="result-table-body" class="divide-y divide-slate-800/50 font-mono">
+                            <!-- JS動的生成 -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-4 text-xs text-slate-500 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                    <p>※前提条件・制限事項：本ツールは稼働時間ベースの動的按分計算です。最大剰余法を適用しているため、配分後の合計金額は元の総額と100%一致します。</p>
+                </div>
+            </div>
+
+            <!-- 履歴管理 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-base font-bold flex items-center gap-2"><i class="fa-solid fa-clock-rotate-left text-cyan-400"></i> 保存された計算履歴（localStorage）</h2>
+                    <button type="button" id="clear-history-btn" class="text-xs text-red-400 hover:underline">履歴を全削除</button>
+                </div>
+                <div id="history-container" class="space-y-2 text-sm font-mono max-h-60 overflow-y-auto">
+                    <!-- JS動的生成 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-6 px-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Venture Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 状態管理
+        let slots = [
+            { name: '平日朝・昼枠', hours: 40 },
+            { name: '週末ナイト枠', hours: 60 }
+        ];
+
+        function renderSlots() {
+            const container = document.getElementById('slots-container');
+            container.innerHTML = '';
+            slots.forEach((slot, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'flex gap-2 items-center';
+
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.value = slot.name;
+                nameInput.className = 'flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-100';
+                nameInput.addEventListener('input', (e) => { slots[index].name = e.target.value; });
+
+                const hourInput = document.createElement('input');
+                hourInput.type = 'number';
+                hourInput.value = slot.hours;
+                hourInput.className = 'w-20 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-100 font-mono';
+                hourInput.addEventListener('input', (e) => { slots[index].hours = parseFloat(e.target.value) || 0; });
+
+                const delBtn = document.createElement('button');
+                delBtn.type = 'button';
+                delBtn.className = 'text-slate-500 hover:text-red-400 p-2';
+                delBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                delBtn.addEventListener('click', () => {
+                    if (slots.length > 1) {
+                        slots.splice(index, 1);
+                        renderSlots();
+                        calculateAndRender();
+                    }
+                });
+
+                wrapper.appendChild(nameInput);
+                wrapper.appendChild(hourInput);
+                wrapper.appendChild(delBtn);
+                container.appendChild(wrapper);
+            });
+        }
+
+        function calculateAndRender() {
+            const totalBill = parseFloat(document.getElementById('input-total-bill').value) || 0;
+            const totalHours = slots.reduce((acc, s) => acc + (s.hours > 0 ? s.hours : 0), 0);
+
+            const tbody = document.getElementById('result-table-body');
+            tbody.innerHTML = '';
+
+            if (totalHours <= 0 || totalBill <= 0) {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.colSpan = 4;
+                td.className = 'text-center p-4 text-slate-500 text-xs';
+                td.textContent = '有効な数値を入力してください';
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+                return;
+            }
+
+            // 最大剰余法による按分計算
+            let allocatedSum = 0;
+            const calculatedItems = slots.map(slot => {
+                const ratio = slot.hours / totalHours;
+                const exactCost = totalBill * ratio;
+                const flooredCost = Math.floor(exactCost);
+                allocatedSum += flooredCost;
+                return {
+                    name: slot.name,
+                    hours: slot.hours,
+                    ratio: ratio * 100,
+                    floored: flooredCost,
+                    remainder: exactCost - flooredCost
+                };
+            });
+
+            // 差分（端数）の調整
+            let diff = Math.round(totalBill - allocatedSum);
+            calculatedItems.sort((a, b) => b.remainder - a.remainder);
+            
+            for (let i = 0; i < Math.abs(diff); i++) {
+                if (diff > 0) {
+                    calculatedItems[i % calculatedItems.length].floored += 1;
+                }
+            }
+
+            // 再並び順は維持または元順に
+            const finalResults = calculatedItems.map(item => ({
+                name: item.name,
+                hours: item.hours,
+                ratio: item.ratio,
+                cost: item.floored
+            }));
+
+            finalResults.forEach(item => {
+                const tr = document.createElement('tr');
+                
+                const tdName = document.createElement('td');
+                tdName.className = 'p-3 text-slate-300';
+                tdName.textContent = item.name;
+
+                const tdHours = document.createElement('td');
+                tdHours.className = 'p-3 text-slate-400';
+                tdHours.textContent = `${item.hours}h`;
+
+                const tdRatio = document.createElement('td');
+                tdRatio.className = 'p-3 text-slate-400';
+                tdRatio.textContent = `${item.ratio.toFixed(1)}%`;
+
+                const tdCost = document.createElement('td');
+                tdCost.className = 'p-3 text-right font-bold text-cyan-400';
+                tdCost.textContent = `\xA5${item.cost.toLocaleString()}`;
+
+                tr.appendChild(tdName);
+                tr.appendChild(tdHours);
+                tr.appendChild(tdRatio);
+                tr.appendChild(tdCost);
+                tbody.appendChild(tr);
+            });
+
+            // 履歴保存
+            saveHistory(totalBill, finalResults);
+        }
+
+        function saveHistory(totalBill, results) {
+            const history = JSON.parse(localStorage.getItem('sauna_calc_history') || '[]');
+            const record = {
+                date: new Date().toLocaleString(),
+                totalBill,
+                results
+            };
+            history.unshift(record);
+            if (history.length > 10) history.pop();
+            localStorage.setItem('sauna_calc_history', JSON.stringify(history));
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('history-container');
+            container.innerHTML = '';
+            const history = JSON.parse(localStorage.getItem('sauna_calc_history') || '[]');
+            
+            if (history.length === 0) {
+                const p = document.createElement('p');
+                p.className = 'text-xs text-slate-500';
+                p.textContent = '履歴はまだありません';
+                container.appendChild(p);
+                return;
+            }
+
+            history.forEach(h => {
+                const div = document.createElement('div');
+                div.className = 'bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs flex justify-between items-center';
+                
+                const left = document.createElement('span');
+                left.className = 'text-slate-400';
+                left.textContent = `${h.date} - 総額: \xA5${h.totalBill.toLocaleString()}`;
+
+                const right = document.createElement('span');
+                right.className = 'text-cyan-400';
+                right.textContent = h.results.map(r => `${r.name}:\xA5${r.cost.toLocaleString()}`).join(' / ');
+
+                div.appendChild(left);
+                div.appendChild(right);
+                container.appendChild(div);
+            });
+        }
+
+        // イベント設定
+        document.getElementById('add-slot-btn').addEventListener('click', () => {
+            slots.push({ name: `新規枠 ${slots.length + 1}`, hours: 20 });
+            renderSlots();
+            calculateAndRender();
+        });
+
+        document.getElementById('calc-btn').addEventListener('click', calculateAndRender);
+        document.getElementById('input-total-bill').addEventListener('input', calculateAndRender);
+        document.getElementById('input-chiller-kw').addEventListener('input', calculateAndRender);
+
+        document.getElementById('clear-history-btn').addEventListener('click', () => {
+            localStorage.removeItem('sauna_calc_history');
+            renderHistory();
+        });
+
+        document.getElementById('copy-url-btn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href);
+            alert('専用URLをクリップボードにコピーしました！');
+        });
+
+        document.getElementById('csv-export-btn').addEventListener('click', () => {
+            const history = JSON.parse(localStorage.getItem('sauna_calc_history') || '[]');
+            if (history.length === 0) {
+                alert('出力するデータがありません');
+                return;
+            }
+            const latest = history[0];
+            let csv = '\uFEFF日時,総額,枠名,稼働時間,按分金額\r\n';
+            latest.results.forEach(r => {
+                csv += `"${latest.date}",${latest.totalBill},"${r.name}",${r.hours},${r.cost}\r\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `sauna_denki_按分_${new Date().toISOString().slice(0,10)}.csv`;
+            a.click();
+        });
+
+        renderSlots();
+        calculateAndRender();
+    </script>
+</body>
+</html>
